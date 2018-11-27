@@ -413,6 +413,7 @@ int main()
 		progColorFilter->UseProgram();
 		progColorFilter->BindTexture(GL_TEXTURE0, GL_TEXTURE_2D, offscreen->GetTexutre());
 
+		// Ç±Ç±í«â¡
 		PostEffectData postEffect;
 		postEffect.matColor = glm::mat4(1);
 		////// ÉZÉsÉAí≤
