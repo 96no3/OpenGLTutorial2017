@@ -307,20 +307,19 @@ int main()
 		0xffffffff, 0xff000000, 0xffffffff, 0xff000000, 0xffffffff,
 		};
 	TexturePtr tex = Texture::Create(5, 5, GL_RGBA8, GL_RGBA, textureData);*/
-	TexturePtr tex = Texture::LoadFromFile("Res/Sample.bmp");
-	TexturePtr texToroid = Texture::LoadFromFile("Res/twinte.bmp");
+	//TexturePtr tex = Texture::LoadFromFile("Res/Sample.bmp");
+	//TexturePtr texToroid = Texture::LoadFromFile("Res/twinte.bmp");
+	TexturePtr texToroid = Texture::LoadFromFile("Res/Toroid.bmp");
 
-	TexturePtr texToroid2 = Texture::LoadFromFile("Res/Toroid.bmp");
-
-	if (!tex || !texToroid || !texToroid2) {
+	if (!texToroid) {
 		return 1;
 		
 	}
-	Mesh::BufferPtr meshBuffer = Mesh::Buffer::Create(50000, 50000);
-	meshBuffer->LoadMeshFromFile("Res/ao_twinte_chan.fbx");
+	/*Mesh::BufferPtr meshBuffer = Mesh::Buffer::Create(50000, 50000);
+	meshBuffer->LoadMeshFromFile("Res/ao_twinte_chan.fbx");*/
 
-	Mesh::BufferPtr meshBuffer2 = Mesh::Buffer::Create(50000, 50000);
-	meshBuffer2->LoadMeshFromFile("Res/Toroid.fbx");
+	Mesh::BufferPtr meshBuffer = Mesh::Buffer::Create(50000, 50000);
+	meshBuffer->LoadMeshFromFile("Res/Toroid.fbx");
 
 	Entity::BufferPtr entityBuffer = Entity::Buffer::Create(1024, sizeof(VertexData), 0, "VertexData");
 	if (!entityBuffer) {
@@ -334,7 +333,7 @@ int main()
 	// メインループ.
 	while (!window.ShouldClose()) {
 
-		Update(entityBuffer, meshBuffer2, texToroid2, progTutorial);
+		Update(entityBuffer, meshBuffer, texToroid, progTutorial);
 
 		glBindFramebuffer(GL_FRAMEBUFFER, offscreen->GetFramebuffer());
 		glClearColor(0.1f, 0.3f, 0.5f, 1.0f);
@@ -373,16 +372,16 @@ int main()
 
 		uboLight->BufferSubData(&lightData);
 
-		progTutorial->BindTexture(GL_TEXTURE0, GL_TEXTURE_2D, tex->Id());
+		//progTutorial->BindTexture(GL_TEXTURE0, GL_TEXTURE_2D, tex->Id());
 
 		glBindVertexArray(vao);		
-		glDrawElements(GL_TRIANGLES, renderingParts[0].size, GL_UNSIGNED_INT, renderingParts[0].offset);
+		//glDrawElements(GL_TRIANGLES, renderingParts[0].size, GL_UNSIGNED_INT, renderingParts[0].offset);
 		progTutorial->BindTexture(GL_TEXTURE0, GL_TEXTURE_2D, texToroid->Id());
 		meshBuffer->BindVAO();
-		meshBuffer->GetMesh("Cube")->Draw(meshBuffer);
+		//meshBuffer->GetMesh("Toroid")->Draw(meshBuffer);
 				
 		entityBuffer->Update(1.0 / 60.0, matView, matProj);
-		entityBuffer->Draw(meshBuffer2);
+		entityBuffer->Draw(meshBuffer);
 
 		glBindVertexArray(vao);
 
@@ -413,19 +412,19 @@ int main()
 		progColorFilter->UseProgram();
 		progColorFilter->BindTexture(GL_TEXTURE0, GL_TEXTURE_2D, offscreen->GetTexutre());
 
-		// ここ追加
 		PostEffectData postEffect;
+		// 初期化
 		postEffect.matColor = glm::mat4(1);
-		////// セピア調
-		////postEffect.matColor[0] = glm::vec4(0.393f, 0.349f, 0.272f, 0);
-		////postEffect.matColor[1] = glm::vec4(0.769f, 0.686f, 0.534f, 0);
-		////postEffect.matColor[2] = glm::vec4(0.189f, 0.168f, 0.131f, 0);
-		////postEffect.matColor[3] = glm::vec4(0, 0, 0, 1);
-		////// モノトーン調
-		////postEffect.matColor[0] = glm::vec4(0.299f, 0.299f, 0.299f, 0);
-		////postEffect.matColor[1] = glm::vec4(0.587f, 0.587f, 0.587f, 0);
-		////postEffect.matColor[2] = glm::vec4(0.114f, 0.114f, 0.114f, 0);
-		////postEffect.matColor[3] = glm::vec4(0, 0, 0, 1);
+		//// セピア調
+		//postEffect.matColor[0] = glm::vec4(0.393f, 0.349f, 0.272f, 0);
+		//postEffect.matColor[1] = glm::vec4(0.769f, 0.686f, 0.534f, 0);
+		//postEffect.matColor[2] = glm::vec4(0.189f, 0.168f, 0.131f, 0);
+		//postEffect.matColor[3] = glm::vec4(0, 0, 0, 1);
+		//// モノトーン調
+		//postEffect.matColor[0] = glm::vec4(0.299f, 0.299f, 0.299f, 0);
+		//postEffect.matColor[1] = glm::vec4(0.587f, 0.587f, 0.587f, 0);
+		//postEffect.matColor[2] = glm::vec4(0.114f, 0.114f, 0.114f, 0);
+		//postEffect.matColor[3] = glm::vec4(0, 0, 0, 1);
 		//// ネガポジ反転
 		//postEffect.matColor[0] = glm::vec4(-1, 0, 0, 0);
 		//postEffect.matColor[1] = glm::vec4(0, -1, 0, 0);
