@@ -109,5 +109,11 @@
     <Image Include="Res\Toroid.bmp">
       <Filter>リソース ファイル</Filter>
     </Image>
+    <Image Include="Res\twinte2.bmp">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Res\twinte3.bmp">
+      <Filter>リソース ファイル</Filter>
+    </Image>
   </ItemGroup>
 </Project>

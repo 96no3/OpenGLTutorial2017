@@ -207,6 +207,9 @@ GLuint CreateVAO(GLuint vbo, GLuint ibo)
 	return vao;
 }
 
+int time = 0;
+float scale = 1;
+
 /**
 * 敵の円盤の状態を更新する.
 */
@@ -223,13 +226,25 @@ struct UpdateToroid
 			return;
 		}
 
-		// 円盤を回転させる.
+		// 回転させる.
 		float rot = glm::angle(entity.Rotation());
-		rot += glm::radians(15.0f) * static_cast<float>(delta);
+		//rot += glm::radians(15.0f) * static_cast<float>(delta);
+		rot += glm::radians(5.0f) * static_cast<float>(delta);
 		if (rot > glm::pi<float>() * 2.0f) {
 			rot -= glm::pi<float>() * 2.0f;
 		}
 		entity.Rotation(glm::angleAxis(rot, glm::vec3(0, 1, 0)));
+
+		// スケールを変化させる.
+		static std::mt19937 rand(std::random_device{}());
+		
+		const int waitTime = 3600;		
+		time = (time + 1) % waitTime;
+		if (time == 0) {
+			const std::uniform_real_distribution<float> scaleRange(0.5, 2.0);
+			scale = scaleRange(rand);
+		}
+		entity.Scale(glm::vec3(scale));
 
 		// 頂点シェーダーのパラメータをUBOにコピーする.
 		VertexData data;
@@ -260,11 +275,12 @@ void Update(Entity::BufferPtr entityBuffer, Mesh::BufferPtr meshBuffer, TextureP
 	if (interval <= 0) {
 		const std::uniform_real_distribution<float> posXRange(-15, 15);
 		const glm::vec3 pos(posXRange(rand), 0, 40);
-		const Mesh::MeshPtr& mesh = meshBuffer->GetMesh("Toroid");
+		const Mesh::MeshPtr& mesh = meshBuffer->GetMesh("Cube");
 		if (Entity::Entity* p = entityBuffer->AddEntity(pos, mesh, tex, prog, UpdateToroid(entityBuffer))) {
 			p->Velocity(glm::vec3(pos.x < 0 ? 0.1f : -0.1f, 0, -1.0f));
 		}
-		const std::uniform_real_distribution<double> intervalRange(3.0, 6.0);
+		//const std::uniform_real_distribution<double> intervalRange(3.0, 6.0);
+		const std::uniform_real_distribution<double> intervalRange(6.0, 12.0);
 		interval = intervalRange(rand);
 	}
 }
@@ -307,19 +323,26 @@ int main()
 		0xffffffff, 0xff000000, 0xffffffff, 0xff000000, 0xffffffff,
 		};
 	TexturePtr tex = Texture::Create(5, 5, GL_RGBA8, GL_RGBA, textureData);*/
-	TexturePtr tex = Texture::LoadFromFile("Res/Sample.bmp");
-	/*TexturePtr texToroid = Texture::LoadFromFile("Res/twinte.bmp");*/
-
-	TexturePtr texToroid = Texture::LoadFromFile("Res/Toroid.bmp");
-
-	if (!tex || !texToroid ) {
+	//TexturePtr tex = Texture::LoadFromFile("Res/Sample.bmp");
+	//TexturePtr texToroid = Texture::LoadFromFile("Res/Toroid.bmp");
+	/*if (!tex || !texToroid ) {
 		return 1;
-		
+	}*/
+	const int texNum = 3;
+	TexturePtr texToroid[texNum];
+	texToroid[0] = Texture::LoadFromFile("Res/twinte.bmp");
+	texToroid[1] = Texture::LoadFromFile("Res/twinte2.bmp");
+	texToroid[2] = Texture::LoadFromFile("Res/twinte3.bmp");
+
+	for (int i = 0; i < texNum; ++i) {
+		if (!texToroid[i]) {
+			return 1;
+		}
 	}
+	
 	Mesh::BufferPtr meshBuffer = Mesh::Buffer::Create(50000, 50000);
-	/*meshBuffer->LoadMeshFromFile("Res/ao_twinte_chan.fbx");
-	Mesh::BufferPtr meshBuffer2 = Mesh::Buffer::Create(50000, 50000);*/
-	meshBuffer->LoadMeshFromFile("Res/Toroid.fbx");
+	meshBuffer->LoadMeshFromFile("Res/ao_twinte_chan.fbx");	
+	//meshBuffer->LoadMeshFromFile("Res/Toroid.fbx");
 
 	Entity::BufferPtr entityBuffer = Entity::Buffer::Create(1024, sizeof(VertexData), 0, "VertexData");
 	if (!entityBuffer) {
@@ -332,8 +355,12 @@ int main()
 
 	// メインループ.
 	while (!window.ShouldClose()) {
-
-		Update(entityBuffer, meshBuffer, texToroid, progTutorial);
+		static std::mt19937 rand(std::random_device{}());
+		const std::uniform_real_distribution<double> noRange(0, 3);
+		int no = noRange(rand);
+		if (no != 3) {
+			Update(entityBuffer, meshBuffer, texToroid[no], progTutorial);
+		}		
 
 		glBindFramebuffer(GL_FRAMEBUFFER, offscreen->GetFramebuffer());
 		glClearColor(0.1f, 0.3f, 0.5f, 1.0f);
@@ -352,14 +379,13 @@ int main()
 		const glm::mat4x4 matProj = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
 		const glm::mat4x4 matView = glm::lookAt(viewPos, glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
 
-		VertexData vertexData;
+		/*VertexData vertexData;
 		vertexData.matMVP = matProj * matView;
-
 		vertexData.matModel = glm::mat4(1);
 		vertexData.matNormal = glm::mat3x4(1);
 		vertexData.color = glm::vec4(1);
 		
-		uboVertex->BufferSubData(&vertexData);
+		uboVertex->BufferSubData(&vertexData);*/
 
 		LightData lightData;
 		/*lightData.ambientColor = glm::vec4(0.05f, 0.1f, 0.2f, 1);
@@ -376,9 +402,9 @@ int main()
 
 		glBindVertexArray(vao);		
 		//glDrawElements(GL_TRIANGLES, renderingParts[0].size, GL_UNSIGNED_INT, renderingParts[0].offset);
-		progTutorial->BindTexture(GL_TEXTURE0, GL_TEXTURE_2D, texToroid->Id());
+		/*progTutorial->BindTexture(GL_TEXTURE0, GL_TEXTURE_2D, texToroid->Id());
 		meshBuffer->BindVAO();
-		meshBuffer->GetMesh("Toroid")->Draw(meshBuffer);
+		meshBuffer->GetMesh("Cube")->Draw(meshBuffer);*/
 				
 		entityBuffer->Update(1.0 / 60.0, matView, matProj);
 		entityBuffer->Draw(meshBuffer);
@@ -412,8 +438,8 @@ int main()
 		progColorFilter->UseProgram();
 		progColorFilter->BindTexture(GL_TEXTURE0, GL_TEXTURE_2D, offscreen->GetTexutre());
 
-		// ここ追加
 		PostEffectData postEffect;
+		// 初期
 		postEffect.matColor = glm::mat4(1);
 		////// セピア調
 		////postEffect.matColor[0] = glm::vec4(0.393f, 0.349f, 0.272f, 0);
@@ -431,7 +457,6 @@ int main()
 		//postEffect.matColor[2] = glm::vec4(0, 0, -1, 0);
 		//postEffect.matColor[3] = glm::vec4(1, 1, 1, 1);
 
-		//ここも追加
 		uboPostEffect->BufferSubData(&postEffect);
 
 		//// ポスター化シェーダーの利用

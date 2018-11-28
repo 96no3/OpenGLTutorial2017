@@ -55,6 +55,8 @@
     <Image Include="Res\Sample.bmp" />
     <Image Include="Res\Toroid.bmp" />
     <Image Include="Res\twinte.bmp" />
+    <Image Include="Res\twinte2.bmp" />
+    <Image Include="Res\twinte3.bmp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
