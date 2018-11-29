@@ -12,11 +12,11 @@ namespace Mesh {
 
 	/// 頂点データ型.
 	struct Vertex
-	 {
-	glm::vec3 position; ///< 座標.
-	glm::vec4 color; ///< 色.
-	glm::vec2 texCoord; ///< テクスチャ座標.
-	glm::vec3 normal; ///< 法線.
+	{
+		glm::vec3 position; ///< 座標.
+		glm::vec4 color; ///< 色.
+		glm::vec2 texCoord; ///< テクスチャ座標.
+		glm::vec3 normal; ///< 法線.
 	};
 
 
@@ -94,7 +94,7 @@ namespace Mesh {
 		SetVertexAttribPointer(1, Vertex, color);
 		SetVertexAttribPointer(2, Vertex, texCoord);
 		SetVertexAttribPointer(3, Vertex, normal);
-		glBindVertexArray(0);		
+		glBindVertexArray(0);
 		return vao;
 	}
 
@@ -266,7 +266,7 @@ namespace Mesh {
 		const int materialCount = fbxNode->GetMaterialCount();
 		mesh.materialList.reserve(materialCount);
 		for (int i = 0; i < materialCount; ++i) {
-			TemporaryMaterial material;			
+			TemporaryMaterial material;
 			if (FbxSurfaceMaterial* fbxMaterial = fbxNode->GetMaterial(i)) {
 				// マテリアルの色情報を読み取る.
 				const FbxClassId classId = fbxMaterial->GetClassId();
@@ -313,7 +313,8 @@ namespace Mesh {
 		}
 
 		// ポリゴン数にもとづいて、仮データバッファの容量を予約する.
-		const int polygonCount = fbxMesh->GetPolygonCount() * 3;
+		//const int polygonCount = fbxMesh->GetPolygonCount() * 3;
+		const int polygonCount = fbxMesh->GetPolygonCount();
 		for (auto& e : mesh.materialList) {
 			const size_t avarageCapacity = polygonCount / mesh.materialList.size();
 			e.indexBuffer.reserve(avarageCapacity);
@@ -503,7 +504,7 @@ namespace Mesh {
 		}
 		return true;
 	}
-	
+
 	/**
 	* メッシュを取得する.
 	*

@@ -21,7 +21,7 @@ OffscreenBufferPtr OffscreenBuffer::Create(int w, int h)
 
 	// テクスチャを作成する.
 	offscreen->tex = Texture::Create(w, h, GL_RGBA8, GL_RGBA, nullptr);
-	
+
 	// 深度バッファを作成する.
 	glGenRenderbuffers(1, &offscreen->depthbuffer);
 	glBindRenderbuffer(GL_RENDERBUFFER, offscreen->depthbuffer);

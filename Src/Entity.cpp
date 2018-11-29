@@ -76,7 +76,7 @@ namespace Entity {
 		glGetIntegerv(GL_UNIFORM_BUFFER_OFFSET_ALIGNMENT, &offsetAlignment);
 		ubSizePerEntity = ((ubSizePerEntity + offsetAlignment - 1) / offsetAlignment) * offsetAlignment;
 
-		p->ubo = UniformBuffer::Create( maxEntityCount * ubSizePerEntity, bindingPoint, ubName);
+		p->ubo = UniformBuffer::Create(maxEntityCount * ubSizePerEntity, bindingPoint, ubName);
 		p->buffer.reset(new LinkEntity[maxEntityCount]);
 		if (!p->ubo || !p->buffer) {
 			std::cerr << "WARNING in Entity::Buffer::Create: バッファの作成に失敗." << std::endl;
@@ -108,7 +108,7 @@ namespace Entity {
 	*         回転や拡大率を設定する場合はこのポインタ経由で行う.
 	*         このポインタをアプリケーション側で保持する必要はない.
 	*/
-	Entity* Buffer::AddEntity(const glm::vec3& position, const Mesh::MeshPtr& mesh,	const TexturePtr& texture, const Shader::ProgramPtr& program,
+	Entity* Buffer::AddEntity(const glm::vec3& position, const Mesh::MeshPtr& mesh, const TexturePtr& texture, const Shader::ProgramPtr& program,
 		Entity::UpdateFuncType func)
 	{
 		if (freeList.prev == freeList.next) {
@@ -168,6 +168,7 @@ namespace Entity {
 	void Buffer::Update(double delta, const glm::mat4& matView, const glm::mat4& matProj)
 	{
 		uint8_t* p = static_cast<uint8_t*>(ubo->MapBuffer());
+
 		for (itrUpdate = activeList.next; itrUpdate != &activeList; itrUpdate = itrUpdate->next) {
 			LinkEntity& e = *static_cast<LinkEntity*>(itrUpdate);
 			e.position += e.velocity * static_cast<float>(delta);

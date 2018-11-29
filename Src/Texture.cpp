@@ -73,7 +73,7 @@ TexturePtr Texture::Create(int width, int height, GLenum iformat, GLenum format,
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
 	glBindTexture(GL_TEXTURE_2D, 0);
-	
+
 	return p;
 }
 
@@ -97,12 +97,12 @@ TexturePtr Texture::LoadFromFile(const char* filename)
 	const size_t bmpFileHeaderSize = 14;   // ビットマップファイルヘッダのバイト数
 	const size_t windowsV1HeaderSize = 40; // ビットマップ情報ヘッダのバイト数.
 	if (st.st_size < bmpFileHeaderSize + windowsV1HeaderSize) {
-		return {};		
+		return {};
 	}
 	// ファイルを開く.
-		FILE * fp = fopen(filename, "rb");
+	FILE * fp = fopen(filename, "rb");
 	if (!fp) {
-		return {};		
+		return {};
 	}
 	// ファイルを読み込む.
 	std::vector<uint8_t> buf;
@@ -110,12 +110,12 @@ TexturePtr Texture::LoadFromFile(const char* filename)
 	const size_t readSize = fread(buf.data(), 1, st.st_size, fp);
 	fclose(fp);
 	if (readSize != st.st_size) {
-		return {};		
+		return {};
 	}
 	// BMPファイルでなければ空のオブジェクトを返す.
 	const uint8_t* pHeader = buf.data();
 	if (pHeader[0] != 'B' || pHeader[1] != 'M') {
-		return {};		
+		return {};
 	}
 	// BMPファイルの情報を取得する.
 	const size_t offsetBytes = Get(pHeader, 10, 4);
@@ -126,12 +126,12 @@ TexturePtr Texture::LoadFromFile(const char* filename)
 	const uint32_t compression = Get(pHeader, 30, 4);
 	const size_t pixelBytes = bitCount / 8;
 	if (infoSize != windowsV1HeaderSize || bitCount != 24 || compression) {
-		return {};		
+		return {};
 	}
 	const size_t stride = ((width * pixelBytes + 3) / 4) * 4; // 実際の横バイト数.
 	const size_t imageSize = stride * height;
 	if (buf.size() < offsetBytes + imageSize) {
-		return {};		
+		return {};
 	}
 	return Create(width, height, GL_RGB8, GL_BGR, buf.data() + offsetBytes);
 }

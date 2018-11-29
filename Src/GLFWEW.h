@@ -4,6 +4,7 @@
 #ifndef GLFWEW_H_INCLUDED
 #define GLFWEW_H_INCLUDED
 #include <GL/glew.h>
+#include "GamePad.h"
 #include <GLFW/glfw3.h>
 
 namespace GLFWEW {
@@ -19,6 +20,9 @@ namespace GLFWEW {
 		bool ShouldClose() const;
 		void SwapBuffers() const;
 
+		const GamePad& GetGamePad() const;
+		void UpdateGamePad();
+
 	private:
 		Window();
 		~Window();
@@ -28,6 +32,7 @@ namespace GLFWEW {
 		bool isGLFWInitialized;
 		bool isInitialized;
 		GLFWwindow* window;
+		GamePad gamepad;
 	};
 
 } // namespace GLFWEW

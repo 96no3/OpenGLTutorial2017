@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Entity.cpp" />
+    <ClCompile Include="Src\GameEngine.cpp" />
     <ClCompile Include="Src\GLFWEW.cpp" />
     <ClCompile Include="Src\Main.cpp" />
     <ClCompile Include="Src\Mesh.cpp" />
@@ -42,7 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Entity.h" />
+    <ClInclude Include="Src\GameEngine.h" />
+    <ClInclude Include="Src\GamePad.h" />
     <ClInclude Include="Src\GLFWEW.h" />
+    <ClInclude Include="Src\InterfaceBlock.h" />
     <ClInclude Include="Src\Mesh.h" />
     <ClInclude Include="Src\OffscreenBuffer.h" />
     <ClInclude Include="Src\Shader.h" />
