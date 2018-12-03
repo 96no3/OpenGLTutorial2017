@@ -72,6 +72,7 @@ private:
 	UniformBufferPtr uboPostEffect;
 	Shader::ProgramPtr progTutorial;
 	Shader::ProgramPtr progColorFilter;
+	Shader::ProgramPtr progPosterization;
 	OffscreenBufferPtr offscreen;
 
 	std::unordered_map<std::string, TexturePtr> textureBuffer;

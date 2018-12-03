@@ -5,95 +5,51 @@
 #include <random>
 #include <glm/gtc/matrix_transform.hpp>
 
-//int time = 0;
-//float scale = 1;
-//
-///**
-//* 敵の円盤の状態を更新する.
-//*/
-//struct UpdateToroid
-//{
-//	explicit UpdateToroid(const Entity::BufferPtr& buffer) : entityBuffer(buffer) {}
-//
-//	void operator()(Entity::Entity& entity, void* ubo, double delta, const glm::mat4& matView, const glm::mat4& matProj)
-//	{
-//		// 範囲外に出たら削除する.
-//		const glm::vec3 pos = entity.Position();
-//		if (std::abs(pos.x) > 40.0f || std::abs(pos.z) > 40.0f) {
-//			entityBuffer->RemoveEntity(&entity);
-//			return;
-//		}
-//
-//		// 回転させる.
-//		float rot = glm::angle(entity.Rotation());
-//		//rot += glm::radians(15.0f) * static_cast<float>(delta);
-//		rot += glm::radians(5.0f) * static_cast<float>(delta);
-//		if (rot > glm::pi<float>() * 2.0f) {
-//			rot -= glm::pi<float>() * 2.0f;
-//		}
-//		entity.Rotation(glm::angleAxis(rot, glm::vec3(0, 1, 0)));
-//
-//		// スケールを変化させる.
-//		static std::mt19937 rand(std::random_device{}());
-//		
-//		const int waitTime = 3600;		
-//		time = (time + 1) % waitTime;
-//		if (time == 0) {
-//			const std::uniform_real_distribution<float> scaleRange(0.5, 2.0);
-//			scale = scaleRange(rand);
-//		}
-//		entity.Scale(glm::vec3(scale));
-//
-//		// 頂点シェーダーのパラメータをUBOにコピーする.
-//		VertexData data;
-//		data.matModel = entity.CalcModelMatrix();
-//		data.matNormal = glm::mat4_cast(entity.Rotation());
-//		data.matMVP = matProj * matView * data.matModel;
-//		data.color = entity.Color();
-//		memcpy(ubo, &data, sizeof(VertexData));
-//	}
-//
-//	Entity::BufferPtr entityBuffer;
-//};
+
+int time = 0;
+float scale = 1;
 
 /**
 * 敵の円盤の状態を更新する.
 */
 struct UpdateToroid
 {
-	//explicit UpdateToroid(const Entity::BufferPtr& buffer) : entityBuffer(buffer) {}
-
 	void operator()(Entity::Entity& entity, void* ubo, double delta, const glm::mat4& matView, const glm::mat4& matProj)
 	{
 		// 範囲外に出たら削除する.
 		const glm::vec3 pos = entity.Position();
 		if (std::abs(pos.x) > 40.0f || std::abs(pos.z) > 40.0f) {
-			//entityBuffer->RemoveEntity(&entity);
 			GameEngine::Instance().RemoveEntity(&entity);
 			return;
 		}
 
 		// 円盤を回転させる.
 		float rot = glm::angle(entity.Rotation());
-		//rot += glm::radians(15.0f) * static_cast<float>(delta);
 		rot += glm::radians(60.0f) * static_cast<float>(delta);
 		if (rot > glm::pi<float>() * 2.0f) {
 			rot -= glm::pi<float>() * 2.0f;
 		}
 		entity.Rotation(glm::angleAxis(rot, glm::vec3(0, 1, 0)));
 
+		// スケールを変化させる.
+		static std::mt19937 rand(std::random_device{}());
+
+		const int waitTime = 3600;
+		time = (time + 1) % waitTime;
+		if (time == 0) {
+			const std::uniform_real_distribution<float> scaleRange(0.5, 2.0);
+			scale = scaleRange(rand);
+		}
+		entity.Scale(glm::vec3(scale));
+
 		// 頂点シェーダーのパラメータをUBOにコピーする.
-		//VertexData data;
 		InterfaceBlock::VertexData data;
 		data.matModel = entity.CalcModelMatrix();
 		data.matNormal = glm::mat4_cast(entity.Rotation());
 		data.matMVP = matProj * matView * data.matModel;
 		data.color = entity.Color();
-		//memcpy(ubo, &data, sizeof(VertexData));
 		memcpy(ubo, &data, sizeof(InterfaceBlock::VertexData));
 	}
-
-	//Entity::BufferPtr entityBuffer;
 };
 
 /**
@@ -141,34 +97,6 @@ struct UpdatePlayer
 	}
 };
 
-
-///**
-//* ゲームの状態を更新する.
-//*
-//* @param entityBuffer 敵エンティティ追加先のエンティティバッファ.
-//* @param meshBuffer   敵エンティティのメッシュを管理しているメッシュバッファ.
-//* @param tex          敵エンティティ用のテクスチャ.
-//* @param prog         敵エンティティ用のシェーダープログラム.
-//*/
-//void Update(Entity::BufferPtr entityBuffer, Mesh::BufferPtr meshBuffer, TexturePtr tex, Shader::ProgramPtr prog)
-//{
-//	static std::mt19937 rand(std::random_device{}());
-//	static double interval = 0;
-//
-//	interval -= 1.0 / 60.0;
-//	if (interval <= 0) {
-//		const std::uniform_real_distribution<float> posXRange(-15, 15);
-//		const glm::vec3 pos(posXRange(rand), 0, 40);
-//		const Mesh::MeshPtr& mesh = meshBuffer->GetMesh("Cube");
-//		if (Entity::Entity* p = entityBuffer->AddEntity(pos, mesh, tex, prog, UpdateToroid(entityBuffer))) {
-//			p->Velocity(glm::vec3(pos.x < 0 ? 0.1f : -0.1f, 0, -1.0f));
-//		}
-//		//const std::uniform_real_distribution<double> intervalRange(3.0, 6.0);
-//		const std::uniform_real_distribution<double> intervalRange(6.0, 12.0);
-//		interval = intervalRange(rand);
-//	}
-//}
-
 /**
 * ゲーム状態の更新.
 */
@@ -183,7 +111,7 @@ public:
 			isInitialized = true;
 			game.Camera({ glm::vec4(0, 20, -8, 1), glm::vec3(0, 0, 12), glm::vec3(0, 0, 1) });
 			game.AmbientLight(glm::vec4(0.05f, 0.1f, 0.2f, 1));
-			game.Light(0, { glm::vec4(40, 100, 10, 1), glm::vec4(12000, 12000, 12000, 1) });
+			game.Light(0, { glm::vec4(0, 30, -100, 1), glm::vec4(12000, 12000, 12000, 1) });
 
 			pPlayer = game.AddEntity(glm::vec3(0, 0, 2), "Aircraft", "Res/Player.bmp", UpdatePlayer());
 		}
@@ -193,9 +121,11 @@ public:
 		interval -= delta;
 		if (interval <= 0) {
 			std::uniform_int_distribution<> rndAddingCount(1, 5);
+
 			for (int i = rndAddingCount(game.Rand()); i > 0; --i) {
 				const glm::vec3 pos(posXRange(game.Rand()), 0, posZRange(game.Rand()));
-				if (Entity::Entity* p = game.AddEntity(pos, "Toroid", "Res/Toroid.bmp", UpdateToroid())) {
+
+				if (Entity::Entity* p = game.AddEntity(pos, "Cube", "Res/twinte.bmp", UpdateToroid())) {
 					p->Velocity({ pos.x < 0 ? 3.0f : -3.0f, 0, -12.0f });
 				}
 			}
@@ -207,6 +137,7 @@ public:
 private:
 	bool isInitialized = false;
 	double interval = 0;
+
 
 	Entity::Entity* pPlayer = nullptr;
 };
@@ -280,11 +211,8 @@ private:
 //	// メインループ.
 //	while (!window.ShouldClose()) {
 //		static std::mt19937 rand(std::random_device{}());
-//		const std::uniform_real_distribution<double> noRange(0, 3);
-//		int no = noRange(rand);
-//		if (no != 3) {
-//			Update(entityBuffer, meshBuffer, texToroid[no], progTutorial);
-//		}		
+//		const std::uniform_int_distribution<> noRange(0, 2);
+//		Update(entityBuffer, meshBuffer, texToroid[noRange(rand)], progTutorial);
 //
 //		glBindFramebuffer(GL_FRAMEBUFFER, offscreen->GetFramebuffer());
 //		glClearColor(0.1f, 0.3f, 0.5f, 1.0f);
@@ -402,9 +330,20 @@ int main()
 	if (!game.Init(800, 600, "OpenGL Tutorial")) {
 		return 1;
 	}
-	game.LoadTextureFromFile("Res/Toroid.bmp");
+
+	/// テクスチャデータ.
+	/*	static const uint32_t textureData[] = {
+		0xffffffff, 0xffcccccc, 0xffffffff, 0xffcccccc, 0xffffffff,
+		0xff888888, 0xffffffff, 0xff888888, 0xffffffff, 0xff888888,
+		0xffffffff, 0xff444444, 0xffffffff, 0xff444444, 0xffffffff,
+		0xff000000, 0xffffffff, 0xff000000, 0xffffffff, 0xff000000,
+		0xffffffff, 0xff000000, 0xffffffff, 0xff000000, 0xffffffff,
+		};
+	TexturePtr tex = Texture::Create(5, 5, GL_RGBA8, GL_RGBA, textureData);*/
+
+	game.LoadTextureFromFile("Res/twinte.bmp");
 	game.LoadTextureFromFile("Res/Player.bmp");
-	game.LoadMeshFromFile("Res/Toroid.fbx");
+	game.LoadMeshFromFile("Res/ao_twinte_chan.fbx");
 	game.LoadMeshFromFile("Res/Player.fbx");
 
 	game.UpdateFunc(Update());

@@ -198,8 +198,9 @@ bool GameEngine::Init(int w, int h, const char* title)
 	uboPostEffect = UniformBuffer::Create(sizeof(InterfaceBlock::PostEffectData), InterfaceBlock::BINDINGPOINT_POSTEFFECTDATA, "PostEffectData");
 	progTutorial = Shader::Program::Create("Res/Tutorial.vert", "Res/Tutorial.frag");
 	progColorFilter = Shader::Program::Create("Res/ColorFilter.vert", "Res/ColorFilter.frag");
+	progPosterization = Shader::Program::Create("Res/Posterization.vert", "Res/Posterization.frag");
 	offscreen = OffscreenBuffer::Create(width, height);
-	if (!vbo || !ibo || !vao || !uboLight || !uboPostEffect || !progTutorial || !progColorFilter || !offscreen) {
+	if (!vbo || !ibo || !vao || !uboLight || !uboPostEffect || !progTutorial || !progColorFilter || !progPosterization || !offscreen) {
 		std::cerr << "ERROR: GameEngineの初期化に失敗" << std::endl;
 		return false;
 	}
@@ -500,10 +501,33 @@ void GameEngine::Render() const
 	glDisable(GL_CULL_FACE);
 	glDisable(GL_BLEND);
 	glBindVertexArray(vao);
+
+	// カラーフィルターシェーダの利用
 	progColorFilter->UseProgram();
 	InterfaceBlock::PostEffectData postEffect;
+	// 初期
 	postEffect.matColor = glm::mat4x4(1);
+	//// セピア調
+	//postEffect.matColor[0] = glm::vec4(0.393f, 0.349f, 0.272f, 0);
+	//postEffect.matColor[1] = glm::vec4(0.769f, 0.686f, 0.534f, 0);
+	//postEffect.matColor[2] = glm::vec4(0.189f, 0.168f, 0.131f, 0);
+	//postEffect.matColor[3] = glm::vec4(0, 0, 0, 1);
+	//// モノトーン調
+	//postEffect.matColor[0] = glm::vec4(0.299f, 0.299f, 0.299f, 0);
+	//postEffect.matColor[1] = glm::vec4(0.587f, 0.587f, 0.587f, 0);
+	//postEffect.matColor[2] = glm::vec4(0.114f, 0.114f, 0.114f, 0);
+	//postEffect.matColor[3] = glm::vec4(0, 0, 0, 1);
+	//// ネガポジ反転
+	//postEffect.matColor[0] = glm::vec4(-1, 0, 0, 0);
+	//postEffect.matColor[1] = glm::vec4(0, -1, 0, 0);
+	//postEffect.matColor[2] = glm::vec4(0, 0, -1, 0);
+	//postEffect.matColor[3] = glm::vec4(1, 1, 1, 1);
 	uboPostEffect->BufferSubData(&postEffect);
 	progColorFilter->BindTexture(GL_TEXTURE0, GL_TEXTURE_2D, offscreen->GetTexutre());
+
+	//// ポスター化シェーダーの利用
+	//progPosterization->UseProgram();
+	//progPosterization->BindTexture(GL_TEXTURE0, GL_TEXTURE_2D, offscreen->GetTexutre());
+
 	glDrawElements(GL_TRIANGLES, renderingParts[1].size, GL_UNSIGNED_INT, renderingParts[1].offset);
 }
