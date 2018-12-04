@@ -39,7 +39,9 @@ public:
 	bool LoadTextureFromFile(const char* filename);
 	const TexturePtr& GetTexture(const char* filename) const;
 	bool LoadMeshFromFile(const char* filename);
-	Entity::Entity* AddEntity(const glm::vec3& pos, const char* meshName, const char* texName, Entity::Entity::UpdateFuncType func);
+	//Entity::Entity* AddEntity(const glm::vec3& pos, const char* meshName, const char* texName, Entity::Entity::UpdateFuncType func);
+	Entity::Entity* AddEntity(int groupId, const glm::vec3& pos, const char* meshName, const char* texName, Entity::Entity::UpdateFuncType func);
+
 	void RemoveEntity(Entity::Entity*);
 	void Light(int index, const InterfaceBlock::PointLight& light);
 	const InterfaceBlock::PointLight& Light(int index) const;
@@ -50,6 +52,10 @@ public:
 	std::mt19937& Rand();
 
 	const GamePad& GetGamePad() const;
+	void CollisionHandler(int gid0, int gid1, Entity::CollisionHandlerType handler);
+	const Entity::CollisionHandlerType& CollisionHandler(int gid0, int gid1) const;
+	void ClearCollisionHandlerList();
+
 
 private:
 	GameEngine() = default;
@@ -72,7 +78,6 @@ private:
 	UniformBufferPtr uboPostEffect;
 	Shader::ProgramPtr progTutorial;
 	Shader::ProgramPtr progColorFilter;
-	Shader::ProgramPtr progPosterization;
 	OffscreenBufferPtr offscreen;
 
 	std::unordered_map<std::string, TexturePtr> textureBuffer;
