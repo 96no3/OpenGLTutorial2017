@@ -12,6 +12,7 @@
 #include "Entity.h"
 #include "InterfaceBlock.h"
 #include "GamePad.h"
+#include "Font.h"
 #include <glm/glm.hpp>
 #include <functional>
 #include <random>
@@ -56,6 +57,12 @@ public:
 	const Entity::CollisionHandlerType& CollisionHandler(int gid0, int gid1) const;
 	void ClearCollisionHandlerList();
 
+	bool LoadFontFromFile(const char* filename) { return fontRenderer.LoadFromFile(filename); }
+	bool AddString(const glm::vec2& pos, const char* str) { return fontRenderer.AddString(pos, str); }
+	void FontScale(const glm::vec2& scale) { fontRenderer.Scale(scale); }
+	void FontColor(const glm::vec4& color) { fontRenderer.Color(color); }
+
+	double& Variable(const char* name) { return variables[name]; }
 
 private:
 	GameEngine() = default;
@@ -83,11 +90,13 @@ private:
 	std::unordered_map<std::string, TexturePtr> textureBuffer;
 	Mesh::BufferPtr meshBuffer;
 	Entity::BufferPtr entityBuffer;
+	Font::Renderer fontRenderer;
 
 	InterfaceBlock::LightData lightData;
 	CameraData camera;
 	std::mt19937 rand;
 
+	std::unordered_map<std::string, double> variables;
 };
 
 #endif
