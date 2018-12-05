@@ -41,7 +41,9 @@ public:
 	const TexturePtr& GetTexture(const char* filename) const;
 	bool LoadMeshFromFile(const char* filename);
 	//Entity::Entity* AddEntity(const glm::vec3& pos, const char* meshName, const char* texName, Entity::Entity::UpdateFuncType func);
-	Entity::Entity* AddEntity(int groupId, const glm::vec3& pos, const char* meshName, const char* texName, Entity::Entity::UpdateFuncType func);
+	//Entity::Entity* AddEntity(int groupId, const glm::vec3& pos, const char* meshName, const char* texName, Entity::Entity::UpdateFuncType func);
+	Entity::Entity* AddEntity(int groupId, const glm::vec3& pos, const char* meshName, const char* texName, Entity::Entity::UpdateFuncType func,
+		const char* shader = nullptr);
 
 	void RemoveEntity(Entity::Entity*);
 	void Light(int index, const InterfaceBlock::PointLight& light);
@@ -53,9 +55,14 @@ public:
 	std::mt19937& Rand();
 
 	const GamePad& GetGamePad() const;
+
 	void CollisionHandler(int gid0, int gid1, Entity::CollisionHandlerType handler);
 	const Entity::CollisionHandlerType& CollisionHandler(int gid0, int gid1) const;
 	void ClearCollisionHandlerList();
+
+	bool InitAudio(const char* acfPath, const char* acbPath, const char* awbPath, const char* dspBusName, size_t playerCount);
+	void PlayAudio(int playerId, int cueId);
+	void StopAudio(int playerId);
 
 	bool LoadFontFromFile(const char* filename) { return fontRenderer.LoadFromFile(filename); }
 	bool AddString(const glm::vec2& pos, const char* str) { return fontRenderer.AddString(pos, str); }
@@ -83,8 +90,9 @@ private:
 	GLuint vao = 0;
 	UniformBufferPtr uboLight;
 	UniformBufferPtr uboPostEffect;
-	Shader::ProgramPtr progTutorial;
-	Shader::ProgramPtr progColorFilter;
+	/*Shader::ProgramPtr progTutorial;
+	Shader::ProgramPtr progColorFilter;*/
+	std::unordered_map<std::string, Shader::ProgramPtr> shaderMap;
 	OffscreenBufferPtr offscreen;
 
 	std::unordered_map<std::string, TexturePtr> textureBuffer;
