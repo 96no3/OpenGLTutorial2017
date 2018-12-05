@@ -42,6 +42,9 @@ namespace Font {
 		void Color(const glm::vec4& c);
 		glm::vec4 Color() const;
 
+		void Propotional(bool b) { propotional = b; }
+		bool Propotional() const { return propotional; }
+
 		void MapBuffer();
 		bool AddString(const glm::vec2& position, const char* str);
 		void UnmapBuffer();
@@ -61,6 +64,10 @@ namespace Font {
 
 		glm::vec2 scale = glm::vec2(1, 1); ///< フォントを描画するときの拡大率.
 		glm::u8vec4 color = glm::u8vec4(255, 255, 255, 255); ///< フォントを描画するときの色.
+
+		bool propotional = true;
+		float fixedAdvance = 0;			///< カーソルを進める距離xadvanceの違いによる表示位置のズレを修正するための変数.
+
 		GLsizei vboSize = 0;            ///< VBOに格納されている頂点数.
 		Vertex* pVBO = nullptr;         ///< VBOへのポインタ.
 	};

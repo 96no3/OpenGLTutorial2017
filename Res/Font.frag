@@ -7,7 +7,7 @@ out vec4 fragColor;
 
 uniform sampler2D colorSampler;
 
-const float edge = 0.4; ///< ƒtƒHƒ“ƒg‚Ì—ÖŠs‚Æ‚Ý‚È‚·‹——£.
+const float edge = 0.43; ///< ƒtƒHƒ“ƒg‚Ì—ÖŠs‚Æ‚Ý‚È‚·‹——£.
 const float smoothing = 1.0 / 16.0; ///< —ÖŠs‚ðŠŠ‚ç‚©‚É‚·‚é‚½‚ß‚ÌŒW”.
 
 void main()

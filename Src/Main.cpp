@@ -202,7 +202,7 @@ struct UpdatePlayer
 			}
 			restartTimer -= delta;
 			if (restartTimer <= 0) {
-				entity.SetIsActiveT();
+				entity.SetIsActive(true);
 				restartTimer = 3;
 			}
 			entity.Velocity(vec);
@@ -272,6 +272,8 @@ class Update
 public:
 	Update() {
 		GameEngine::Instance().Variable("score") = 0;
+		GameEngine::Instance().Variable("stage") = 1;
+		GameEngine::Instance().Variable("life") = 3;
 	}
 
 	void operator()(double delta)
@@ -305,11 +307,24 @@ public:
 			std::normal_distribution<> intervalRange(2.0, 0.5);
 			interval += glm::clamp(intervalRange(game.Rand()), 0.5, 3.0);
 		}
-		char str[16];
-		snprintf(str, sizeof(str), "%08.0f", game.Variable("score"));
-		game.FontScale(glm::vec2(1.0f, 1.0f));
+		char str[32];
+		snprintf(str, sizeof(str), "SCORE:%08.0f", game.Variable("score"));
+		game.FontScale(glm::vec2(1.5f, 1.5f));
 		game.FontColor(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
-		game.AddString(glm::vec2(320.0f, 8.0f), str);
+		game.AddString(glm::vec2(420.0f, 8.0f), str);
+		snprintf(str, sizeof(str), "STAGE:%02.0f", game.Variable("stage"));
+		game.FontScale(glm::vec2(1.0f, 1.0f));
+		game.FontColor(glm::vec4(0.0f, 1.0f, 1.0f, 1.0f));
+		game.AddString(glm::vec2(0.0f, 8.0f), str);
+		snprintf(str, sizeof(str), "LIFE:%02.0f", game.Variable("life"));
+		game.FontScale(glm::vec2(1.0f, 1.0f));
+		if (game.Variable("life") <= 1) {
+			game.FontColor(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
+		}
+		else {
+			game.FontColor(glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
+		}		
+		game.AddString(glm::vec2(150.0f, 8.0f), str);
 	}
 
 private:
@@ -329,6 +344,12 @@ void PlayerShotAndEnemyCollisionHandler(Entity::Entity& lhs, Entity::Entity& rhs
 		const std::uniform_real_distribution<float> rotRange(0.0f, glm::pi<float>() * 2);
 		p->Rotation(glm::quat(glm::vec3(0, rotRange(game.Rand()), 0)));
 		game.Variable("score") += 100;
+		int score = game.Variable("score");
+		static int check = 1;
+		if (score == 1000 * check) {
+			game.Variable("stage")++;
+			check++;
+		}
 	}
 	lhs.Destroy();
 	rhs.Destroy();
@@ -350,7 +371,8 @@ void PlayerAndEnemyCollisionHandler(Entity::Entity& player, Entity::Entity& enem
 			const std::uniform_real_distribution<float> rotRange(0.0f, glm::pi<float>() * 2);
 			p->Rotation(glm::quat(glm::vec3(0, rotRange(game.Rand()), 0)));
 		}
-		player.SetIsActiveF();
+		game.Variable("life")--;
+		player.SetIsActive(false);
 		player.invincible = true;
 	}	
 }
@@ -367,7 +389,8 @@ void PlayerAndEnemyShotCollisionHandler(Entity::Entity& player, Entity::Entity& 
 			const std::uniform_real_distribution<float> rotRange(0.0f, glm::pi<float>() * 2);
 			p->Rotation(glm::quat(glm::vec3(0, rotRange(game.Rand()), 0)));
 		}
-		player.SetIsActiveF();
+		game.Variable("life")--;
+		player.SetIsActive(false);
 		player.invincible = true;
 		enemyshot.Destroy();	
 	}	

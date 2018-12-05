@@ -124,6 +124,7 @@ namespace Font {
 		}
 		++line;
 
+		fixedAdvance = 0;
 		fontList.resize(128); // ASCIIフォントだけの場合128文字あれば十分のはず.
 		for (int i = 0; i < charCount; ++i) {
 			FontInfo font;
@@ -142,6 +143,9 @@ namespace Font {
 			font.uv[1] = (uv + font.size) * reciprocalScale * 65535.0f;
 			if (font.id < 128) {
 				fontList[font.id] = font;
+				if (font.xadvance > fixedAdvance) {
+					fixedAdvance = font.xadvance;
+				}
 			}
 			++line;
 		}
@@ -194,7 +198,13 @@ namespace Font {
 			const FontInfo& font = fontList[*itr];
 			if (font.id >= 0 && font.size.x && font.size.y) { // 表示できないデータなら無視する.
 				const glm::vec2 size = font.size * baseScale * scale;
-				const glm::vec2 offsetedPos = pos + font.offset * baseScale * scale;
+				//const glm::vec2 offsetedPos = pos + font.offset * baseScale * scale;				
+				glm::vec2 offsetedPos = pos + font.offset * baseScale * scale;
+
+				if (!propotional) {
+					offsetedPos.x = pos.x;
+				}
+				
 				p[0].position = offsetedPos + glm::vec2(0, -size.y);
 				p[0].uv = font.uv[0];
 				p[0].color = color;
@@ -210,7 +220,18 @@ namespace Font {
 				p += 4;
 				vboSize += 4;
 			}
-			pos.x += font.xadvance * baseScale.x * scale.x; // 次の文字の表示位置へ移動.
+			//pos.x += font.xadvance * baseScale.x * scale.x; // 次の文字の表示位置へ移動.
+			float advance;
+			if (propotional) {
+				advance = font.xadvance;
+			}
+			else {
+				advance = fixedAdvance;
+				if (font.id < 128) {
+					advance *= 0.5f;
+				}
+			}
+			pos.x += advance * baseScale.x * scale.x;
 		}
 		return true;
 	}
