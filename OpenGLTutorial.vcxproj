@@ -31,13 +31,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Res\ao_twinte_chan.fbx" />
     <None Include="Res\ColorFilter.frag" />
     <None Include="Res\ColorFilter.vert" />
-    <None Include="Res\Player.fbx" />
+    <None Include="Res\Model\Player.fbx" />
+    <None Include="Res\Model\Toroid.fbx" />
     <None Include="Res\Posterization.frag" />
     <None Include="Res\Posterization.vert" />
-    <None Include="Res\Toroid.fbx" />
     <None Include="Res\Tutorial.frag" />
     <None Include="Res\Tutorial.vert" />
   </ItemGroup>
@@ -52,15 +51,6 @@
     <ClInclude Include="Src\Shader.h" />
     <ClInclude Include="Src\Texture.h" />
     <ClInclude Include="Src\UniformBuffer.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Res\ao_twinte_chan640x640.tga" />
-    <Image Include="Res\Player.bmp" />
-    <Image Include="Res\Sample.bmp" />
-    <Image Include="Res\Toroid.bmp" />
-    <Image Include="Res\twinte.bmp" />
-    <Image Include="Res\twinte2.bmp" />
-    <Image Include="Res\twinte3.bmp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

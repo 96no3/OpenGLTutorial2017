@@ -67,6 +67,11 @@ namespace Entity {
 
 		glm::mat4 CalcModelMatrix() const;
 
+		void SetIsActiveF() { isActive = false; }
+		void SetIsActiveT() { isActive = true; }
+		bool GetIsActive() { return isActive; }
+		bool invincible = false;
+
 	private:
 		Entity() = default;
 		~Entity() = default;
