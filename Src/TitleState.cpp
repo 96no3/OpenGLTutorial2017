@@ -3,7 +3,8 @@
 */
 #include "GameState.h"
 #include "GameEngine.h"
-#include "../Res/Audio/SampleCueSheet.h"
+//#include "../Res/Audio/SampleCueSheet.h"
+#include "../Res/Audio/Tutorial/TutorialCueSheet.h"
 
 namespace GameState {
 
@@ -13,6 +14,14 @@ namespace GameState {
 		glm::vec3 rotSpace = glm::eulerAngles(entity.Rotation());
 		rotSpace.x += static_cast<float>(glm::radians(2.5) * delta);
 		entity.Rotation(rotSpace);
+	}
+
+	/**
+	* タイトル画面のコンストラクタ.
+	*/
+	Title::Title(Entity::Entity* p) : pSpaceSphere(p) {
+		GameEngine& game = GameEngine::Instance();
+		game.PlayAudio(AudioPlayerId_BGM, CRI_TUTORIALCUESHEET_TITLE);
 	}
 
 	/// タイトル画面の更新.
@@ -27,7 +36,7 @@ namespace GameState {
 
 		const float offset = timer == 0 ? 0 : (2.0f - timer) * (2.0f - timer) * 2.0f * 400.0f;
 		game.FontScale(glm::vec2(2.0f, 2.0f));
-		game.FontColor(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+		game.FontColor(glm::vec4(1.0f, 1.0f, 0, 1.0f));
 		game.AddString(glm::vec2(300.0f + offset, 260.0f), "STAR FIGHTER");
 		game.FontScale(glm::vec2(0.5f, 0.5f));
 		game.FontColor(glm::vec4(0.75f, 0.75f, 0.75f, 1.0f));
@@ -35,11 +44,12 @@ namespace GameState {
 		if (timer > 0) {
 			timer -= static_cast<float>(delta);
 			if (timer <= 0) {
+				game.StopAudio(AudioPlayerId_BGM);
 				game.UpdateFunc(MainGame(pSpaceSphere));
 			}
 		}
 		else if (game.GetGamePad().buttonDown & GamePad::START) {
-			game.PlayAudio(AudioPlayerId_UI, CRI_SAMPLECUESHEET_START);
+			game.PlayAudio(AudioPlayerId_UI, CRI_TUTORIALCUESHEET_START);
 			timer = 2;
 		}
 	}

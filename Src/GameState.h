@@ -35,7 +35,7 @@ namespace GameState {
 	class Title
 	{
 	public:
-		explicit Title(Entity::Entity* p = nullptr) : pSpaceSphere(p) {}
+		explicit Title(Entity::Entity* p = nullptr);
 		void operator()(double delta);
 	private:
 		Entity::Entity* pSpaceSphere = nullptr;
@@ -55,6 +55,19 @@ namespace GameState {
 		double interval = 0;
 		Entity::Entity* pPlayer = nullptr;
 		Entity::Entity* pSpaceSphere = nullptr;
+	};
+
+	/*
+	* ゲームオーバー画面.
+	*/
+	class GameOver
+	{
+	public:
+		explicit GameOver(Entity::Entity* p);
+		void operator()(double delta);
+	private:
+		Entity::Entity* pSpaceSphere = nullptr;
+		float timer = 0;
 	};
 }
 

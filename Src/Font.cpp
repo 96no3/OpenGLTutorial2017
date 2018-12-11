@@ -58,7 +58,7 @@ namespace Font {
 		vao.VertexAttribPointer(2, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(Vertex), offsetof(Vertex, color));
 		vao.Unbind();
 
-		progFont = Shader::Program::Create("Res/Font.vert", "Res/Font.frag");
+		progFont = Shader::Program::Create("Res/Shader/Font.vert", "Res/Shader/Font.frag");
 		if (!progFont) {
 			return false;
 		}
@@ -221,6 +221,7 @@ namespace Font {
 				vboSize += 4;
 			}
 			//pos.x += font.xadvance * baseScale.x * scale.x; // ŽŸ‚Ì•¶Žš‚Ì•\Ž¦ˆÊ’u‚ÖˆÚ“®.
+
 			float advance;
 			if (propotional) {
 				advance = font.xadvance;

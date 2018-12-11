@@ -40,8 +40,7 @@ public:
 	bool LoadTextureFromFile(const char* filename);
 	const TexturePtr& GetTexture(const char* filename) const;
 	bool LoadMeshFromFile(const char* filename);
-	//Entity::Entity* AddEntity(const glm::vec3& pos, const char* meshName, const char* texName, Entity::Entity::UpdateFuncType func);
-	//Entity::Entity* AddEntity(int groupId, const glm::vec3& pos, const char* meshName, const char* texName, Entity::Entity::UpdateFuncType func);
+
 	Entity::Entity* AddEntity(int groupId, const glm::vec3& pos, const char* meshName, const char* texName, Entity::Entity::UpdateFuncType func,
 		const char* shader = nullptr);
 
@@ -90,8 +89,8 @@ private:
 	GLuint vao = 0;
 	UniformBufferPtr uboLight;
 	UniformBufferPtr uboPostEffect;
-	/*Shader::ProgramPtr progTutorial;
-	Shader::ProgramPtr progColorFilter;*/
+
+	Shader::ProgramPtr progPosterization;
 	std::unordered_map<std::string, Shader::ProgramPtr> shaderMap;
 	OffscreenBufferPtr offscreen;
 

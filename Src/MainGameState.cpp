@@ -3,7 +3,8 @@
 */
 #include "GameState.h"
 #include "GameEngine.h"
-#include "../Res/Audio/SampleCueSheet.h"
+//#include "../Res/Audio/SampleCueSheet.h"
+#include "../Res/Audio/Tutorial/TutorialCueSheet.h"
 #include <algorithm>
 
 namespace GameState {
@@ -75,7 +76,8 @@ namespace GameState {
 						p->Velocity(glm::vec3(20 * s, 0, 20 * c));
 						p->Collision(collisionDataList[EntityGroupId_EnemyShot]);
 					}
-					shotPos.x += 0.8f; // 中心からに右に0.4ずらした位置が2つめの発射点. 
+					shotPos.x += 0.8f; // 中心からに右に0.4ずらした位置が2つめの発射点.
+					game.PlayAudio(AudioPlayerId_Shot, CRI_TUTORIALCUESHEET_WEAPON_ENEMY);
 				}
 				shotTimer -= shotInterval;
 			}
@@ -241,7 +243,7 @@ namespace GameState {
 							pos.x += 1.8f; // 中心からに右に0.9ずらした位置が2つめの発射点.
 						}
 						shotInterval += 0.25; // 秒間4連射.
-						game.PlayAudio(AudioPlayerId_Shot, CRI_SAMPLECUESHEET_PLAYERSHOT);
+						game.PlayAudio(AudioPlayerId_Shot, CRI_TUTORIALCUESHEET_WEAPON_PLAYER);
 					}
 				}
 				else {
@@ -275,7 +277,7 @@ namespace GameState {
 				check++;
 			}
 		}
-		game.PlayAudio(AudioPlayerId_Bomb, CRI_SAMPLECUESHEET_BOMB);
+		game.PlayAudio(AudioPlayerId_Bomb, CRI_TUTORIALCUESHEET_EXPLOSION_ENEMY);
 		lhs.Destroy();
 		rhs.Destroy();
 	}
@@ -292,14 +294,21 @@ namespace GameState {
 				p->Rotation(glm::quat(glm::vec3(0, rotRange(game.Rand()), 0)));
 			}
 			enemy.Destroy();
+			game.PlayAudio(AudioPlayerId_Bomb, CRI_TUTORIALCUESHEET_EXPLOSION_ENEMY);
+
 			if (Entity::Entity* p = game.AddEntity(EntityGroupId_Others, player.Position(), "Blast", "Res/Model/Toroid.bmp", UpdateBlast())) {
 				const std::uniform_real_distribution<float> rotRange(0.0f, glm::pi<float>() * 2);
 				p->Rotation(glm::quat(glm::vec3(0, rotRange(game.Rand()), 0)));
 			}
-			game.PlayAudio(AudioPlayerId_Bomb, CRI_SAMPLECUESHEET_BOMB);
+			game.PlayAudio(AudioPlayerId_Bomb, CRI_TUTORIALCUESHEET_EXPLOSION_PLAYER);
 			game.Variable("life")--;
-			player.SetIsActive(false);
-			player.invincible = true;
+			if (game.Variable("life") < 1) {
+				player.Destroy();
+			}
+			else {
+				player.SetIsActive(false);
+				player.invincible = true;
+			}
 		}
 	}
 
@@ -315,10 +324,15 @@ namespace GameState {
 				const std::uniform_real_distribution<float> rotRange(0.0f, glm::pi<float>() * 2);
 				p->Rotation(glm::quat(glm::vec3(0, rotRange(game.Rand()), 0)));
 			}
-			game.PlayAudio(AudioPlayerId_Bomb, CRI_SAMPLECUESHEET_BOMB);
+			game.PlayAudio(AudioPlayerId_Bomb, CRI_TUTORIALCUESHEET_EXPLOSION_PLAYER);
 			game.Variable("life")--;
-			player.SetIsActive(false);
-			player.invincible = true;
+			if (game.Variable("life") < 1) {
+				player.Destroy();
+			}
+			else {
+				player.SetIsActive(false);
+				player.invincible = true;
+			}
 			enemyshot.Destroy();
 		}
 	}
@@ -354,7 +368,12 @@ namespace GameState {
 			pPlayer = game.AddEntity(EntityGroupId_Player, glm::vec3(0, 0, 2), "Aircraft", "Res/Model/Player.bmp", UpdatePlayer());
 			pPlayer->Collision(collisionDataList[EntityGroupId_Player]);
 
-			game.PlayAudio(AudioPlayerId_BGM, CRI_SAMPLECUESHEET_BGM02);
+			game.PlayAudio(AudioPlayerId_BGM, CRI_TUTORIALCUESHEET_BATTLE);
+		}
+
+		if (game.Variable("life") < 1) {
+			game.StopAudio(AudioPlayerId_BGM);
+			game.UpdateFunc(GameOver(pSpaceSphere));
 		}
 
 		std::uniform_int_distribution<> posXRange(-15, 15);
@@ -393,5 +412,4 @@ namespace GameState {
 		}
 		game.AddString(glm::vec2(150.0f, 8.0f), str);
 	}
-
 }

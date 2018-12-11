@@ -197,19 +197,17 @@ bool GameEngine::Init(int w, int h, const char* title)
 	vao = CreateVAO(vbo, ibo);
 	uboLight = UniformBuffer::Create(sizeof(InterfaceBlock::LightData), InterfaceBlock::BINDINGPOINT_LIGHTDATA, "LightData");
 	uboPostEffect = UniformBuffer::Create(sizeof(InterfaceBlock::PostEffectData), InterfaceBlock::BINDINGPOINT_POSTEFFECTDATA, "PostEffectData");
-	/*progTutorial = Shader::Program::Create("Res/Tutorial.vert", "Res/Tutorial.frag");
-	progColorFilter = Shader::Program::Create("Res/ColorFilter.vert", "Res/ColorFilter.frag");*/
+	progPosterization = Shader::Program::Create("Res/Shader/Posterization.vert", "Res/Shader/Posterization.frag");
 	offscreen = OffscreenBuffer::Create(width, height);
-	/*if (!vbo || !ibo || !vao || !uboLight || !uboPostEffect || !progTutorial || !progColorFilter || !offscreen) {*/
-	if (!vbo || !ibo || !vao || !uboLight || !uboPostEffect || !offscreen) {
+	if (!vbo || !ibo || !vao || !uboLight || !uboPostEffect || !offscreen || !progPosterization) {
 		std::cerr << "ERROR: GameEngineの初期化に失敗" << std::endl;
 		return false;
 	}
 
 	static const char* const shaderNameList[][3] = {
-	{ "Tutorial", "Res/Tutorial.vert", "Res/Tutorial.frag" },
-	{ "ColorFilter", "Res/ColorFilter.vert", "Res/ColorFilter.frag" },
-	{ "NonLighting", "Res/NonLighting.vert", "Res/NonLighting.frag" },
+	{ "Tutorial", "Res/Shader/Tutorial.vert", "Res/Shader/Tutorial.frag" },
+	{ "ColorFilter", "Res/Shader/ColorFilter.vert", "Res/Shader/ColorFilter.frag" },
+	{ "NonLighting", "Res/Shader/NonLighting.vert", "Res/Shader/NonLighting.frag" },
 	};
 	shaderMap.reserve(sizeof(shaderNameList) / sizeof(shaderNameList[0]));
 	for (auto& e : shaderNameList) {
@@ -231,9 +229,6 @@ bool GameEngine::Init(int w, int h, const char* title)
 		return false;
 	}
 
-	/*progTutorial->UniformBlockBinding(*entityBuffer->UniformBuffer());
-	progTutorial->UniformBlockBinding(*uboLight);
-	progColorFilter->UniformBlockBinding(*uboPostEffect);*/
 	shaderMap["Tutorial"]->UniformBlockBinding(*entityBuffer->UniformBuffer());
 	shaderMap["Tutorial"]->UniformBlockBinding(*uboLight);
 	shaderMap["ColorFilter"]->UniformBlockBinding(*uboPostEffect);
@@ -250,7 +245,6 @@ bool GameEngine::Init(int w, int h, const char* title)
 void GameEngine::Run()
 {
 	GLFWEW::Window& window = GLFWEW::Window::Instance();
-	//const double delta = 1.0 / 60.0;
 	double prevTime = glfwGetTime();
 	while (!window.ShouldClose()) {
 		// デバッグ中など特殊な状況でなければありえないと考えられるしきい値.
@@ -356,8 +350,6 @@ bool GameEngine::LoadMeshFromFile(const char* filename)
 *         回転や拡大率はこのポインタ経由で設定する.
 *         なお、このポインタをアプリケーション側で保持する必要はない.
 */
-//Entity::Entity* GameEngine::AddEntity(const glm::vec3& pos, const char* meshName, const char* texName, Entity::Entity::UpdateFuncType func)
-//Entity::Entity* GameEngine::AddEntity(int groupId, const glm::vec3& pos, const char* meshName, const char* texName, Entity::Entity::UpdateFuncType func)
 Entity::Entity* GameEngine::AddEntity(int groupId, const glm::vec3& pos, const char* meshName, const char* texName, Entity::Entity::UpdateFuncType func,
 	const char* shader)
 {
@@ -374,8 +366,6 @@ Entity::Entity* GameEngine::AddEntity(int groupId, const glm::vec3& pos, const c
 
 	const Mesh::MeshPtr& mesh = meshBuffer->GetMesh(meshName);
 	const TexturePtr& tex = textureBuffer.find(texName)->second;
-	//return entityBuffer->AddEntity(pos, mesh, tex, progTutorial, func);
-	//return entityBuffer->AddEntity(groupId, pos, mesh, tex, progTutorial, func);
 	return entityBuffer->AddEntity(groupId, pos, mesh, tex, itr->second, func);
 }
 

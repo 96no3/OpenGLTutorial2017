@@ -313,7 +313,6 @@ namespace Mesh {
 		}
 
 		// ポリゴン数にもとづいて、仮データバッファの容量を予約する.
-		//const int polygonCount = fbxMesh->GetPolygonCount() * 3;
 		const int polygonCount = fbxMesh->GetPolygonCount();
 		for (auto& e : mesh.materialList) {
 			const size_t avarageCapacity = polygonCount / mesh.materialList.size();
@@ -545,6 +544,4 @@ namespace Mesh {
 	{
 		glBindVertexArray(vao);
 	}
-
-
 }

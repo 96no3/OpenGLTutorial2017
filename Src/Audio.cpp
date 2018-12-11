@@ -154,6 +154,4 @@ namespace Audio {
 		}
 		criAtomExPlayer_Stop(playerList[playerId]);
 	}
-
-
 }

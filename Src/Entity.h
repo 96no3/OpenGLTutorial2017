@@ -44,7 +44,6 @@ namespace Entity {
 
 	public:
 		/// 状態更新関数型.
-		//using UpdateFuncType = std::function<void(Entity&, void*, double, const glm::mat4&, const glm::mat4&)>;
 		using UpdateFuncType = std::function<void(Entity&, double)>;
 
 		void Position(const glm::vec3& v) { position = v; }
@@ -103,9 +102,7 @@ namespace Entity {
 	{
 	public:
 		static BufferPtr Create(size_t maxEntityCount, GLsizeiptr ubSizePerEntity, int bindingPoint, const char* name);
-
-		/*Entity* AddEntity(const glm::vec3& pos, const Mesh::MeshPtr& m, const TexturePtr& t, const Shader::ProgramPtr& p,
-			Entity::UpdateFuncType func);*/
+				
 		Entity* AddEntity(int groupId, const glm::vec3& pos, const Mesh::MeshPtr& m, const TexturePtr& t, const Shader::ProgramPtr& p,
 			Entity::UpdateFuncType func);
 
@@ -140,8 +137,7 @@ namespace Entity {
 		std::unique_ptr<LinkEntity[], EntityArrayDeleter> buffer; ///< エンティティの配列.
 		size_t bufferSize; ///< エンティティの総数.
 		Link freeList; ///< 未使用のエンティティのリンクリスト.
-		//Link activeList; ///< 使用中のエンティティのリンクリスト.
-		Link activeList[maxGroupId + 1];
+		Link activeList[maxGroupId + 1];	///< 使用中のエンティティのリンクリスト.
 		GLsizeiptr ubSizePerEntity; ///< 各エンティティが使えるUniform Bufferのバイト数.
 		UniformBufferPtr ubo; ///< エンティティ用UBO.
 		Link* itrUpdate = nullptr; ///< UpdateとRemoveEntityの相互作用に対応するためのイテレータ.
@@ -153,9 +149,7 @@ namespace Entity {
 			CollisionHandlerType handler;
 		};
 		std::vector<CollisionHandlerInfo> collisionHandlerList;
-
 	};
-
 }
 
 #endif

@@ -144,8 +144,6 @@ namespace Entity {
 	*         回転や拡大率を設定する場合はこのポインタ経由で行う.
 	*         このポインタをアプリケーション側で保持する必要はない.
 	*/
-	/*Entity* Buffer::AddEntity(const glm::vec3& position, const Mesh::MeshPtr& mesh,	const TexturePtr& texture, const Shader::ProgramPtr& program,
-		Entity::UpdateFuncType func)*/
 	Entity* Buffer::AddEntity(int groupId, const glm::vec3& position, const Mesh::MeshPtr& mesh, const TexturePtr& texture,
 		const Shader::ProgramPtr& program, Entity::UpdateFuncType func)
 	{
@@ -161,7 +159,6 @@ namespace Entity {
 		}
 
 		LinkEntity* entity = static_cast<LinkEntity*>(freeList.prev);
-		//activeList.Insert(entity);
 		activeList[groupId].Insert(entity);
 
 		entity->groupId = groupId;
@@ -231,24 +228,19 @@ namespace Entity {
 	void Buffer::Update(double delta, const glm::mat4& matView, const glm::mat4& matProj)
 	{
 		// 各エンティティの座標と状態を更新し、ワールド座標系の衝突形状を計算する.
-		//uint8_t* p = static_cast<uint8_t*>(ubo->MapBuffer());
 
 		for (int groupId = 0; groupId <= maxGroupId; ++groupId) {
-			//for (itrUpdate = activeList.next; itrUpdate != &activeList; itrUpdate = itrUpdate->next) {
 			for (itrUpdate = activeList[groupId].next; itrUpdate != &activeList[groupId]; itrUpdate = itrUpdate->next) {
 
 				LinkEntity& e = *static_cast<LinkEntity*>(itrUpdate);
 				e.position += e.velocity * static_cast<float>(delta);
 				if (e.updateFunc) {
-					//e.updateFunc(e, p + e.uboOffset, delta, matView, matProj);
 					e.updateFunc(e, delta);
 				}
 				e.colWorld.min = e.colLocal.min + e.position;
 				e.colWorld.max = e.colLocal.max + e.position;
 			}
 		}
-		//itrUpdate = nullptr;
-		//ubo->UnmapBuffer();
 
 		// 衝突判定を実行する.
 		for (const auto& e : collisionHandlerList) {
@@ -299,7 +291,6 @@ namespace Entity {
 		meshBuffer->BindVAO();
 		for (int groupId = 0; groupId <= maxGroupId; ++groupId) {
 
-			//for (const Link* itr = activeList.next; itr != &activeList; itr = itr->next) {
 			for (const Link* itr = activeList[groupId].next; itr != &activeList[groupId]; itr = itr->next) {
 				const LinkEntity& e = *static_cast<const LinkEntity*>(itr);
 				if (e.mesh && e.texture && e.program) {
@@ -372,5 +363,4 @@ namespace Entity {
 	{
 		collisionHandlerList.clear();
 	}
-
 }
