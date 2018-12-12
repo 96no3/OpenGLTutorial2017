@@ -42,6 +42,8 @@ namespace InterfaceBlock {
 	struct PostEffectData
 	{
 		glm::mat4x4 matColor; ///< 色変換行列.
+		float luminanceScale; ///< 輝度増減係数.
+		float bloomThreshold; ///< ブルームを発生させるしきい値.
 	};
 
 
@@ -52,7 +54,6 @@ namespace InterfaceBlock {
 		BINDINGPOINT_LIGHTDATA, ///< ライティングパラメータ用のバインディングポイント.
 		BINDINGPOINT_POSTEFFECTDATA, ///< ポストエフェクトパラメータ用のバインディングポイント.
 	};
-
 }
 
 #endif

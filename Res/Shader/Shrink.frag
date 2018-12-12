@@ -21,6 +21,6 @@ void main()
 #else
   // 1/2縮小バッファ
   fragColor = texture(colorSampler, inTexCoord);
-#endif
   fragColor.a = 1.0;
+#endif  
 }

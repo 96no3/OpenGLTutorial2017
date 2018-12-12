@@ -204,7 +204,7 @@ bool GameEngine::Init(int w, int h, const char* title)
 		std::cerr << "ERROR: GameEngineの初期化に失敗" << std::endl;
 		return false;
 	}
-
+	// 縮小バッファの作成
 	for (int i = 0, scale = 4; i < bloomBufferCount; ++i, scale *= 4) {
 		const int w = width / scale;
 		const int h = height / scale;
@@ -212,6 +212,19 @@ bool GameEngine::Init(int w, int h, const char* title)
 		if (!offBloom[i]) {
 			return false;
 		}
+	}
+
+	// オフスクリーンバッファの大きさを取得.
+	int offWidth, offHeight;
+	glBindTexture(GL_TEXTURE_2D, offBloom[bloomBufferCount - 1]->GetTexutre());
+	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &offWidth);
+	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &offHeight);
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+	// PBOを作成.
+	const int pboByteSize = offWidth * offHeight * sizeof(GLfloat) * 4;
+	for (auto& e : pbo) {
+		e.Init(GL_PIXEL_PACK_BUFFER, pboByteSize, nullptr, GL_DYNAMIC_READ);
 	}
 
 	static const char* const shaderNameList[][3] = {
@@ -661,6 +674,9 @@ void GameEngine::Render() const
 	const Shader::ProgramPtr& progColorFilter = shaderMap.find("ColorFilter")->second;
 	progColorFilter->UseProgram();
 	InterfaceBlock::PostEffectData postEffect;
+
+	postEffect.luminanceScale = luminanceScale;
+	postEffect.bloomThreshold = 1.0f / luminanceScale;
 	// 初期
 	postEffect.matColor = glm::mat4x4(1);
 	//// セピア調
@@ -685,4 +701,45 @@ void GameEngine::Render() const
 #endif
 	glDrawElements(GL_TRIANGLES, renderingParts[1].size, GL_UNSIGNED_INT, renderingParts[1].offset);
 	fontRenderer.Draw();
+
+	{
+		// オフスクリーンバッファの大きさを取得.
+		int width, height;
+		glBindTexture(GL_TEXTURE_2D, offBloom[bloomBufferCount - 1]->GetTexutre());
+		glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &width);
+		glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &height);
+		glBindTexture(GL_TEXTURE_2D, 0);
+
+		// 初回(pboIndexForWriting<0の場合)はまだデータがないため、
+		// 変換コピーするだけで輝度計算はしない.
+		if (pboIndexForWriting < 0) {
+			// オフスクリーンバッファの内容をPBOに変換コピー.
+			const GLuint pboWrite = pbo[1].Id();
+			glBindBuffer(GL_PIXEL_PACK_BUFFER, pboWrite);
+			glBindFramebuffer(GL_FRAMEBUFFER, offBloom[bloomBufferCount - 1]->GetFramebuffer());
+			glReadPixels(0, 0, width, height, GL_RGBA, GL_FLOAT, 0);
+		}
+		else {
+			// オフスクリーンバッファの内容をPBOに変換コピー.
+			const GLuint pboWrite = pbo[pboIndexForWriting].Id();
+			glBindBuffer(GL_PIXEL_PACK_BUFFER, pboWrite);
+			glBindFramebuffer(GL_FRAMEBUFFER, offBloom[bloomBufferCount - 1]->GetFramebuffer());
+			glReadPixels(0, 0, width, height, GL_RGBA, GL_FLOAT, 0);
+
+			// PBOの内容を読み取って輝度スケールを計算.
+			const GLuint pboRead = pbo[pboIndexForWriting ^ 1].Id();
+			glBindBuffer(GL_PIXEL_PACK_BUFFER, pboRead);
+			const GLfloat* p = static_cast<GLfloat*>(glMapBuffer(GL_PIXEL_PACK_BUFFER, GL_READ_ONLY));
+			float totalLum = 0;
+			for (int i = 0; i < width * height; ++i) {
+				totalLum += p[i * 4 + 3];
+			}
+			float luminanceScale = 0.18f / std::exp(totalLum / static_cast<float>(width * height));
+			//float luminanceScale = keyValue / std::exp(totalLum / static_cast<float>(width * height));
+
+			glUnmapBuffer(GL_PIXEL_PACK_BUFFER);
+		}
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		glBindBuffer(GL_PIXEL_PACK_BUFFER, 0);
+	}
 }
