@@ -10,6 +10,9 @@ void main()
 {
   //vec3 threshould = vec3(0.9);
   vec3 threshould = vec3(1.0);
+
+#if 1
+  // 1/4縮小バッファ
   vec4 ts;
   ts.xy = vec2(1.0) / vec2(textureSize(colorSampler, 0));
   ts.zw = -ts.xy;
@@ -18,5 +21,9 @@ void main()
   fragColor.rgb += max(texture(colorSampler, inTexCoord + ts.xw).rgb, threshould) - threshould;
   fragColor.rgb += max(texture(colorSampler, inTexCoord + ts.zw).rgb, threshould) - threshould;
   fragColor.rgb *= 1.0 / 4.0;
+#else
+  // 1/2縮小バッファ
+  fragColor.rgb = max(texture(colorSampler, inTexCoord).rgb, threshould) - threshould;
+#endif
   fragColor.a = 1.0;
 }

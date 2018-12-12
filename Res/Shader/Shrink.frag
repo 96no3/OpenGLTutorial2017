@@ -8,6 +8,8 @@ uniform sampler2D colorSampler;
 
 void main()
 {
+#if 1
+  // 1/4縮小バッファ
   vec4 ts;
   ts.xy = vec2(1.0) / vec2(textureSize(colorSampler, 0));
   ts.zw = -ts.xy;
@@ -16,5 +18,9 @@ void main()
   fragColor += texture(colorSampler, inTexCoord + ts.xw);
   fragColor += texture(colorSampler, inTexCoord + ts.zw);
   fragColor *= 1.0 / 4.0;
+#else
+  // 1/2縮小バッファ
+  fragColor = texture(colorSampler, inTexCoord);
+#endif
   fragColor.a = 1.0;
 }

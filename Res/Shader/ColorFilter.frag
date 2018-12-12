@@ -16,6 +16,8 @@ layout(std140) uniform PostEffectData
 
 void main()
 {
+#if 1
+  // 1/4縮小バッファ
   vec4 ts;
   ts.xy = vec2(0.25) / vec2(textureSize(colorSampler[1], 0));
   ts.zw = -ts.xy;
@@ -24,7 +26,10 @@ void main()
   bloom += texture(colorSampler[1], inTexCoord + ts.xw).rgb;
   bloom += texture(colorSampler[1], inTexCoord + ts.zw).rgb;
   bloom *= 1.0 / 4.0;
-
+#else
+  // 1/2縮小バッファ
+  vec3 bloom = texture(colorSampler[1], inTexCoord).rgb;
+#endif
   //fragColor = texture(colorSampler, inTexCoord);
   fragColor.rgb = texture(colorSampler[0], inTexCoord).rgb;
   fragColor.rgb += bloom;

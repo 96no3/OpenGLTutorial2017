@@ -622,34 +622,10 @@ void GameEngine::Render() const
 	glDisable(GL_BLEND);
 	glBindVertexArray(vao);
 
-#if 0
-	// カラーフィルターシェーダの利用
-	const Shader::ProgramPtr& progColorFilter = shaderMap.find("ColorFilter")->second;
-	progColorFilter->UseProgram();
-	InterfaceBlock::PostEffectData postEffect;
-	// 初期
-	postEffect.matColor = glm::mat4x4(1);
-	//// セピア調
-	//postEffect.matColor[0] = glm::vec4(0.393f, 0.349f, 0.272f, 0);
-	//postEffect.matColor[1] = glm::vec4(0.769f, 0.686f, 0.534f, 0);
-	//postEffect.matColor[2] = glm::vec4(0.189f, 0.168f, 0.131f, 0);
-	//postEffect.matColor[3] = glm::vec4(0, 0, 0, 1);
-	//// モノトーン調
-	//postEffect.matColor[0] = glm::vec4(0.299f, 0.299f, 0.299f, 0);
-	//postEffect.matColor[1] = glm::vec4(0.587f, 0.587f, 0.587f, 0);
-	//postEffect.matColor[2] = glm::vec4(0.114f, 0.114f, 0.114f, 0);
-	//postEffect.matColor[3] = glm::vec4(0, 0, 0, 1);
-	//// ネガポジ反転
-	//postEffect.matColor[0] = glm::vec4(-1, 0, 0, 0);
-	//postEffect.matColor[1] = glm::vec4(0, -1, 0, 0);
-	//postEffect.matColor[2] = glm::vec4(0, 0, -1, 0);
-	//postEffect.matColor[3] = glm::vec4(1, 1, 1, 1);
-	uboPostEffect->BufferSubData(&postEffect);
-	progColorFilter->BindTexture(GL_TEXTURE0, GL_TEXTURE_2D, offscreen->GetTexutre());
-
-	//// ポスター化シェーダーの利用
-	//progPosterization->UseProgram();
-	//progPosterization->BindTexture(GL_TEXTURE0, GL_TEXTURE_2D, offscreen->GetTexutre());
+#if 0	
+	// ポスター化シェーダーの利用
+	progPosterization->UseProgram();
+	progPosterization->BindTexture(GL_TEXTURE0, GL_TEXTURE_2D, offscreen->GetTexutre());
 
 #else
 	const Shader::ProgramPtr& progHiLumExtract = shaderMap.find("HiLumExtract")->second;
@@ -692,6 +668,16 @@ void GameEngine::Render() const
 	//postEffect.matColor[1] = glm::vec4(0.769f, 0.686f, 0.534f, 0);
 	//postEffect.matColor[2] = glm::vec4(0.189f, 0.168f, 0.131f, 0);
 	//postEffect.matColor[3] = glm::vec4(0, 0, 0, 1);
+	//// モノトーン調
+	//postEffect.matColor[0] = glm::vec4(0.299f, 0.299f, 0.299f, 0);
+	//postEffect.matColor[1] = glm::vec4(0.587f, 0.587f, 0.587f, 0);
+	//postEffect.matColor[2] = glm::vec4(0.114f, 0.114f, 0.114f, 0);
+	//postEffect.matColor[3] = glm::vec4(0, 0, 0, 1);
+	//// ネガポジ反転
+	//postEffect.matColor[0] = glm::vec4(-1, 0, 0, 0);
+	//postEffect.matColor[1] = glm::vec4(0, -1, 0, 0);
+	//postEffect.matColor[2] = glm::vec4(0, 0, -1, 0);
+	//postEffect.matColor[3] = glm::vec4(1, 1, 1, 1);
 	uboPostEffect->BufferSubData(&postEffect);
 	progColorFilter->BindTexture(GL_TEXTURE0, GL_TEXTURE_2D, offscreen->GetTexutre());
 	progColorFilter->BindTexture(GL_TEXTURE1, GL_TEXTURE_2D, offBloom[0]->GetTexutre());
