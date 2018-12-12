@@ -66,6 +66,9 @@
     <ClInclude Include="Src\Texture.h" />
     <ClInclude Include="Src\UniformBuffer.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Res\Model\Toroid.bmp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{A5B88858-606F-4E21-A2D0-A94DE3390115}</ProjectGuid>

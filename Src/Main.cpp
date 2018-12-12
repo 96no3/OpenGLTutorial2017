@@ -20,7 +20,8 @@ int main()
 		return 1;
 	}
 
-	game.LoadTextureFromFile("Res/Model/Toroid.bmp");
+	//game.LoadTextureFromFile("Res/Model/Toroid.bmp");
+	game.LoadTextureFromFile("Res/Model/Toroid.dds");
 	game.LoadTextureFromFile("Res/Model/Toroid.Normal.bmp");
 	game.LoadTextureFromFile("Res/Model/Dummy.Normal.bmp");
 	game.LoadTextureFromFile("Res/Model/Player.bmp");
