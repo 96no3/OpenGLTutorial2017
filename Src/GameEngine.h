@@ -43,6 +43,8 @@ public:
 
 	Entity::Entity* AddEntity(int groupId, const glm::vec3& pos, const char* meshName, const char* texName, Entity::Entity::UpdateFuncType func,
 		const char* shader = nullptr);
+	Entity::Entity* AddEntity(int groupId, const glm::vec3& pos, const char* meshName, const char* texName, const char* normalName,
+		Entity::Entity::UpdateFuncType func, const char* shader = nullptr);
 
 	void RemoveEntity(Entity::Entity*);
 	void Light(int index, const InterfaceBlock::PointLight& light);

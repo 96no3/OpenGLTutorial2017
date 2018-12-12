@@ -144,8 +144,10 @@ namespace Entity {
 	*         回転や拡大率を設定する場合はこのポインタ経由で行う.
 	*         このポインタをアプリケーション側で保持する必要はない.
 	*/
-	Entity* Buffer::AddEntity(int groupId, const glm::vec3& position, const Mesh::MeshPtr& mesh, const TexturePtr& texture,
-		const Shader::ProgramPtr& program, Entity::UpdateFuncType func)
+	/*Entity* Buffer::AddEntity(int groupId, const glm::vec3& position, const Mesh::MeshPtr& mesh, const TexturePtr& texture,
+		const Shader::ProgramPtr& program, Entity::UpdateFuncType func)*/
+	Entity* Buffer::AddEntity(int groupId, const glm::vec3& position, const Mesh::MeshPtr& mesh, const TexturePtr t[2],
+		const Shader::ProgramPtr& program, const Entity::UpdateFuncType& func)
 	{
 		if (freeList.prev == freeList.next) {
 			std::cerr << "WARNING in Entity::Buffer::AddEntity: 空きエンティティがありません." << std::endl;
@@ -168,7 +170,9 @@ namespace Entity {
 		entity->color = glm::vec4(1, 1, 1, 1);
 		entity->velocity = glm::vec3();
 		entity->mesh = mesh;
-		entity->texture = texture;
+		//entity->texture = texture;
+		entity->texture[0] = t[0];
+		entity->texture[1] = t[1];
 		entity->program = program;
 		entity->updateFunc = func;
 		entity->isActive = true;
@@ -201,7 +205,10 @@ namespace Entity {
 
 		freeList.Insert(p);
 		p->mesh.reset();
-		p->texture.reset();
+		//p->texture.reset();
+		for (auto& e : p->texture) {
+			e.reset();
+		}
 		p->program.reset();
 		p->updateFunc = nullptr;
 		p->isActive = false;
@@ -295,7 +302,10 @@ namespace Entity {
 				const LinkEntity& e = *static_cast<const LinkEntity*>(itr);
 				if (e.mesh && e.texture && e.program) {
 					e.program->UseProgram();
-					e.program->BindTexture(GL_TEXTURE0, GL_TEXTURE_2D, e.texture->Id());
+					//e.program->BindTexture(GL_TEXTURE0, GL_TEXTURE_2D, e.texture->Id());
+					for (size_t i = 0; i < sizeof(e.texture) / sizeof(e.texture[0]); ++i) {
+						e.program->BindTexture(GL_TEXTURE0 + i, GL_TEXTURE_2D, e.texture[i]->Id());
+					}
 					ubo->BindBufferRange(e.uboOffset, ubSizePerEntity);
 					e.mesh->Draw(meshBuffer);
 				}

@@ -72,7 +72,8 @@ namespace GameState {
 					const float c = std::cos(radian);
 					const float s = std::sin(radian);
 
-					if (Entity::Entity* p = game.AddEntity(EntityGroupId_EnemyShot, shotPos, "Spario", "Res/Model/Toroid.bmp", UpdateEnemyShot())) {
+					if (Entity::Entity* p = game.AddEntity(EntityGroupId_EnemyShot, shotPos, "Spario", "Res/Model/Toroid.bmp", UpdateEnemyShot()))					
+					{
 						p->Velocity(glm::vec3(20 * s, 0, 20 * c));
 						p->Collision(collisionDataList[EntityGroupId_EnemyShot]);
 					}
@@ -385,7 +386,9 @@ namespace GameState {
 			for (int i = rndAddingCount(game.Rand()); i > 0; --i) {
 				const glm::vec3 pos(posXRange(game.Rand()), 0, posZRange(game.Rand()));
 
-				if (Entity::Entity* p = game.AddEntity(EntityGroupId_Enemy, pos, "Toroid", "Res/Model/Toroid.bmp", UpdateToroid(pPlayer))) {
+				//if (Entity::Entity* p = game.AddEntity(EntityGroupId_Enemy, pos, "Toroid", "Res/Model/Toroid.bmp", UpdateToroid(pPlayer))) 
+				if (Entity::Entity* p = game.AddEntity(EntityGroupId_Enemy, pos, "Toroid", "Res/Model/Toroid.bmp", "Res/Model/Toroid.Normal.bmp", UpdateToroid(pPlayer)))
+				{
 					p->Velocity({ pos.x < 0 ? 3.0f : -3.0f, 0, -12.0f });
 					p->Collision(collisionDataList[EntityGroupId_Enemy]);
 				}

@@ -39,6 +39,8 @@
     <None Include="packages.config" />
     <None Include="Res\Model\Player.fbx" />
     <None Include="Res\Model\Toroid.fbx" />
+    <None Include="Res\Shader\Tutorial.frag" />
+    <None Include="Res\Shader\Tutorial.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Res\Audio\SampleCueSheet.h" />
