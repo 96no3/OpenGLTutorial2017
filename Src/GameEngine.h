@@ -95,6 +95,8 @@ private:
 	Shader::ProgramPtr progPosterization;
 	std::unordered_map<std::string, Shader::ProgramPtr> shaderMap;
 	OffscreenBufferPtr offscreen;
+	static const int bloomBufferCount = 4;
+	OffscreenBufferPtr offBloom[bloomBufferCount];
 
 	std::unordered_map<std::string, TexturePtr> textureBuffer;
 	Mesh::BufferPtr meshBuffer;

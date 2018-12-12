@@ -205,10 +205,22 @@ bool GameEngine::Init(int w, int h, const char* title)
 		return false;
 	}
 
+	for (int i = 0, scale = 4; i < bloomBufferCount; ++i, scale *= 4) {
+		const int w = width / scale;
+		const int h = height / scale;
+		offBloom[i] = OffscreenBuffer::Create(w, h, GL_RGBA16F);
+		if (!offBloom[i]) {
+			return false;
+		}
+	}
+
 	static const char* const shaderNameList[][3] = {
 	{ "Tutorial", "Res/Shader/Tutorial.vert", "Res/Shader/Tutorial.frag" },
 	{ "ColorFilter", "Res/Shader/ColorFilter.vert", "Res/Shader/ColorFilter.frag" },
 	{ "NonLighting", "Res/Shader/NonLighting.vert", "Res/Shader/NonLighting.frag" },
+	{ "HiLumExtract", "Res/Shader/TexCoord.vert", "Res/Shader/HiLumExtraction.frag" },
+	{ "Shrink", "Res/Shader/TexCoord.vert", "Res/Shader/Shrink.frag" },
+	{ "Blur3x3", "Res/Shader/TexCoord.vert", "Res/Shader/Blur3x3.frag" },
 	};
 	shaderMap.reserve(sizeof(shaderNameList) / sizeof(shaderNameList[0]));
 	for (auto& e : shaderNameList) {
@@ -610,6 +622,7 @@ void GameEngine::Render() const
 	glDisable(GL_BLEND);
 	glBindVertexArray(vao);
 
+#if 0
 	// カラーフィルターシェーダの利用
 	const Shader::ProgramPtr& progColorFilter = shaderMap.find("ColorFilter")->second;
 	progColorFilter->UseProgram();
@@ -638,6 +651,52 @@ void GameEngine::Render() const
 	//progPosterization->UseProgram();
 	//progPosterization->BindTexture(GL_TEXTURE0, GL_TEXTURE_2D, offscreen->GetTexutre());
 
+#else
+	const Shader::ProgramPtr& progHiLumExtract = shaderMap.find("HiLumExtract")->second;
+	progHiLumExtract->UseProgram();
+	glBindFramebuffer(GL_FRAMEBUFFER, offBloom[0]->GetFramebuffer());
+	glViewport(0, 0, width / 4, height / 4);
+	progHiLumExtract->BindTexture(GL_TEXTURE0, GL_TEXTURE_2D, offscreen->GetTexutre());
+	glDrawElements(GL_TRIANGLES, renderingParts[1].size, GL_UNSIGNED_INT, renderingParts[1].offset);
+
+	const Shader::ProgramPtr& progShrink = shaderMap.find("Shrink")->second;
+	progShrink->UseProgram();
+	for (int i = 1, scale = 4 * 4; i < bloomBufferCount; ++i, scale *= 4) {
+		glBindFramebuffer(GL_FRAMEBUFFER, offBloom[i]->GetFramebuffer());
+		glViewport(0, 0, width / scale, height / scale);
+		progShrink->BindTexture(GL_TEXTURE0, GL_TEXTURE_2D, offBloom[i - 1]->GetTexutre());
+		glDrawElements(GL_TRIANGLES, renderingParts[1].size, GL_UNSIGNED_INT, renderingParts[1].offset);
+	}
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_ONE, GL_ONE);
+	const Shader::ProgramPtr& progBlur3x3 = shaderMap.find("Blur3x3")->second;
+	progBlur3x3->UseProgram();
+	for (int i = bloomBufferCount - 1, scale = 4 * 4 * 4 * 4; i > 0; --i, scale /= 4) {
+		glBindFramebuffer(GL_FRAMEBUFFER, offBloom[i - 1]->GetFramebuffer());
+		glViewport(0, 0, width / scale, height / scale);
+		progBlur3x3->BindTexture(GL_TEXTURE0, GL_TEXTURE_2D, offBloom[i]->GetTexutre());
+		glDrawElements(GL_TRIANGLES, renderingParts[1].size, GL_UNSIGNED_INT, renderingParts[1].offset);
+	}
+
+	glDisable(GL_BLEND);
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glViewport(0, 0, 800, 600);
+	const Shader::ProgramPtr& progColorFilter = shaderMap.find("ColorFilter")->second;
+	progColorFilter->UseProgram();
+	InterfaceBlock::PostEffectData postEffect;
+	// 初期
+	postEffect.matColor = glm::mat4x4(1);
+	//// セピア調
+	//postEffect.matColor[0] = glm::vec4(0.393f, 0.349f, 0.272f, 0);
+	//postEffect.matColor[1] = glm::vec4(0.769f, 0.686f, 0.534f, 0);
+	//postEffect.matColor[2] = glm::vec4(0.189f, 0.168f, 0.131f, 0);
+	//postEffect.matColor[3] = glm::vec4(0, 0, 0, 1);
+	uboPostEffect->BufferSubData(&postEffect);
+	progColorFilter->BindTexture(GL_TEXTURE0, GL_TEXTURE_2D, offscreen->GetTexutre());
+	progColorFilter->BindTexture(GL_TEXTURE1, GL_TEXTURE_2D, offBloom[0]->GetTexutre());
+
+#endif
 	glDrawElements(GL_TRIANGLES, renderingParts[1].size, GL_UNSIGNED_INT, renderingParts[1].offset);
 	fontRenderer.Draw();
 }
