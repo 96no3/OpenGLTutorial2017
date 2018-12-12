@@ -3,8 +3,6 @@
 */
 #include "GameEngine.h"
 #include "GameState.h"
-//#include "../Res/Audio/SampleSound_acf.h"
-//#include "../Res/Audio/SampleCueSheet.h"
 #include "../Res/Audio/Tutorial/TutorialProject_acf.h"
 #include "../Res/Audio/Tutorial/TutorialCueSheet.h"
 #include <random>
@@ -17,10 +15,6 @@ int main()
 	if (!game.Init(800, 600, "OpenGL Tutorial")) {
 		return 1;
 	}
-	/*if (!game.InitAudio("Res/Audio/SampleSound.acf", "Res/Audio/SampleCueSheet.acb", "Res/Audio/SampleCueSheet.awb",
-		CRI_SAMPLESOUND_ACF_DSPSETTING_DSPBUSSETTING_0, GameState::AudioPlayerId_Max)) {
-		return 1;
-	}*/
 	if (!game.InitAudio("Res/Audio/Tutorial/TutorialProject.acf", "Res/Audio/Tutorial/TutorialCueSheet.acb", "Res/Audio/Tutorial/TutorialCueSheet.awb",
 		CRI_TUTORIALPROJECT_ACF_DSPSETTING_DSPBUSSETTING_0, GameState::AudioPlayerId_Max)) {
 		return 1;

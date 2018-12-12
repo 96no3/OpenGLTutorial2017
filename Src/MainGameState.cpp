@@ -3,7 +3,6 @@
 */
 #include "GameState.h"
 #include "GameEngine.h"
-//#include "../Res/Audio/SampleCueSheet.h"
 #include "../Res/Audio/Tutorial/TutorialCueSheet.h"
 #include <algorithm>
 
@@ -385,8 +384,7 @@ namespace GameState {
 
 			for (int i = rndAddingCount(game.Rand()); i > 0; --i) {
 				const glm::vec3 pos(posXRange(game.Rand()), 0, posZRange(game.Rand()));
-
-				//if (Entity::Entity* p = game.AddEntity(EntityGroupId_Enemy, pos, "Toroid", "Res/Model/Toroid.bmp", UpdateToroid(pPlayer))) 
+				
 				if (Entity::Entity* p = game.AddEntity(EntityGroupId_Enemy, pos, "Toroid", "Res/Model/Toroid.bmp", "Res/Model/Toroid.Normal.bmp", UpdateToroid(pPlayer)))
 				{
 					p->Velocity({ pos.x < 0 ? 3.0f : -3.0f, 0, -12.0f });

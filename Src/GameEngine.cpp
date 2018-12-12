@@ -198,7 +198,8 @@ bool GameEngine::Init(int w, int h, const char* title)
 	uboLight = UniformBuffer::Create(sizeof(InterfaceBlock::LightData), InterfaceBlock::BINDINGPOINT_LIGHTDATA, "LightData");
 	uboPostEffect = UniformBuffer::Create(sizeof(InterfaceBlock::PostEffectData), InterfaceBlock::BINDINGPOINT_POSTEFFECTDATA, "PostEffectData");
 	progPosterization = Shader::Program::Create("Res/Shader/Posterization.vert", "Res/Shader/Posterization.frag");
-	offscreen = OffscreenBuffer::Create(width, height);
+	//offscreen = OffscreenBuffer::Create(width, height);
+	offscreen = OffscreenBuffer::Create(width, height, GL_RGBA16F);
 	if (!vbo || !ibo || !vao || !uboLight || !uboPostEffect || !offscreen || !progPosterization) {
 		std::cerr << "ERROR: GameEngineの初期化に失敗" << std::endl;
 		return false;
@@ -350,8 +351,6 @@ bool GameEngine::LoadMeshFromFile(const char* filename)
 *         回転や拡大率はこのポインタ経由で設定する.
 *         なお、このポインタをアプリケーション側で保持する必要はない.
 */
-//Entity::Entity* GameEngine::AddEntity(int groupId, const glm::vec3& pos, const char* meshName, const char* texName, Entity::Entity::UpdateFuncType func,
-//	const char* shader)
 Entity::Entity* GameEngine::AddEntity(int groupId, const glm::vec3& pos, const char* meshName, const char* texName, const char* normalName,
 	Entity::Entity::UpdateFuncType func, const char* shader)
 {

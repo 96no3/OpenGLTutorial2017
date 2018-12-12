@@ -8,10 +8,12 @@
 *
 * @param w オフスクリーンバッファの幅(ピクセル単位).
 * @param h オフスクリーンバッファの高さ(ピクセル単位).
+* @param f テクスチャ形式.
 *
 * @return 作成したオフスクリーンバッファへのポインタ.
 */
-OffscreenBufferPtr OffscreenBuffer::Create(int w, int h)
+//OffscreenBufferPtr OffscreenBuffer::Create(int w, int h)
+OffscreenBufferPtr OffscreenBuffer::Create(int w, int h, GLenum f)
 {
 	struct Impl : OffscreenBuffer {};
 	OffscreenBufferPtr offscreen = std::make_shared<Impl>();
@@ -20,7 +22,8 @@ OffscreenBufferPtr OffscreenBuffer::Create(int w, int h)
 	}
 
 	// テクスチャを作成する.
-	offscreen->tex = Texture::Create(w, h, GL_RGBA8, GL_RGBA, nullptr);
+	//offscreen->tex = Texture::Create(w, h, GL_RGBA8, GL_RGBA, nullptr);
+	offscreen->tex = Texture::Create(w, h, f, GL_RGBA, nullptr);
 
 	// 深度バッファを作成する.
 	glGenRenderbuffers(1, &offscreen->depthbuffer);

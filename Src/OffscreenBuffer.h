@@ -16,7 +16,8 @@ using OffscreenBufferPtr = std::shared_ptr<OffscreenBuffer>; ///< オフスクリーン
 class OffscreenBuffer
 {
 public:
-	static OffscreenBufferPtr Create(int w, int h);
+	//static OffscreenBufferPtr Create(int w, int h);
+	static OffscreenBufferPtr Create(int w, int h, GLenum f = GL_RGBA8);
 	GLuint GetFramebuffer() const { return framebuffer; } ///< フレームバッファを取得する.
 	GLuint GetTexutre() const { return tex->Id(); } ///< フレームバッファ用テクスチャを取得する.
 
