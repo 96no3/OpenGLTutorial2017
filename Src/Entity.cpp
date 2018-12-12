@@ -232,7 +232,6 @@ namespace Entity {
 	void Buffer::Update(double delta, const glm::mat4& matView, const glm::mat4& matProj)
 	{
 		// 各エンティティの座標と状態を更新し、ワールド座標系の衝突形状を計算する.
-
 		for (int groupId = 0; groupId <= maxGroupId; ++groupId) {
 			for (itrUpdate = activeList[groupId].next; itrUpdate != &activeList[groupId]; itrUpdate = itrUpdate->next) {
 
