@@ -367,6 +367,7 @@ namespace GameState {
 		if (!isInitialized) {
 			isInitialized = true;
 			game.Camera({ glm::vec4(0, 20, -8, 1), glm::vec3(0, 0, 12), glm::vec3(0, 0, 1) });
+			game.KeyValue(0.002f);
 			game.AmbientLight(glm::vec4(0.05f, 0.1f, 0.2f, 1));
 			game.Light(0, { glm::vec4(40, 100, 10, 1), glm::vec4(12000, 12000, 12000, 1) });
 

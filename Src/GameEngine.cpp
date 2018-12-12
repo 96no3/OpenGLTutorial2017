@@ -734,8 +734,8 @@ void GameEngine::Render() const
 			for (int i = 0; i < width * height; ++i) {
 				totalLum += p[i * 4 + 3];
 			}
-			float luminanceScale = 0.18f / std::exp(totalLum / static_cast<float>(width * height));
-			//float luminanceScale = keyValue / std::exp(totalLum / static_cast<float>(width * height));
+			//float luminanceScale = 0.18f / std::exp(totalLum / static_cast<float>(width * height));
+			float luminanceScale = keyValue / std::exp(totalLum / static_cast<float>(width * height));
 
 			glUnmapBuffer(GL_PIXEL_PACK_BUFFER);
 		}
