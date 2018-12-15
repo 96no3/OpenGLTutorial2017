@@ -1,0 +1,70 @@
+
+# ascii character
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+abcdefghijklmnopqrstuvwxyz
+0123456789 /*-+,.!"#$%&'()=~|-^\[]:;,./\_<>?@
+
+# alphabet , number , mark
+‚`‚a‚b‚c‚d‚e‚f‚g‚h‚i‚j‚k‚l‚m‚n‚o‚p‚q‚r‚s‚t‚u‚v‚w‚x‚y
+‚‚‚‚ƒ‚„‚…‚†‚‡‚ˆ‚‰‚Š‚‹‚Œ‚‚Ž‚‚‚‘‚’‚“‚”‚•‚–‚—‚˜‚™‚š
+‚O‚P‚Q‚R‚S‚T‚U‚V‚W‚X
+^{|–CDIh”“•fij[`bO|uvopGFƒ„HQ—@_œ›™š€~
+§}Eôˆ‰Š÷˜¦õö‚[nyzqrstwxABcdJK
+’‘a
+VXTURS
+
+# hiragana
+‚Ÿ‚ ‚¡‚¢‚£‚¤‚¥‚¦‚§‚¨‚©‚ª‚«‚¬‚­‚®‚¯‚°‚±‚²‚³‚´‚µ‚¶‚·‚¸‚¹‚º‚»‚¼‚½‚¾‚¿‚À‚Á‚Â‚Ã‚Ä‚Å‚Æ
+‚Ç‚È‚É‚Ê‚Ë‚Ì‚Í‚Î‚Ï‚Ð‚Ñ‚Ò‚Ó‚Ô‚Õ‚Ö‚×‚Ø‚Ù‚Ú‚Û‚Ü‚Ý‚Þ‚ß‚à‚á‚â‚ã‚ä‚å‚æ‚ç‚è‚é‚ê‚ë‚ì‚í‚î
+‚ï‚ð‚ñ
+
+# katakana
+ƒ@ƒAƒBƒCƒDƒEƒFƒGƒHƒIƒJƒKƒLƒMƒNƒOƒPƒQƒRƒSƒTƒUƒVƒWƒXƒYƒZƒ[ƒ\ƒ]ƒ^ƒ_ƒ`ƒaƒbƒcƒdƒeƒfƒg
+ƒhƒiƒjƒkƒlƒmƒnƒoƒpƒqƒrƒsƒtƒuƒvƒwƒxƒyƒzƒ{ƒ|ƒ}ƒ~ƒ€ƒƒ‚ƒƒƒ„ƒ…ƒ†ƒ‡ƒˆƒ‰ƒŠƒ‹ƒŒƒƒŽƒƒ
+ƒ‘ƒ’ƒ“ƒ”ƒ•ƒ–
+
+# primary school, 1st level
+ˆê‰E‰J‰~‰¤‰¹‰º‰Î‰ÔŠLŠw‹C‹ã‹x‹Ê‹à‹óŒŽŒ¢Œ©ŒÜŒûZ¶ŽOŽRŽqŽlŽ…ŽšŽ¨ŽµŽÔŽè\o—¬ãX
+l…³¶Â—[ÎÔçìæ‘‘‘«‘º‘å’j’|’†’Ž’¬“V“c“y“ñ“ú“ü”N”’”ª•S•¶–Ø–{–¼–Ú—§—Í—Ñ˜Z
+
+# primary school, 2nd level
+ˆø‰H‰_‰€‰“‰½‰È‰Ä‰Æ‰Ì‰æ‰ñ‰ïŠCŠGŠOŠpŠyŠˆŠÔŠÛŠâŠç‹D‹L‹A‹|‹‹›‹ž‹­‹³‹ßŒZŒ`ŒvŒ³Œ¾Œ´ŒË
+ŒÃŒßŒãŒêHŒöLŒðŒõls‚‰©‡’J‘•¡Ë×ìŽZŽ~Žs–îŽoŽvŽ†Ž›Ž©ŽžŽºŽÐŽãŽñHTt‘­
+êFHSVe}”¼º¯°Øá‘Dü‘O‘g‘–‘½‘¾‘Ì‘ä’n’r’m’ƒ’‹’·’¹’©’¼’Ê’í“X“_“d““~“–
+“Œ“š“ª“¯“¹“Ç“à“ì“÷”n”„”ƒ”ž”¼”Ô•ƒ•—•ª•·•Ä•à•ê•û–k–ˆ–…–œ–¾–Â–Ñ–å–é–ì—F—p—j—ˆ—¢—˜b
+
+# primary school, 3rd level
+ˆ«ˆÀˆÃˆãˆÏˆÓˆçˆõ‰@ˆù‰^‰j‰w‰›‰¡‰®‰·‰»‰×ŠJŠEŠKŠ¦Š´Š¿ŠÙŠÝ‹NŠú‹q‹†‹}‹‰‹{‹…‹Ž‹´‹Æ‹È‹Ç
+‹â‹æ‹ê‹ïŒNŒWŒyŒŒŒˆŒ¤Œ§ŒÉŒÎŒüK`†ªÕŽMŽdŽ€ŽgŽnŽwŽ•ŽŽŸŽ–ŽŽ®ŽÀŽÊŽÒŽåŽçŽæŽðŽóB
+EIKWZdhŠ‹•ºÁ¤ÍŸæA\g_^[i¢®Ì‘S‘Š‘—‘z‘§‘¬‘°‘¼‘Å‘Î‘Ò‘ã‘æ‘è
+’Y’Z’k’…’’Œ’š’ ’²’Ç’è’ë“J“S“]“s“x“Š“¤“‡“’“o“™“®“¶”_”g”z”{” ”¨”­”½â”Â”ç”ß”ü•@•M
+•X•\•b•a•i•‰•”•ž•Ÿ•¨•½•Ô•×•ú–¡–½–Ê–â–ð–ò—R–û—L—V—\—r—m—t—z—l—Ž—¬—·—¼—Î—ç—ñ—û˜H˜a
+
+# primary school, 4th level
+ˆ¤ˆÄˆÈˆßˆÊˆÍˆÝˆó‰p‰h‰–‰­‰Á‰Ê‰Ý‰Û‰è‰üŠBŠQŠeŠoŠXŠ®Š¯ŠÇŠÖŠÏŠèŠó‹G‹IŠìŠøŠí‹@‹c‹‹ƒ‹~
+‹‹‹“‹™‹¤‹¦‹¾‹£‹ÉŒPŒRŒSŒaŒ^ŒiŒ|Œ‡Œ‹ŒšŒ’Œ±ŒÅŒ÷DŒóqN·ØÅÞðŽDüŽEŽ@ŽQŽYŽUŽc
+ŽmŽŽjŽiŽŽŽ™Ž¡Ž«Ž¸ŽØŽíŽüj‡‰¼Î¥ÄÛÆÜbM¬È´ÃÈÏÜßàóí‘I‘R‘ˆ‘q‘ƒ
+‘©‘¤‘±‘²‘·‘Ñ‘à’B’P’u’‡’™’›’°’á’ê’â“I“T“`“k“w“”“°“­“Á“¾“Å”M”O”s”~”Ž”Ñ”ò”ï•K•[•W•s
+•v•t•{•›•²•º•Ê•Ó•Ï•Ö•ï–@–]–q–––ž–¢–¬–¯–³–ñ—E—v—{——˜—¤—Ç—¿—Ê—Ö—Þ—ß—â—á—ð˜A˜V˜J˜^
+
+# primary school, 5th level
+ˆ³ˆÚˆö‰i‰c‰qˆÕ‰v‰t‰‰‰ž‰÷‰¶‰Â‰¼‰¿‰Í‰ß‰õ‰ê‰ðŠiŠmŠzŠ§Š²ŠµŠáŠîŠñ‹K‹Z‹`‹t‹v‹Œ‹‹–‹«
+‹Ï‹Ö‹åŒQŒoŒ‰ŒŒ”Œ¯ŒŸŒÀŒ»Œ¸ŒÌŒÂŒìŒøŒúkz\‹»u¬¸ÄÐÈÌÛÝàßŽGŽ_Ž^ŽxŽuŽ}Žt
+Ž‘Ž”Ž¦Ž—Ž¯Ž¿ŽÉŽÓŽöCqp€˜µ³ØðóíîDE§«­¨¸»ÅÓÑÚÝãâ‘K‘c‘f‘
+‘¢‘œ‘‘¥‘ª‘®—¦‘¹‘Þ‘Ý‘Ô’c’f’z’£’ñ’ö“K“G““º“±“¿“Æ”C”R”\”j”Æ”»”Å”ä”ì”ñ”õ•U•]•n•z•w
+•x••œ•¡•§•Ò•Ù•Û•æ•ñ–L–h–f–\–±–²–À–È—A—]—a—e—ª—¯—Ì
+
+# primary school, 6th level
+ˆÙˆâˆæ‰F‰f‰„‰ˆ‰äŠDŠgŠvŠtŠ„Š”Š±ŠªŠÅŠÈŠëŠ÷‹MŠö‹^‹z‹Ÿ‹¹‹½‹Î‹ØŒnŒhŒxŒ€ŒƒŒŠŒ¦Œ Œ›Œ¹Œµ
+ŒÈŒÄŒë@Fcg~|’œ¢»ÀÏÙôûŽ\ŽŠŽ„ŽpŽ‹ŽŒŽŽ¥ŽËŽÌŽÚŽáŽ÷Žû@AO]ckn
+ƒˆ”œ«áéöjm‚„¡·¹½éêòôõ‘P‘t‘‹‘n‘•‘w‘€‘ ‘Ÿ‘¶‘¸‘î’S’T’a’i’g
+’l’ˆ’‰’˜’¡’¸’ª’À’É“W“¢“}“œ“Í“ï“û”F”[”]”h”q”w”x”o”Ç”Ó”Û”á”é• •±•À•Ã•Â•Ð•â•é•ó–K–S
+–Y–_–‡–‹–§–¿–Í–ó—X—D—c—~—‚——‘——— —¥—Õ˜N˜_
+
+# Additional kanji sets in Japan states name and game words
+–‚’ee–Å‰óŠØ’é‰Š”™Šx–o–Å“´“ƒ”SŠïUŒ‚Œä’ïR™Œª]ŽÄG‹g—³—´”E“€“¬‹R‰å–C¹n˜B‰A“a
+Ž˜‚•…˜r“°‘m”t“zr»Œ¶¢Š«ŽÝˆÑ²‘‚“Þã‰ªˆï“ÈéŠƒˆä—œŠò•Œ‰ªŽ •QèŒFèŽ­‰«“ê˜p
+“Ø‹¶•ð’Þ–ßŠÂXÌ‹V—î‘ðŠ·‰œ’Š—Z[ŠlU—h•p“Ý••Žô‰s“µ–Ë
+
+# Additional kanji sets 04/19/2011
+Œ•‘„•€½–üJ

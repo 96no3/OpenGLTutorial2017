@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Orca XML File Format -->
+<OrcaTrees ObjectTypeExpression="Full" BinaryEncodingType="Base64" FileVersion="3" FileRevision="0">
+  <OrcaTree OrcaName="(no name)">
+    <Orca OrcaName="Pinball" FormatVersion="Ver.1.01.00" MaterialInfoPath="Pinball.materialinfo" MaterialRootPath="Materials" VersionInfo="Ver.2.30.02" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoMaterialInfoFile">
+      <Orca OrcaName="MaterialRootFolder" LoopInterpretation="UseAllMarkers" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoWaveformFolder" />
+    </Orca>
+  </OrcaTree>
+</OrcaTrees>
+<!-- Copyright (c) CRI Middleware Co.,LTD. -->
+<!-- end of document -->

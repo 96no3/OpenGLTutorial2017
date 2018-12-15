@@ -1,0 +1,148 @@
+/****************************************************************************
+ *
+ * CRIミドルウェアSDK
+ *
+ * Copyright (c) 2009-2017 CRI Middleware Co., Ltd.
+ *
+ * Title   : CRI Atom tools LE
+ * Module  : リリースノート
+ * File    : release_criatomtools_le_j.txt
+ * Date    : 2017-10-12
+ * Version : CRI Atom Tools LE Ver.2.30.07
+ *
+ ****************************************************************************/
+
+/*--------------------------------------------------------------------------*/
+ *
+ * [目次]
+ * １．  概要
+ * ２．  バージョン情報
+ * ３．  パッケージ構成
+ * ４．  動作環境
+ *   ４．１  注意事項
+ *   ４．２  .NET Frameworkの入手先について
+ * ５．  注意・補足事項
+ *
+/*--------------------------------------------------------------------------*/
+１．  概要
+  「CRI Atom tools」は、以下のツールで構成されます。
+（１）CRI Atom Craft
+　WAVファイルやAIFFファイルなどの素材ファイルから、CRI Atom用データを
+オーサリングし、出力するGUIツールです。
+
+（２）　CRI Atom Viewer
+　CRI Atom用データをプレビューするツールです。
+
+
+２．  バージョン情報
+（１）  ツールパッケージ
+  CRI Atom Tools                                : Ver.2.30.07
+
+（２）  ツール
+  (a) CRI Atom Craft                            : Ver.2.30.07
+  (b) CRI Atom Viewer                           : Ver.2.25.02
+
+
+３．  パッケージ構成
+  本パッケージには、以下のファイルが含まれます。
+
+（１）  実行ファイル
+  (a) CriAtomCraft.exe                  : CRI Atom Craft実行ファイル
+  (b) CriAtomViewer.exe                 : CRI Atom Viewer実行ファイル
+
+（２）  DLL/関連ファイル
+  (a) AtomPreview.dll                   : CRI Atom Craft用DLLファイル
+  (b) AtomPreview_PC.exe                : CRI Atom Craft用EXEファイル
+  (c) AcCore.dll                        : CRI Atom Craft用DLLファイル
+  (d) cridshow.dll                      : CRI Atom Craft用DLLファイル
+  (e) VersionControlPlugin.dll          : CRI Atom Craft用DLLファイル
+  (f) CriDspAnalyzer.dll                : CRI Atom Craft用DLLファイル
+  (g) Profiler.dll                      : CRI Atom Craft用DLLファイル
+  (h) CriAtomDspEffects.dll             : CRI Atom Craft用DLLファイル
+  (i) CriAtomPlayer.exe                 : CRI Atom Craft用EXEファイル
+  (j) CriAtomCraft.exe.config           : CRI Atom Craft設定ファイル
+  (k) SoundOut.dll                      : 共有DLLファイル
+  (l) AsyncAudioEncoder.dll             : 共有DLLファイル
+  (m) AudioStream.dll                   : 共有DLLファイル
+  (n) CriSamplingRateConverter.dll      : 共有DLLファイル
+  (o) CpkMaker.dll                      : 共有DLLファイル
+  (p) hcaenc_lite.dll                   : 共有DLLファイル
+  (q) CriFlexGuard32.dll                : 共有DLLファイル
+  (r) CriFormatAnalyzer.dll             : 共有DLLファイル
+  (s) CriAtomGears.dll                  : 共有DLLファイル
+  (t) Qt5Core.dll                       : 共有DLLファイル
+  (u) Qt5Gui.dll                        : 共有DLLファイル
+  (v) Qt5Widgets.dll                    : 共有DLLファイル
+  (w) ja-JPフォルダ以下                 : ツール言語設定ファイル
+  (x) platformsフォルダ以下             : 共有DLLファイル
+  (y) imageformats以下                  : 共有DLLファイル
+  (z) Microsoft.VC80.CRTフォルダ以下    : VCランタイム共有DLLファイル
+  (A) Microsoft.VC90.CRTフォルダ以下    : VCランタイム共有DLLファイル
+  (B) msvcp100.dll                      : VCランタイム共有DLLファイル
+  (C) msvcr100.dll                      : VCランタイム共有DLLファイル
+  (D) msvcp120.dll                      : VCランタイム共有DLLファイル
+  (E) msvcr120.dll                      : VCランタイム共有DLLファイル
+  (F) cri_adx2_tools_le.cfg             : 共有ライセンス認証設定ファイル
+  (G) atom_tools.bininfo.json           : DLLファイルの詳細情報
+  
+（３）  説明書
+  (a) release_criatomtools_le_j.txt     : CRI Atom tools LE リリースノート（本文書）
+  (b) history_criatomtools_le_j.txt     : CRI Atom tools LE 変更履歴
+  (c) CRI_Atom_Tools_LE_Manual_j.chm    : CRI Atom ツールマニュアル(CRI ADX2 LE)
+
+  ツールの使い方については、CRI Atom マニュアル（CRI_Atom_Tools_LE_Manual_j.chm）
+を参照してください。
+
+【備考】
+  CRI Atom Viewerの使い方については、ツールを起動してF1キーのヘルプを
+参照してください。
+
+４．  動作環境
+  以下の環境で動作することを確認しております。
+
+（１）　CRI Atom Craft
+  (a) OS     : Windows 7, Windows 8.1, Windows 10
+  (b) S/W    : .NET Framework 3.5 SP1
+  (c) S/W    : .NET Framework 4.0
+
+（２）　CRI Atom Viewer
+  (a) OS     : Windows 7, Windows 8.1, Windows 10
+  (b) S/W    : .NET Framework 3.5 SP1
+  (c) S/W    : .NET Framework 4.0
+
+４．１　注意事項
+　実行ファイルが置かれるディレクトリにはテンポラリファイルが作成されることがあり
+ます。このとき、フォルダへのファイル書込やファイル削除セキュリティ権限などがあり、
+ファイルの書き込みや削除ができることを確認してください。
+
+
+４．１  .NET Frameworkの入手先について
+　.NET Frameworkは以下のサイトから入手することが可能です。
+
+    - Microsoft .NET Framework 3.5 Service Pack 1
+http://www.microsoft.com/downloads/details.aspx?displaylang=ja&FamilyID=ab99342f-5d1a-413d-8319-81da479ab0d7
+
+    - Microsoft .NET Framework 4.0
+http://www.microsoft.com/ja-jp/download/details.aspx?id=17718
+
+【備考】
+Windows 7では.NET Framework 3.5 Service Pack 1は標準でインストールされていま
+すので改めてインストールする必要はありません。
+
+５．　注意・補足事項
+　主な注意事項、補足項目を以下に示します。
+
+５．１　CRI Atom Craft
+（１）　マスターバスのエフェクトについて
+　MasterOutバスにリバーブエフェクトを設定することは可能ですが、定常時にCPU負荷
+が上がってしまうことがあります。
+　MasterOutバスにリバーブエフェクトを設定しないでください。
+
+（２）　CRIAtomCraft Ver.2でVer.1系のプロジェクトの読み込みについて
+　CRI Atom Craft Ver.1系で作成したプロジェクトファイルをCRI Atom Craft Ver.2
+系で開くには、プロジェクトファイルを変換する必要があります。
+Ver.1系のプロジェクトファイルからVer.2系のプロジェクトにコンバートする
+ツール「CRI Atom Craftプロジェクトファイル変換ツール」をSDK内に用意して
+おりますので、コンバートを行ってください。
+
+/*--< end of file >---------------------------------------------------------*/

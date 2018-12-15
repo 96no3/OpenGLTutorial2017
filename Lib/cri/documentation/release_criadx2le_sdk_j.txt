@@ -1,0 +1,150 @@
+/****************************************************************************
+ *
+ * CRI Middleware SDK
+ *
+ * Copyright (c) 2013 CRI Middleware Co., Ltd.
+ *
+ * Title   : CRI ADX2 LE SDK
+ * Module  : リリースノート
+ * File    : release_criadx2le_sdk_j.txt
+ * Date    : 2018-10-29
+ * Version : 2.06.01
+ *
+ ****************************************************************************/
+
+１．CRI ADX2 LE SDKについて
+  CRI ADX2 LE SDK には、以下の内容が含まれます。
+  (本製品ではWindowsシステムを表す主な表記として "PC" を使用します)
+  - ADX2 LE ライブラリ (PC/Android/iOS/Mac)
+  - ADX2 LE Unity Plug-in
+  - ADX2 LE ツール (CRI Atom Craft LE)
+  - ADX2 LE マニュアル (for PC/Cocos2d-x/Unity)
+  - サウンドデータ再生用 サンプルプログラム
+  - サウンドデータ作成用 サンプルプロジェクト
+
+
+２．バージョン情報
+２．１ 本リリースのバージョン
+(1) SDK
+  - CRI ADX2 LE SDK : Ver.2.06.01
+
+(2) ライブラリ for PC
+  (a) CRI Atom Ver.2.14.35.03 (PC) *1
+
+(3) ライブラリ for Cocos2d-x
+  (a) CRI Atom Ver.2.14.35.03 (PC) *1
+  (b) CRI Atom Ver.2.14.35.03 (Mac OS X)
+  (c) CRI Atom Ver.2.14.35.03 (iOS)
+  (d) CRI Atom Ver.2.14.35.03 (Andoroid)
+  *1: これらのPC版ライブラリは同一のファイルです
+
+(4) Unity プラグイン
+  (a) CRIWARE Unity Plugin Ver.2.24.02 (PC)
+  (b) CRIWARE Unity Plugin Ver.2.24.02 (Mac OS X)
+  (c) CRIWARE Unity Plugin Ver.2.24.02 (iOS)
+  (d) CRIWARE Unity Plugin Ver.2.24.02 (Andoroid)
+
+(5) Unreal Engine 4 プラグイン
+  (a) CRIWARE Unreal Engine 4 Plugin Ver.1.25.00.02
+
+(6) ツール
+  (a) CRI Atom Tools Ver.2.30.07
+
+２．２ 変更履歴
+  本パッケージの各内容物の変更履歴については、次のファイルを参照してください。
+  - /cri/pc/docs/jpn/history/history_criadx2le_pc_j.txt
+  - /cri/cocos2dx/docs/jpn/history/history_criadx2le_cocos2dx_j.txt
+  - /cri/unity/docs/jpn/history/history_criadx2le_unity_plugin_j.txt
+  - /cri/UE4/docs/jpn/history/history_criadx2le_ue4_plugin_j.txt
+  - /cri/tools/criatomex/docs/jpn/history_criatomtools_le_j.txt
+
+
+３．SDKの利用方法
+３．１ ディレクトリ構成
+  以下が CRI ADX2 LE SDK のディレクトリ構成です。
+
+   cri
+   |
+   +- documentation         : リリースノート/SDK変更履歴/マニュアル
+   |
+   +- pc                    [PC専用タイトルの開発者向け]
+   |   +- docs              : ライブラリ変更履歴
+   |   +- include           : ヘッダファイル
+   |   +- libs              : PC版ライブラリファイル
+   |   +- samples           : サンプルプログラム
+   |
+   +- cocos2dx              [Cocos2d-x を使用する開発者向け]
+   |   +- docs              : ライブラリ変更履歴
+   |   +- include           : ヘッダファイル
+   |   +- libs              :
+   |       +- android       : Android版ライブラリファイル
+   |       +- ios           : iOS版ライブラリファイル
+   |       +- macosx        : Mac版ライブラリファイル
+   |       +- pc            : PC版ライブラリファイル
+   |   +- samples           : サンプルプログラム
+   |
+   +- unity                 [Unity を使用する開発者向け]
+   |   +- docs              : プラグイン変更履歴
+   |   +- plugin            : Unity Plug-in ファイル
+   |   +- samples           : サンプルプログラム
+   |
+   +- UE4                   [Unreal Engine 4 を使用する開発者向け]
+   |   +- docs              : プラグイン変更履歴
+   |   +- Engine            : Unreal Engine 4 プラグインファイル群
+   |
+   +- common                [プラットフォーム共通]
+   |   +- license           : 使用許諾契約書
+   |
+   +- tools                 [データ作成ツール]
+       +- criatomex         : CRI Atomツール
+
+３．２ インストール方法
+  以下の手順でインストールしてください。
+  1. ダウンロードしたZIPファイルを展開する
+  2. 展開されてできた "cri" ディレクトリ以下を任意のディレクトリにコピーする
+  インストール作業は以上で完了です。
+  ADX2 LE のライブラリ/ヘッダ/Plug-in ファイルを実際に使用する際は
+  各開発環境(Unity、Visual Studio 等)が要求する方法に従ってください。
+
+３．３ マニュアル
+(1) ライブラリ
+  マニュアルは.chm形式で提供しています。次のファイルを確認してください。
+  - /cri/documentation/CRI_ADX2LE_PC_Manual_j.chm
+  - /cri/documentation/CRI_ADX2LE_Cocos2d-x_Manual_j.chm
+  - /cri/documentation/CRI_ADX2LE_Unity_Plugin_Manual_j.chm
+  - /cri/documentation/CRI_ADX2LE_UE4_Plugin_Manual_j.chm
+
+(2) ツール
+  マニュアルは.chm形式で提供しています。次のファイルを確認してください。
+  - /cri/documentation/CRI_Atom_Tools_LE_Manual_j.chm
+
+
+４．開発・動作環境
+(1) ライブラリ
+  本パッケージ内のライブラリ/Unity-Plug-in の開発・動作環境については
+  それぞれの変更履歴(.txt)を確認してください。
+
+(2) ツール
+  本パッケージ内のツール(CRI Atom Craft LE)の開発・動作環境については
+  次のファイルを確認してください。
+  - /cri/tools/criatomex/docs/jpn/release_criatomtools_le_j.txt
+
+
+５．注意事項
+５．１ Ver.2環境への移行について
+(1) ライブラリ
+  Ver.2系のCRI Atomライブラリは、Ver.1系とVer.2系の両方のデータを再生できます。
+  ただし、インゲームプレビュー機能を利用する場合はVer.2系のデータとツールの
+  組み合わせで利用してください。
+
+(2) ツール
+  CRI Atom Craft Ver.1系のプロジェクトファイルをCRI Atom Craft Ver.2系で
+  読み込むには、Ver.2系プロジェクトへのコンバートが必要です。
+  SDKに含まれるCRI Atomツールコンバータを使用してプロジェクトファイルの
+  コンバートを行ってから CRI Atom Craft LE で読み込みを行って下さい。
+  - /cri/tools/criatomex_convv1tov2
+
+５．２ 既知の不具合
+  なし
+
+以上

@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/criatom/basic/Scene_01_SimplePlayback.unity
+    guid: 3ba38b51609586b4f828e263fc2cc187
+  - enabled: 1
+    path: Assets/Scenes/criatom/basic/Scene_02_3DPosition.unity
+    guid: 7aee2dc3d1a122347af74f22f1e9a212
+  - enabled: 1
+    path: Assets/Scenes/criatom/basic/Scene_03_AISAC.unity
+    guid: 9315a73d481a2e64695858aa81a71789
+  - enabled: 1
+    path: Assets/Scenes/criatom/basic/Scene_04_ControlParameter.unity
+    guid: b193a5f297c739a45b7f87f8e30ebfdd
+  - enabled: 1
+    path: Assets/Scenes/criatom/basic/Scene_05_Category.unity
+    guid: f962dbff7e48aa94cb059155c6d5ac3b
+  - enabled: 1
+    path: Assets/Scenes/criatom/basic/Scene_06_BlockPlayback.unity
+    guid: d50d33e99571b0a45b620d8f8e7151d4
+  - enabled: 1
+    path: Assets/Scenes/criatom/basic/Scene_07_Ingame_Pinball.unity
+    guid: f4ba16abff99e974c849b739ff0c6968
+  - enabled: 1
+    path: Assets/Scenes/criatom/script/ScriptSample01_ClickToPlay/Scenes/ScriptSample01_ClickToPlay.unity
+    guid: 3dcbad765400d0a478f19c3f66e5d9a5
+  - enabled: 1
+    path: Assets/Scenes/criatom/script/ScriptSample02_SoundTest/Scenes/ScriptSample02_SoundTest.unity
+    guid: eea5544099bd9be4695c37eeae157f93
+  - enabled: 1
+    path: Assets/Scenes/criatom/script/ScriptSample03_OverSceneSound/Scenes/ScriptSample03_GameScene.unity
+    guid: 239c93469bcd61c459735d7788e199c2
+  - enabled: 1
+    path: Assets/Scenes/criatom/script/ScriptSample03_OverSceneSound/Scenes/ScriptSample03_TitleScene.unity
+    guid: 0d40ff7c44c1ca64fab7ea4f15f1dbcc
+  - enabled: 1
+    path: Assets/Scenes/criatom/script/ScriptSample04_OverSceneEverywhere/Scenes/ScriptSample04_GameScene.unity
+    guid: 2fd2146a84c6b194cb2bffb4d6abbdd8
+  - enabled: 1
+    path: Assets/Scenes/criatom/script/ScriptSample04_OverSceneEverywhere/Scenes/ScriptSample04_TitleScene.unity
+    guid: 465e34e4b27345c408e6428d65b454b0
+  - enabled: 1
+    path: Assets/Scenes/criatom/script/ScriptSample05_LevelMeter/Scenes/ScriptSample05_LevelMeter.unity
+    guid: a16c8ae89890f44159e19f91c742c6a8
+  - enabled: 1
+    path: Assets/Scenes/criatom/script/GameSample_Pinball/Scenes/GameSample_Pinball.unity
+    guid: 0537047a6267445aba871e2917c054ea

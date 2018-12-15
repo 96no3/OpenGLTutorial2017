@@ -1,0 +1,427 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Orca XML File Format -->
+<OrcaTrees ObjectTypeExpression="Full" BinaryEncodingType="Base64" FileVersion="3" FileRevision="0">
+  <OrcaTree OrcaName="(no name)">
+    <Orca OrcaName="WorkUnit" FormatVersion="Ver.1.00.04" UsedMaterialFlag="True" VersionInfo="Ver.2.19.01" WorkUnitPath="WorkUnits/WorkUnit/WorkUnit.atmcunit" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoWorkUnit">
+      <Orca OrcaName="References" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoReferenceFolder">
+        <Orca OrcaName="AISAC" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoReferenceAisacFolder" />
+      </Orca>
+      <Orca OrcaName="CueSheetFolder" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSheetFolder">
+        <Orca OrcaName="RingoAttack" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSheetSubFolder">
+          <Orca OrcaName="RingoAttack_MUSIC" AcfMd5hash="+jXVLddKZlDpYenRC07NYg==" CueSheetPaddingSize="2048" LastOutputCueSheetSize="7936" OoUniqId="74414101-0da5-4c65-a3d3-525f19c5e999" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSheet">
+            <Orca OrcaName="MUSIC_Title" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/MUSIC" Category1="/CriAtomCraftV2Root/GlobalSettings/Categories/ForDucking/Ducker_LowPrioritySFX_MUSIC" CueID="0" ObjectColor="255, 229, 0" SynthType="SynthPolyphonic" Volume="0.35" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_MUSIC_Title" ObjectColor="200, 30, 100, 180" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="MUSIC_Title.wav" EgReleaseTimeMs="800" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/MUSIC/MUSIC_Title.wav" LinkWaveformPathName="MUSIC/MUSIC_Title.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="MUSIC_Battle" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/MUSIC" Category1="/CriAtomCraftV2Root/GlobalSettings/Categories/ForDucking/Ducker_LowPrioritySFX_MUSIC" Comment="This cue can cross-fade two songs by AISAC Control" CueID="1" ObjectColor="255, 229, 0" SynthType="SynthPolyphonic" Volume="0.2" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_MUSIC_PlayersTerritory" ObjectColor="200, 30, 100, 180" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="MUSIC_PlayersTerritory.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/MUSIC/MUSIC_PlayersTerritory.wav" LinkWaveformPathName="MUSIC/MUSIC_PlayersTerritory.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+                <Orca OrcaName="Aisac_0" AisacControl="/CriAtomCraftV2Root/GlobalSettings/AISAC Controls/Any" DefaultControlValueFlag="True" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisac">
+                  <Orca OrcaName="Volume" ControlDestinationType="Volume" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacGraph">
+                    <Orca OrcaName="(no name)" ControlValue="0" DestinationValue="2" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                    <Orca OrcaName="AisacPoint" ControlValue="0.4" DestinationValue="2" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                    <Orca OrcaName="AisacPoint" ControlValue="0.6" DestinationValue="0" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                    <Orca OrcaName="(no name)" ControlValue="1" DestinationValue="0" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                  </Orca>
+                </Orca>
+              </Orca>
+              <Orca OrcaName="Track_MUSIC_EnemyTerritory" ObjectColor="200, 20, 80, 160" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="MUSIC_EnemyTerritory.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/MUSIC/MUSIC_EnemyTerritory.wav" LinkWaveformPathName="MUSIC/MUSIC_EnemyTerritory.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+                <Orca OrcaName="Aisac_0" AisacControl="/CriAtomCraftV2Root/GlobalSettings/AISAC Controls/Any" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisac">
+                  <Orca OrcaName="Volume" ControlDestinationType="Volume" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacGraph">
+                    <Orca OrcaName="(no name)" ControlValue="0" DestinationValue="0" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                    <Orca OrcaName="AisacPoint" ControlValue="0.4" DestinationValue="0" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                    <Orca OrcaName="AisacPoint" ControlValue="0.6" DestinationValue="2" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                    <Orca OrcaName="(no name)" ControlValue="1" DestinationValue="2" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                  </Orca>
+                </Orca>
+              </Orca>
+            </Orca>
+            <Orca OrcaName="MUSIC_Boss" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/MUSIC" Category1="/CriAtomCraftV2Root/GlobalSettings/Categories/ForDucking/Ducker_LowPrioritySFX_MUSIC" CueID="3" ObjectColor="255, 229, 0" SynthType="SynthPolyphonic" Volume="0.45" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_MUSIC_Boss" ObjectColor="200, 30, 100, 180" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="MUSIC_Boss.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/MUSIC/MUSIC_Boss.wav" LinkWaveformPathName="MUSIC/MUSIC_Boss.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="MUSIC_Result" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/MUSIC" Category1="/CriAtomCraftV2Root/GlobalSettings/Categories/ForDucking/Ducker_LowPrioritySFX_MUSIC" CueID="4" ObjectColor="255, 229, 0" SynthType="SynthPolyphonic" Volume="0.35" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_MUSIC_Result" ObjectColor="200, 30, 100, 180" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="MUSIC_Result.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/MUSIC/MUSIC_Result.wav" LinkWaveformPathName="MUSIC/MUSIC_Result.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="JINGLE_StartGame" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/MUSIC" CueID="5" ObjectColor="178, 219, 17" SilentMode="VoiceStop" SynthType="SynthPolyphonic" Volume="0.6" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_JINGLE_StartGame" BusSendExUseFlag0="True" ObjectColor="200, 30, 100, 180" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="JINGLE_StartGame.wav" BusSendExUseFlag0="True" EgReleaseTimeMs="800" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/JINGLE/JINGLE_StartGame.wav" LinkWaveformPathName="JINGLE/JINGLE_StartGame.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="JINGLE_Victory" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/MUSIC" Category1="/CriAtomCraftV2Root/GlobalSettings/Categories/ForDucking/Trigger_JingleVictory" CueID="6" ObjectColor="178, 219, 17" SilentMode="VoiceStop" SynthType="SynthPolyphonic" Volume="0.36" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_JINGLE_Victory" ObjectColor="200, 30, 100, 180" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="JINGLE_Victory.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/JINGLE/JINGLE_Victory.wav" LinkWaveformPathName="JINGLE/JINGLE_Victory.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+              <Orca OrcaName="SeqEndForREACT" EventEnableFlag="True" EventEndTime="0" EventStartTime="2987" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoEventSequenceEndForReact" />
+            </Orca>
+            <Orca OrcaName="JINGLE_Lose" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/MUSIC" Category1="/CriAtomCraftV2Root/GlobalSettings/Categories/ForDucking/Trigger_HighestPriorityJingle" CueID="7" ObjectColor="178, 219, 17" SilentMode="VoiceStop" SynthType="SynthPolyphonic" Volume="0.32" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_JINGLE_Lose" ObjectColor="200, 30, 100, 180" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="JINGLE_Lose.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/JINGLE/JINGLE_Lose.wav" LinkWaveformPathName="JINGLE/JINGLE_Lose.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+            </Orca>
+          </Orca>
+          <Orca OrcaName="RingoAttack_SFX" AcfMd5hash="+jXVLddKZlDpYenRC07NYg==" CueSheetPaddingSize="2048" LastOutputCueSheetSize="914816" OoUniqId="e3a9dede-b89b-4708-8beb-f30cb8942080" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSheet">
+            <Orca OrcaName="GameStart" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" CueID="0" ObjectColor="174, 1, 88" SilentMode="VoiceStop" SynthType="SynthPolyphonic" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_Voice_01" ObjectColor="200, 40, 120, 200" Volume="0.42" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Voice_01" AutoRepeatInterval="100" LinkCueSynth="/CriAtomCraftV2Root/WorkUnits/WorkUnit/CueSheetFolder/RingoAttack/RingoAttack_SFX/Voice_01" Pan3dAngleRnd="20" PitchRnd="105" PlaybackTimingRnd="41" SynthType="SynthLink" Volume="0.21" VolumeRnd="0.64" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthLink" />
+              </Orca>
+              <Orca OrcaName="Automation" AisacType="Automation" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisac">
+                <Orca OrcaName="Volume" ControlDestinationType="Volume" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacGraph">
+                  <Orca OrcaName="AutomationPoint" ControlValue="1350" DestinationValue="1" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                  <Orca OrcaName="AutomationPoint" ControlValue="2300" DestinationValue="0" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                </Orca>
+                <Orca OrcaName="Pan3DAngle" ControlDestinationType="Pan3DAngle" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacGraph">
+                  <Orca OrcaName="AutomationPoint" ControlValue="0" DestinationValue="102" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                  <Orca OrcaName="AutomationPoint" ControlValue="650" CurveType="RapidStartSlowEnd" DestinationValue="0" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                  <Orca OrcaName="AutomationPoint" ControlValue="1500" DestinationValue="0" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                  <Orca OrcaName="AutomationPoint" ControlValue="2300" CurveType="SlowStartRapidEnd" DestinationValue="-97" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                </Orca>
+              </Orca>
+              <Orca OrcaName="Track_Cloud_Of_Dust" ObjectColor="200, 40, 120, 200" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Cloud_of_dust" AutoRepeatInterval="20" LinkCueSynth="/CriAtomCraftV2Root/WorkUnits/WorkUnit/CueSheetFolder/RingoAttack/RingoAttack_SFX/Cloud_Of_Dust" SynthType="SynthLink" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthLink" />
+              </Orca>
+              <Orca OrcaName="Track_Voice_04" ObjectColor="200, 40, 120, 200" Volume="0.4" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Voice_04" AutoRepeatInterval="19" LinkCueSynth="/CriAtomCraftV2Root/WorkUnits/WorkUnit/CueSheetFolder/RingoAttack/RingoAttack_SFX/Voice_04" Pan3dAngleRnd="38" PlaybackProbability="34" SynthType="SynthLink" Volume="0.32" VolumeRnd="0.62" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthLink" />
+              </Orca>
+              <Orca OrcaName="SeqEnd" EventEnableFlag="True" EventEndTime="0" EventStartTime="2319" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoEventOff" />
+            </Orca>
+            <Orca OrcaName="UI_Decide" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" Comment="Play SFX and stop the other cue by using Action" CueID="1" ObjectColor="180, 180, 180" SynthType="SynthPolyphonic" Volume="0.6" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_UI_Decide" ObjectColor="200, 30, 100, 180" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="UI_Decide.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/UI_Decide.wav" LinkWaveformPathName="SFX/UI_Decide.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+              <Orca OrcaName="ActionTrack" ObjectColor="200, 20, 80, 160" SynthType="ActionTrack" TargetObject="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/MUSIC" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthActionTrack">
+                <Orca OrcaName="PlaybackParam" ParameterType="AISAC3" Ratio="0.05" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoActionPlaybackParam" />
+              </Orca>
+              <Orca OrcaName="ActionTrack_0" ObjectColor="200, 10, 60, 140" SynthType="ActionTrack" TargetObject="/CriAtomCraftV2Root/WorkUnits/WorkUnit/CueSheetFolder/RingoAttack/RingoAttack_SFX/WindChime_Loop" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthActionTrack">
+                <Orca OrcaName="Stop" DelayTimeMS="1200" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoActionStop" />
+                <Orca OrcaName="PlaybackParam" Parameter="1" ParameterType="AISAC0" Ratio="0.5" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoActionPlaybackParam" />
+                <Orca OrcaName="PlaybackParam_0" DelayTimeMS="3400" ParameterType="AISAC0" Ratio="10" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoActionPlaybackParam" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="UI_WindowOpen" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" Comment="Play SFX while applying AISAC filter to MUSIC category" CueID="2" ObjectColor="180, 180, 180" SynthType="SynthPolyphonic" Volume="0.7" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_UI_WindowOpen" ObjectColor="200, 30, 100, 180" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="UI_WindowOpen.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/UI_WindowOpen.wav" LinkWaveformPathName="SFX/UI_WindowOpen.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+              <Orca OrcaName="ActionTrack" ObjectColor="200, 20, 80, 160" SynthType="ActionTrack" TargetObject="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/MUSIC" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthActionTrack">
+                <Orca OrcaName="PlaybackParam" Parameter="0.1" ParameterType="AISAC3" Ratio="10" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoActionPlaybackParam" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="UI_WindowClose" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" Comment="Play SFX while applying AISAC filter to MUSIC category" CueID="3" ObjectColor="180, 180, 180" SynthType="SynthPolyphonic" Volume="0.8" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_UI_WindowClose" ObjectColor="200, 30, 100, 180" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="UI_WindowClose.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/UI_WindowClose.wav" LinkWaveformPathName="SFX/UI_WindowClose.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+              <Orca OrcaName="ActionTrack" ObjectColor="200, 20, 80, 160" SynthType="ActionTrack" TargetObject="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/MUSIC" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthActionTrack">
+                <Orca OrcaName="PlaybackParam" ParameterType="AISAC3" Ratio="0.1" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoActionPlaybackParam" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="UI_ResultLogo" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" CueID="4" ObjectColor="180, 180, 180" SynthType="SynthPolyphonic" Volume="4" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_UI_ResultLogo" ObjectColor="200, 40, 120, 200" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="UI_ResultLogo.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/UI_ResultLogo.wav" LinkWaveformPathName="SFX/UI_ResultLogo.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="UI_LoserLogo" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendEx1="0.09" BusSendExName1="Delay" BusSendExUseFlag1="True" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" CueID="5" ObjectColor="180, 180, 180" SynthType="SynthPolyphonic" Volume="1.5" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_UI_LoserLogo" ObjectColor="200, 40, 120, 200" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="UI_LoserLogo.wav" DelayTimeMS="450" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/UI_LoserLogo.wav" LinkWaveformPathName="SFX/UI_LoserLogo.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="UI_ResultTime" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" CueID="6" ObjectColor="180, 180, 180" SynthType="SynthPolyphonic" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_UI_ResultTime" ObjectColor="200, 40, 120, 200" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="UI_ResultTime.wav" DelayTimeMS="340" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/UI_ResultTime.wav" LinkWaveformPathName="SFX/UI_ResultTime.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="Summon_Character" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" Category1="/CriAtomCraftV2Root/GlobalSettings/Categories/ForDucking/Ducker_LowPrioritySFX_MUSIC" CueID="7" ObjectColor="255, 255, 255" Pitch="-300" SynthType="SynthPolyphonic" Volume="0.7" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_Summon_Character" ObjectColor="200, 30, 100, 180" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Summon_Character.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Summon_Character.wav" LinkWaveformPathName="SFX/Summon_Character.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="Summon_Wizard" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" Category1="/CriAtomCraftV2Root/GlobalSettings/Categories/ForDucking/Ducker_LowPrioritySFX_MUSIC" CueID="8" ObjectColor="255, 255, 255" SynthType="SynthPolyphonic" Volume="0.7" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_Summon_Wizard" ObjectColor="200, 40, 120, 200" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Summon_Wizard.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Summon_Wizard.wav" LinkWaveformPathName="SFX/Summon_Wizard.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="Cloud_Of_Dust" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" Category1="/CriAtomCraftV2Root/GlobalSettings/Categories/ForDucking/Ducker_LowPrioritySFX_MUSIC" Comment="Limitting number of voices" CueID="9" MultiplePlaybackProhibitionTime="100" ObjectColor="255, 255, 255" PlaybackLimitEnableFlag="True" PlaybackLimits="3" SilentMode="VoiceStop" SynthType="SynthPolyphonic" VolumeRnd="0.53" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_Cloud_of_dust" ObjectColor="200, 40, 120, 200" Pan3dAngleRnd="15.11" VolumeRnd="0.38" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Cloud_Of_Dust.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Cloud_Of_Dust.wav" LinkWaveformPathName="SFX/Cloud_Of_Dust.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="Attack_01" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" Category1="/CriAtomCraftV2Root/GlobalSettings/Categories/ForDucking/Ducker_LowPrioritySFX_MUSIC" Comment="Character voice is played in 40% probability" CueID="10" ObjectColor="255, 140, 0" PlaybackLimitEnableFlag="True" PlaybackLimits="3" SynthType="SynthPolyphonic" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_Attack_01" ObjectColor="200, 30, 100, 180" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Attack_01_04_05.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Attack_01_04_05.wav" LinkWaveformPathName="SFX/Attack_01_04_05.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+              <Orca OrcaName="Track_Voice_01" ObjectColor="200, 20, 80, 160" Volume="0.54" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Voice_01" LinkCueSynth="/CriAtomCraftV2Root/WorkUnits/WorkUnit/CueSheetFolder/RingoAttack/RingoAttack_SFX/Voice_01" PlaybackProbability="40" SynthType="SynthLink" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthLink" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="Attack_02" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" Category1="/CriAtomCraftV2Root/GlobalSettings/Categories/ForDucking/Ducker_LowPrioritySFX_MUSIC" CueID="11" ObjectColor="255, 140, 0" PlaybackLimitEnableFlag="True" SynthType="SynthPolyphonic" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_Attack_02" ObjectColor="200, 30, 100, 180" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Attack_02.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Attack_02.wav" LinkWaveformPathName="SFX/Attack_02.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="Attack_03" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendEx1="0.13" BusSendExName1="Delay" BusSendExUseFlag1="True" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" CueID="12" MultiplePlaybackProhibitionTime="30" ObjectColor="255, 140, 0" PlaybackLimitEnableFlag="True" PlaybackLimits="4" SilentMode="VoiceStop" SynthType="SynthPolyphonic" Volume="1.4" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_Attack_03" ObjectColor="200, 30, 100, 180" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Attack_03.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Attack_03.wav" LinkWaveformPathName="SFX/Attack_03.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+                <Orca OrcaName="Automation" AisacType="Automation" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisac">
+                  <Orca OrcaName="Pitch" ControlDestinationType="Pitch" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacGraph">
+                    <Orca OrcaName="AutomationPoint" ControlValue="150" DestinationValue="779" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                    <Orca OrcaName="AutomationPoint" ControlValue="201" DestinationValue="31" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                  </Orca>
+                  <Orca OrcaName="Volume" ControlDestinationType="Volume" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacGraph">
+                    <Orca OrcaName="AutomationPoint" ControlValue="550" DestinationValue="1" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                    <Orca OrcaName="AutomationPoint" ControlValue="1050" CurveType="RapidStartSlowEnd" DestinationValue="0" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                  </Orca>
+                </Orca>
+              </Orca>
+            </Orca>
+            <Orca OrcaName="Attack_04" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" Category1="/CriAtomCraftV2Root/GlobalSettings/Categories/ForDucking/Ducker_LowPrioritySFX_MUSIC" CueID="13" ObjectColor="255, 140, 0" PlaybackLimitEnableFlag="True" SynthType="SynthPolyphonic" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_Attack_01_04_05" ObjectColor="200, 30, 100, 180" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Attack_01_04_05.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Attack_01_04_05.wav" LinkWaveformPathName="SFX/Attack_01_04_05.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="Attack_05" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" Category1="/CriAtomCraftV2Root/GlobalSettings/Categories/ForDucking/Ducker_LowPrioritySFX_MUSIC" CueID="14" ObjectColor="255, 140, 0" SynthType="SynthPolyphonic" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_Attack_01" ObjectColor="200, 40, 120, 200" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Attack_01_04_05.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Attack_01_04_05.wav" LinkWaveformPathName="SFX/Attack_01_04_05.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+                <Orca OrcaName="Automation" AisacType="Automation" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisac">
+                  <Orca OrcaName="Pitch" ControlDestinationType="Pitch" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacGraph">
+                    <Orca OrcaName="AutomationPoint" ControlValue="0" DestinationValue="2400" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                    <Orca OrcaName="AutomationPoint" ControlValue="20" CurveType="RapidStartSlowEnd" DestinationValue="468" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                    <Orca OrcaName="AutomationPoint" ControlValue="150" CurveType="RapidStartSlowEnd" DestinationValue="-965" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                  </Orca>
+                </Orca>
+              </Orca>
+            </Orca>
+            <Orca OrcaName="Attack_06" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" Category1="/CriAtomCraftV2Root/GlobalSettings/Categories/ForDucking/Ducker_LowPrioritySFX_MUSIC" CueID="15" ObjectColor="255, 140, 0" SynthType="SynthPolyphonic" Volume="2" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_Attack_06" ObjectColor="200, 30, 100, 180" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Attack_06.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Attack_06.wav" LinkWaveformPathName="SFX/Attack_06.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="Attack_07" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" Category1="/CriAtomCraftV2Root/GlobalSettings/Categories/ForDucking/Ducker_LowPrioritySFX_MUSIC" CueID="16" ObjectColor="255, 140, 0" SynthType="SynthPolyphonic" Volume="2" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_Attack_07" ObjectColor="200, 30, 100, 180" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Attack_07.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Attack_07.wav" LinkWaveformPathName="SFX/Attack_07.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="Attack_08" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" CueID="17" ObjectColor="255, 140, 0" SynthType="SynthPolyphonic" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_Attack_08" ObjectColor="200, 30, 100, 180" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Attack_08.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Attack_08.wav" LinkWaveformPathName="SFX/Attack_08.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="Wizard_ChargeAttack" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" BusSendExUseFlag1="True" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" Category1="/CriAtomCraftV2Root/GlobalSettings/Categories/ForDucking/Trigger_HighPrioritySFX" Comment="Ducking Trigger" CueID="18" ObjectColor="255, 140, 0" Pitch="-150" PlaybackLimitEnableFlag="True" PlaybackLimits="3" SilentMode="VoiceStop" SynthType="SynthPolyphonic" Volume="0.2" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_Wizard_ChargeAttack" ObjectColor="200, 40, 120, 200" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Wizard_ChargeAttack.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Wizard_ChargeAttack.wav" LinkWaveformPathName="SFX/Wizard_ChargeAttack.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="Boss_Warning" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendEx1="0.6" BusSendExName1="Delay" BusSendExUseFlag1="True" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" Category1="/CriAtomCraftV2Root/GlobalSettings/Categories/ForDucking/Trigger_HighestPriorityJingle" Comment="Typical usage of multiple features" CueID="41" ObjectColor="107, 22, 135" SilentMode="VoiceStop" SynthType="SynthPolyphonic" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_Alert" ObjectColor="200, 40, 120, 200" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Alert.wav" DelayTimeMS="2400" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Alert.wav" LinkWaveformPathName="SFX/Alert.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+                <Orca OrcaName="Alert.wav" DelayTimeMS="1200" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Alert.wav" LinkWaveformPathName="SFX/Alert.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+                <Orca OrcaName="Alert.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Alert.wav" LinkWaveformPathName="SFX/Alert.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+              <Orca OrcaName="Track_Siren" ObjectColor="200, 20, 80, 160" Volume="0.38" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Siren.wav" DelayTimeMS="2400" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Siren.wav" LinkWaveformPathName="SFX/Siren.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+                <Orca OrcaName="Siren.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Siren.wav" LinkWaveformPathName="SFX/Siren.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+                <Orca OrcaName="Siren.wav" DelayTimeMS="1200" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Siren.wav" LinkWaveformPathName="SFX/Siren.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+                <Orca OrcaName="Siren.wav" DelayTimeMS="600" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Siren.wav" LinkWaveformPathName="SFX/Siren.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+                <Orca OrcaName="Siren.wav" DelayTimeMS="1800" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Siren.wav" LinkWaveformPathName="SFX/Siren.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+                <Orca OrcaName="Siren.wav" DelayTimeMS="3000" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Siren.wav" LinkWaveformPathName="SFX/Siren.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+                <Orca OrcaName="Aisac_0" AisacActionType="AutoModulation" AisacControl="/CriAtomCraftV2Root/GlobalSettings/AISAC Controls/WarningAutoPan" ModulationStepTimeMS="600" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisac">
+                  <Orca OrcaName="Pan3DAngle" ControlDestinationType="Pan3DAngle" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacGraph">
+                    <Orca OrcaName="(no name)" ControlValue="0" DestinationValue="180" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                    <Orca OrcaName="(no name)" ControlValue="1" DestinationValue="-180" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                  </Orca>
+                </Orca>
+              </Orca>
+              <Orca OrcaName="Automation" AisacType="Automation" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisac">
+                <Orca OrcaName="Volume" ControlDestinationType="Volume" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacGraph">
+                  <Orca OrcaName="AutomationPoint" ControlValue="2400" DestinationValue="1" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                  <Orca OrcaName="AutomationPoint" ControlValue="3600" DestinationValue="0.18" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                </Orca>
+              </Orca>
+            </Orca>
+            <Orca OrcaName="Boss_ComeFlying" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" Category1="/CriAtomCraftV2Root/GlobalSettings/Categories/ForDucking/Trigger_HighestPriorityJingle" CueID="20" ObjectColor="255, 140, 0" SilentMode="VoiceStop" SynthType="SynthPolyphonic" Volume="0.5" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_Boss_ComeFlying" ObjectColor="200, 40, 120, 200" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Boss_ComeFlying.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Boss_ComeFlying.wav" LinkWaveformPathName="SFX/Boss_ComeFlying.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="Boss_FlapWings" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" Category1="/CriAtomCraftV2Root/GlobalSettings/Categories/ForDucking/Ducker_LowPrioritySFX_MUSIC" CueID="21" ObjectColor="255, 140, 0" SynthType="SynthPolyphonic" Volume="0.24" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_Boss_FlapWings" ObjectColor="200, 40, 120, 200" Pitch="435" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Boss_FlapWings.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Boss_FlapWings.wav" LinkWaveformPathName="SFX/Boss_FlapWings.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+              <Orca OrcaName="Track_Boss_FlapWings_0" ObjectColor="200, 40, 120, 200" Volume="0.66" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Boss_FlapWings.wav" DelayTimeMS="120" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Boss_FlapWings.wav" LinkWaveformPathName="SFX/Boss_FlapWings.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="Boss_Flames" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" CueID="22" ObjectColor="255, 140, 0" SynthType="SynthPolyphonic" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_Boss_Flames" ObjectColor="200, 40, 120, 200" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Boss_Flames.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Boss_Flames.wav" LinkWaveformPathName="SFX/Boss_Flames.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+              <Orca OrcaName="Track_Attack_03" ObjectColor="200, 40, 120, 200" Volume="0.69" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Attack_03.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Attack_03.wav" LinkWaveformPathName="SFX/Attack_03.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+                <Orca OrcaName="Automation" AisacType="Automation" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisac">
+                  <Orca OrcaName="Volume" ControlDestinationType="Volume" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacGraph">
+                    <Orca OrcaName="AutomationPoint" ControlValue="224" DestinationValue="0.91" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                    <Orca OrcaName="AutomationPoint" ControlValue="350" DestinationValue="0" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                  </Orca>
+                </Orca>
+              </Orca>
+              <Orca OrcaName="SeqEnd" EventEnableFlag="True" EventEndTime="0" EventStartTime="1008" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoEventOff" />
+            </Orca>
+            <Orca OrcaName="Boss_Damage" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendEx1="0.17" BusSendExName1="Delay" BusSendExUseFlag1="True" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" CueID="23" ObjectColor="255, 140, 0" SynthType="SynthPolyphonic" Volume="4" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_Boss_Damage" ObjectColor="200, 40, 120, 200" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Boss_Damage.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Boss_Damage.wav" LinkWaveformPathName="SFX/Boss_Damage.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="Boss_FlyAway" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendEx1="0.16" BusSendExName1="Delay" BusSendExUseFlag1="True" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" CueID="24" ObjectColor="255, 140, 0" SynthType="SynthPolyphonic" Volume="3" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_Boss_FlyAway" ObjectColor="200, 40, 120, 200" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Boss_FlyAway.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Boss_FlyAway.wav" LinkWaveformPathName="SFX/Boss_FlyAway.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="Alert" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" CueID="25" CuePriorityType="FirstPriority" ObjectColor="255, 255, 255" PlaybackLimitEnableFlag="True" SynthType="SynthPolyphonic" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_Alert" ObjectColor="200, 30, 100, 180" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Alert.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Alert.wav" LinkWaveformPathName="SFX/Alert.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="Castle_Defeated" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" CueID="26" ObjectColor="255, 255, 255" SynthType="SynthPolyphonic" Volume="1.2" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_Castle_Defeated" ObjectColor="200, 30, 100, 180" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Castle_Defeated.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Castle_Defeated.wav" LinkWaveformPathName="SFX/Castle_Defeated.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="EnemyCastle_Defeated" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" CueID="27" ObjectColor="255, 255, 255" SynthType="SynthPolyphonic" Volume="4.5" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_EnemyCastle_Defeated" ObjectColor="200, 40, 120, 200" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="EnemyCastle_Defeated.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/EnemyCastle_Defeated.wav" LinkWaveformPathName="SFX/EnemyCastle_Defeated.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="Castle_Attacked" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" CueID="28" CuePriorityType="FirstPriority" ObjectColor="255, 255, 255" PlaybackLimitEnableFlag="True" SynthType="SynthPolyphonic" Volume="0.6" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_Castle_Attacked" ObjectColor="200, 40, 120, 200" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Castle_Attacked.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Castle_Attacked.wav" LinkWaveformPathName="SFX/Castle_Attacked.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="Castle_PartialDestruction" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" CueID="29" ObjectColor="255, 255, 255" SilentMode="VoiceStop" SynthType="SynthPolyphonic" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_Castle_Defeated" ObjectColor="200, 40, 120, 200" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Castle_Defeated.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Castle_Defeated.wav" LinkWaveformPathName="SFX/Castle_Defeated.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+                <Orca OrcaName="Automation" AisacType="Automation" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisac">
+                  <Orca OrcaName="Volume" ControlDestinationType="Volume" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacGraph">
+                    <Orca OrcaName="AutomationPoint" ControlValue="350" DestinationValue="1.01" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                    <Orca OrcaName="AutomationPoint" ControlValue="800" CurveType="SlowStartRapidEnd" DestinationValue="0" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                  </Orca>
+                </Orca>
+              </Orca>
+            </Orca>
+            <Orca OrcaName="UI_CountDown" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" ComboInterval="1200" ComboLoopBack="9" Comment="Combo Sequential" CueID="30" ObjectColor="180, 180, 180" SynthType="ComboSequential" Volume="0.56" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_Count01" ObjectColor="200, 20, 80, 160" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Count.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Count.wav" LinkWaveformPathName="SFX/Count.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+              <Orca OrcaName="Track_Count02" ObjectColor="200, 20, 80, 160" Pitch="100" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Count.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Count.wav" LinkWaveformPathName="SFX/Count.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+              <Orca OrcaName="Track_Count03" ObjectColor="200, 10, 60, 140" Pitch="200" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Count.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Count.wav" LinkWaveformPathName="SFX/Count.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+              <Orca OrcaName="Track_Count04" ObjectColor="200, 0, 40, 120" Pitch="300" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Count.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Count.wav" LinkWaveformPathName="SFX/Count.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+              <Orca OrcaName="Track_Count05" ObjectColor="200, 40, 120, 200" Pitch="400" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Count.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Count.wav" LinkWaveformPathName="SFX/Count.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+              <Orca OrcaName="Track_Count06" ObjectColor="200, 30, 100, 180" Pitch="500" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Count.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Count.wav" LinkWaveformPathName="SFX/Count.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+              <Orca OrcaName="Track_Count07" ObjectColor="200, 20, 80, 160" Pitch="600" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Count.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Count.wav" LinkWaveformPathName="SFX/Count.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+              <Orca OrcaName="Track_Count08" ObjectColor="200, 10, 60, 140" Pitch="700" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Count.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Count.wav" LinkWaveformPathName="SFX/Count.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+              <Orca OrcaName="Track_Count09" ObjectColor="200, 0, 40, 120" Pitch="800" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Count.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Count.wav" LinkWaveformPathName="SFX/Count.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+              <Orca OrcaName="Track_Count10" ObjectColor="200, 40, 120, 200" Pitch="900" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Count.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Count.wav" LinkWaveformPathName="SFX/Count.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="UI_TimeUp" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" ComboInterval="2000" CueID="31" ObjectColor="180, 180, 180" SynthType="SynthPolyphonic" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_UI_TimeUp" ObjectColor="200, 40, 120, 200" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="UI_TimeUp.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/UI_TimeUp.wav" LinkWaveformPathName="SFX/UI_TimeUp.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="UI_Result_GOOD" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" CueID="32" ObjectColor="1, 126, 116" SynthType="SynthPolyphonic" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_PopUp" BusSendEx1="0.1" BusSendExUseFlag1="True" ObjectColor="200, 10, 60, 140" Volume="0.2" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="PopUp.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/PopUp.wav" LinkWaveformPathName="SFX/PopUp.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="UI_Result_GREAT" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" CueID="33" ObjectColor="1, 126, 116" SynthType="SynthPolyphonic" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_Result_Impact" ObjectColor="200, 30, 100, 180" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Result_Impact.wav" DelayTimeMS="800" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Result_Impact.wav" LinkWaveformPathName="SFX/Result_Impact.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+              <Orca OrcaName="Track_WindChime_Loop" BusSendEx1="0.33" BusSendExUseFlag1="True" ObjectColor="200, 10, 60, 140" Volume="0.15" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="WindChime_Loop" DelayTimeMS="800" LinkCueSynth="/CriAtomCraftV2Root/WorkUnits/WorkUnit/CueSheetFolder/RingoAttack/RingoAttack_SFX/WindChime_Loop" SynthType="SynthLink" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthLink" />
+              </Orca>
+              <Orca OrcaName="Track_PopUp" BusSendEx1="0.1" BusSendExUseFlag1="True" ObjectColor="200, 10, 60, 140" Volume="0.2" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="PopUp.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/PopUp.wav" LinkWaveformPathName="SFX/PopUp.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="UI_Result_EXCELLENT" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" CueID="34" ObjectColor="1, 126, 116" SynthType="SynthPolyphonic" Volume="1.3" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_Result_Impact" ObjectColor="200, 30, 100, 180" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Result_Impact.wav" DelayTimeMS="800" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Result_Impact.wav" LinkWaveformPathName="SFX/Result_Impact.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+              <Orca OrcaName="Track_WindChime_Loop" BusSendEx1="0.33" BusSendExUseFlag1="True" ObjectColor="200, 10, 60, 140" Volume="0.25" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="WindChime_Loop" DelayTimeMS="800" LinkCueSynth="/CriAtomCraftV2Root/WorkUnits/WorkUnit/CueSheetFolder/RingoAttack/RingoAttack_SFX/WindChime_Loop" SynthType="SynthLink" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthLink" />
+              </Orca>
+              <Orca OrcaName="Track_PopUp" BusSendEx1="0.1" BusSendExUseFlag1="True" ObjectColor="200, 10, 60, 140" Volume="0.2" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="PopUp.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/PopUp.wav" LinkWaveformPathName="SFX/PopUp.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="Voice_01" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" Category1="/CriAtomCraftV2Root/GlobalSettings/Categories/ForDucking/Ducker_LowPrioritySFX_MUSIC" Comment="Random Select" CueID="35" ObjectColor="174, 1, 88" PlaybackLimitEnableFlag="True" PlaybackLimits="3" SynthType="SynthRandom" Volume="1.3" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_Voice_01" ObjectColor="200, 30, 100, 180" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Voice_01.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Voice_01.wav" LinkWaveformPathName="SFX/Voice_01.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+              <Orca OrcaName="Track_Voice_02" ObjectColor="200, 30, 100, 180" Pitch="-555" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Voice_02.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Voice_02.wav" LinkWaveformPathName="SFX/Voice_02.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+              <Orca OrcaName="Track_Voice_03" ObjectColor="200, 30, 100, 180" Pitch="705" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Voice_03.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Voice_03.wav" LinkWaveformPathName="SFX/Voice_03.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="Voice_04" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" Category1="/CriAtomCraftV2Root/GlobalSettings/Categories/ForDucking/Ducker_LowPrioritySFX_MUSIC" CueID="36" ObjectColor="174, 1, 88" Pitch="1020" PitchRnd="629" PlaybackLimitEnableFlag="True" PlaybackLimits="3" SynthType="SynthPolyphonic" Volume="0.56" VolumeRnd="0.65" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_Voice_04_05" ObjectColor="200, 30, 100, 180" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Voice_04_05.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Voice_04_05.wav" LinkWaveformPathName="SFX/Voice_04_05.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="Voice_05" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" Category1="/CriAtomCraftV2Root/GlobalSettings/Categories/ForDucking/Ducker_LowPrioritySFX_MUSIC" CueID="37" ObjectColor="174, 1, 88" Pitch="-300" SynthType="SynthPolyphonic" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_Voice_04_05" ObjectColor="200, 30, 100, 180" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Voice_04_05.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Voice_04_05.wav" LinkWaveformPathName="SFX/Voice_04_05.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="Character_DropOut" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" Category1="/CriAtomCraftV2Root/GlobalSettings/Categories/ForDucking/Ducker_LowPrioritySFX_MUSIC" CueID="38" ObjectColor="174, 1, 88" Pitch="-855" PitchRnd="847" PlaybackLimitEnableFlag="True" PlaybackLimits="2" SynthType="SynthPolyphonic" VolumeRnd="0.7" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_Character_DropOut" ObjectColor="200, 30, 100, 180" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="Character_DropOut.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/Character_DropOut.wav" LinkWaveformPathName="SFX/Character_DropOut.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+            </Orca>
+            <Orca OrcaName="WindChime_Loop" BusMap="/CriAtomCraftV2Root/GlobalSettings/BusMap/BusMapforCue/BusMap_Default" BusSendExName1="Delay" Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" CueID="39" ObjectColor="16, 16, 16" SilentMode="VoiceStop" SynthType="SynthPolyphonic" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue">
+              <Orca OrcaName="Track_WindChime_Intro" ObjectColor="200, 30, 100, 180" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="WindChime_Intro.wav" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/WindChime_Intro.wav" LinkWaveformPathName="SFX/WindChime_Intro.wav" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+              <Orca OrcaName="Track_WindChime_Release" ObjectColor="200, 20, 80, 160" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="WindChime_Release.wav" AutoRepeatInterval="2000" DelayTimeMS="2300" EgReleaseTimeMs="500" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/WindChime_Release.wav" LinkWaveformPathName="SFX/WindChime_Release.wav" PlaybackTimingRnd="100" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+              <Orca OrcaName="Track_WindChime_Release_0" ObjectColor="200, 10, 60, 140" Volume="0.54" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack">
+                <Orca OrcaName="WindChime_Release.wav" AutoRepeatInterval="2000" DelayTimeMS="3400" EgReleaseTimeMs="500" LinkWaveform="/CriAtomCraftV2Root/WorkUnits/WorkUnit_MaterialInfo/MaterialRootFolder/SFX/WindChime_Release.wav" LinkWaveformPathName="SFX/WindChime_Release.wav" PlaybackTimingRnd="100" VolumeRnd="0.63" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform" />
+              </Orca>
+              <Orca OrcaName="Aisac_0" AisacControl="/CriAtomCraftV2Root/GlobalSettings/AISAC Controls/Any" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisac">
+                <Orca OrcaName="Volume" ControlDestinationType="Volume" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacGraph">
+                  <Orca OrcaName="(no name)" ControlValue="0" DestinationValue="1" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                  <Orca OrcaName="(no name)" ControlValue="1" DestinationValue="0" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                </Orca>
+              </Orca>
+            </Orca>
+          </Orca>
+        </Orca>
+      </Orca>
+    </Orca>
+  </OrcaTree>
+</OrcaTrees>
+<!-- Copyright (c) CRI Middleware Co.,LTD. -->
+<!-- end of document -->

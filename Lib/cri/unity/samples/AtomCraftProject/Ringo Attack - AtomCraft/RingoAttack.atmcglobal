@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Orca XML File Format -->
+<OrcaTrees ObjectTypeExpression="Full" BinaryEncodingType="Base64" FileVersion="3" FileRevision="0">
+  <OrcaTree OrcaName="(no name)">
+    <Orca OrcaName="GlobalSettings" FormatVersion="Ver.1.00.03" OoUniqId="d56483e3-fd2e-49db-b48f-7b5b7e3deba4" VersionInfo="Ver.2.19.01" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoGlobalFolder">
+      <Orca OrcaName="Global AISAC" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoGlobalAisacFolder" />
+      <Orca OrcaName="AISAC Controls" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacControlFolder">
+        <Orca OrcaName="Any" ControlId="0" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacControl" />
+        <Orca OrcaName="Distance" ControlId="1" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacControl" />
+        <Orca OrcaName="WarningAutoPan" ControlId="2" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacControl" />
+        <Orca OrcaName="Pause" ControlId="3" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacControl" />
+        <Orca OrcaName="AisacControl04" ControlId="4" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacControl" />
+        <Orca OrcaName="AisacControl05" ControlId="5" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacControl" />
+        <Orca OrcaName="AisacControl06" ControlId="6" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacControl" />
+        <Orca OrcaName="AisacControl07" ControlId="7" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacControl" />
+        <Orca OrcaName="AisacControl08" ControlId="8" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacControl" />
+        <Orca OrcaName="AisacControl09" ControlId="9" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacControl" />
+        <Orca OrcaName="AisacControl10" ControlId="10" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacControl" />
+        <Orca OrcaName="AisacControl11" ControlId="11" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacControl" />
+        <Orca OrcaName="AisacControl12" ControlId="12" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacControl" />
+        <Orca OrcaName="AisacControl13" ControlId="13" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacControl" />
+        <Orca OrcaName="AisacControl14" ControlId="14" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacControl" />
+        <Orca OrcaName="AisacControl15" ControlId="15" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacControl" />
+      </Orca>
+      <Orca OrcaName="TargetConfigs" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoTargetConfigFolder">
+        <Orca OrcaName="PC" HcamxPlaybackRate="44100" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoTargetConfigPc" />
+        <Orca OrcaName="PS4" TargetUniqueEncodeType1="HCA" TargetUniqueEncodeType2="HCA" TargetUniqueEncodeType3="HCA" TargetUniqueEncodeType4="HCA" TargetUniqueEncodeType5="HCA" TargetUniqueEncodeType6="HCA" TargetUniqueEncodeType7="HCA" TargetUniqueEncodeType8="HCA" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoTargetConfigPs4" />
+        <Orca OrcaName="PS3" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoTargetConfigPs3" />
+        <Orca OrcaName="XboxOne" TargetUniqueEncodeType1="HCA" TargetUniqueEncodeType2="HCA" TargetUniqueEncodeType3="HCA" TargetUniqueEncodeType4="HCA" TargetUniqueEncodeType5="HCA" TargetUniqueEncodeType6="HCA" TargetUniqueEncodeType7="HCA" TargetUniqueEncodeType8="HCA" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoTargetConfigXboxOne" />
+        <Orca OrcaName="Xbox360" TargetUniqueEncodeType3="HCA" TargetUniqueEncodeType4="HCA" TargetUniqueEncodeType5="HCA" TargetUniqueEncodeType6="HCA" TargetUniqueEncodeType7="HCA" TargetUniqueEncodeType8="HCA" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoTargetConfigXbox360" />
+        <Orca OrcaName="Wii" TargetUniqueEncodeType3="HCA" TargetUniqueEncodeType4="HCA" TargetUniqueEncodeType5="HCA" TargetUniqueEncodeType6="HCA" TargetUniqueEncodeType7="HCA" TargetUniqueEncodeType8="HCA" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoTargetConfigWii" />
+        <Orca OrcaName="PSP" DownMixMode="DownMix" TargetUniqueEncodeType4="HCA" TargetUniqueEncodeType5="HCA" TargetUniqueEncodeType6="HCA" TargetUniqueEncodeType7="HCA" TargetUniqueEncodeType8="HCA" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoTargetConfigPsp" />
+        <Orca OrcaName="3DS" TargetUniqueEncodeType3="HCA" TargetUniqueEncodeType4="HCA" TargetUniqueEncodeType5="HCA" TargetUniqueEncodeType6="HCA" TargetUniqueEncodeType7="HCA" TargetUniqueEncodeType8="HCA" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoTargetConfig3ds" />
+        <Orca OrcaName="VITA" EncodeType="Psp2Atrac9" EncodeTypeStm="Psp2Atrac9" TargetUniqueEncodeType3="HCA" TargetUniqueEncodeType4="HCA" TargetUniqueEncodeType5="HCA" TargetUniqueEncodeType6="HCA" TargetUniqueEncodeType7="HCA" TargetUniqueEncodeType8="HCA" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoTargetConfigPsp2" />
+        <Orca OrcaName="WiiU" TargetUniqueEncodeType3="HCA" TargetUniqueEncodeType4="HCA" TargetUniqueEncodeType5="HCA" TargetUniqueEncodeType6="HCA" TargetUniqueEncodeType7="HCA" TargetUniqueEncodeType8="HCA" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoTargetConfigWiiU" />
+        <Orca OrcaName="Android" EncodeTypeStm="HCA" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoTargetConfigAndroid" />
+        <Orca OrcaName="iPhone" EncodeTypeStm="HCA" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoTargetConfigiPhone" />
+        <Orca OrcaName="Public" EncodeType="HCA" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoTargetConfigPublic" />
+      </Orca>
+      <Orca OrcaName="LanguageSettings" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoLanguageSettingFolder" />
+      <Orca OrcaName="Categories" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCategoryFolder">
+        <Orca OrcaName="SoundCategory" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCategoryGroup">
+          <Orca OrcaName="MUSIC" CueLimitEnableFlag="True" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCategory">
+            <Orca OrcaName="Aisac" AisacControl="/CriAtomCraftV2Root/GlobalSettings/AISAC Controls/Pause" DefaultControlValueFlag="True" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisac">
+              <Orca OrcaName="BandPassLow" ControlDestinationType="BandPassLow" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacGraph">
+                <Orca OrcaName="(no name)" ControlValue="0" DestinationValue="0" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                <Orca OrcaName="AisacPoint" ControlValue="0.07" DestinationValue="0.58" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                <Orca OrcaName="(no name)" ControlValue="1" DestinationValue="0.58" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+              </Orca>
+              <Orca OrcaName="バンドパス - Cof高域" ControlDestinationType="BandPassHi" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacGraph">
+                <Orca OrcaName="(no name)" ControlValue="0" DestinationValue="1" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                <Orca OrcaName="AisacPoint" ControlValue="0.07" DestinationValue="0.65" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+                <Orca OrcaName="(no name)" ControlValue="1" DestinationValue="0.65" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoAisacPoint" />
+              </Orca>
+            </Orca>
+          </Orca>
+          <Orca OrcaName="SFX" CategoryId="2" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCategory" />
+        </Orca>
+        <Orca OrcaName="ForDucking" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCategoryGroup">
+          <Orca OrcaName="Trigger_HighPrioritySFX" CategoryId="3" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCategory" />
+          <Orca OrcaName="Trigger_HighestPriorityJingle" CategoryId="1" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCategory" />
+          <Orca OrcaName="Trigger_JingleVictory" CategoryId="5" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCategory" />
+          <Orca OrcaName="Ducker_LowPrioritySFX_MUSIC" CategoryId="4" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCategory" />
+        </Orca>
+        <Orca OrcaName="ALL" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoCategoryGroup" />
+      </Orca>
+      <Orca OrcaName="REACT" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoReactFolder">
+        <Orca OrcaName="Jingle_Ducking" DestCategory="/CriAtomCraftV2Root/GlobalSettings/Categories/ForDucking/Ducker_LowPrioritySFX_MUSIC" IncrementTime="300" Level="0.6" SourceCategory="/CriAtomCraftV2Root/GlobalSettings/Categories/ForDucking/Trigger_HighestPriorityJingle" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoReact" />
+        <Orca OrcaName="Jingle_Ducking_HighPrioritySFX" DestCategory="/CriAtomCraftV2Root/GlobalSettings/Categories/ForDucking/Trigger_HighPrioritySFX" IncrementTime="500" Level="0.6" SourceCategory="/CriAtomCraftV2Root/GlobalSettings/Categories/ForDucking/Trigger_HighestPriorityJingle" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoReact" />
+        <Orca OrcaName="HighPrioritySFX_Ducking" DecrementTime="800" DestCategory="/CriAtomCraftV2Root/GlobalSettings/Categories/ForDucking/Ducker_LowPrioritySFX_MUSIC" IncrementTime="300" Level="0.5" SourceCategory="/CriAtomCraftV2Root/GlobalSettings/Categories/ForDucking/Trigger_HighPrioritySFX" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoReact" />
+        <Orca OrcaName="JingleVictory_Ducking" DestCategory="/CriAtomCraftV2Root/GlobalSettings/Categories/SoundCategory/SFX" IncrementTime="2000" Level="0.2" SourceCategory="/CriAtomCraftV2Root/GlobalSettings/Categories/ForDucking/Trigger_JingleVictory" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoReact" />
+      </Orca>
+      <Orca OrcaName="VoiceLimitGroups" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoVoiceLimitGroupFolder">
+        <Orca OrcaName="VoiceLimitGroup_0" VoiceLimitNum="1" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoVoiceLimitGroup" />
+      </Orca>
+      <Orca OrcaName="GameVariables" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoGameVariableFolder">
+        <Orca OrcaName="Default" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoGameVariable" />
+      </Orca>
+      <Orca OrcaName="SelectorFolder" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoSelectorFolder" />
+      <Orca OrcaName="DspBusSettings" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoDspSettingFolder">
+        <Orca OrcaName="DspBusSetting" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoDspSetting">
+          <Orca OrcaName="MasterOut" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoDspBusMaster">
+            <Orca OrcaName="AcOoDspFxComp" AttackTime="60" Bypass="On" EqType="Off" Frequency="8000" Q="0.6" Ratio="537.99" ReleaseTime="200" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoDspFxComp" />
+          </Orca>
+          <Orca OrcaName="DspBusSettingWiiUAxFx_0" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoDspSettingWiiUAxFx">
+            <Orca OrcaName="MasterOut" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoDspBusMaster" />
+          </Orca>
+          <Orca OrcaName="Delay" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoDspBus">
+            <Orca OrcaName="0" BusSend="/CriAtomCraftV2Root/GlobalSettings/DspBusSettings/DspBusSetting/MasterOut" BusSendLevel="1" BusSendType="PostPan" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoDspBusLink" />
+            <Orca OrcaName="AcOoDspFxEcho" DelayTime="160" FeedbackGain="0.46" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoDspFxEcho" />
+          </Orca>
+        </Orca>
+      </Orca>
+      <Orca OrcaName="BusMap" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoBusMapRootFolder">
+        <Orca OrcaName="BusMapforCue" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoBusMapFolder">
+          <Orca OrcaName="BusMap_Default" DspBusName1="Delay" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoBusMap" />
+        </Orca>
+        <Orca OrcaName="BusMapForAisacAndAutomation" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoBusMapAisacGraph" />
+      </Orca>
+      <Orca OrcaName="BookMark" OrcaType="CriMw.CriAtomCraft.AcCore.AcOoBookMarkFolder" />
+    </Orca>
+  </OrcaTree>
+</OrcaTrees>
+<!-- Copyright (c) CRI Middleware Co.,LTD. -->
+<!-- end of document -->
