@@ -71,7 +71,7 @@ namespace GameState {
 					const float c = std::cos(radian);
 					const float s = std::sin(radian);
 
-					if (Entity::Entity* p = game.AddEntity(EntityGroupId_EnemyShot, shotPos, "Spario", "Res/Model/Toroid.bmp", UpdateEnemyShot()))					
+					if (Entity::Entity* p = game.AddEntity(EntityGroupId_EnemyShot, shotPos, "Spario", "Res/Model/Toroid.dds", UpdateEnemyShot()))					
 					{
 						p->Velocity(glm::vec3(20 * s, 0, 20 * c));
 						p->Collision(collisionDataList[EntityGroupId_EnemyShot]);
@@ -268,7 +268,7 @@ namespace GameState {
 	void PlayerShotAndEnemyCollisionHandler(Entity::Entity& lhs, Entity::Entity& rhs)
 	{
 		GameEngine& game = GameEngine::Instance();
-		if (Entity::Entity* p = game.AddEntity(EntityGroupId_Others, rhs.Position(), "Blast", "Res/Model/Toroid.bmp", UpdateBlast())) {
+		if (Entity::Entity* p = game.AddEntity(EntityGroupId_Others, rhs.Position(), "Blast", "Res/Model/Toroid.dds", UpdateBlast())) {
 			const std::uniform_real_distribution<float> rotRange(0.0f, glm::pi<float>() * 2);
 			p->Rotation(glm::quat(glm::vec3(0, rotRange(game.Rand()), 0)));
 			p->Color(glm::vec4(1.0f, 0.75f, 0.5f, 1.0f) * 1.5f);
@@ -290,7 +290,7 @@ namespace GameState {
 	{
 		GameEngine& game = GameEngine::Instance();
 		if (!player.invincible) {
-			if (Entity::Entity* p = game.AddEntity(EntityGroupId_Others, enemy.Position(), "Blast", "Res/Model/Toroid.bmp", UpdateBlast())) {
+			if (Entity::Entity* p = game.AddEntity(EntityGroupId_Others, enemy.Position(), "Blast", "Res/Model/Toroid.dds", UpdateBlast())) {
 				const std::uniform_real_distribution<float> rotRange(0.0f, glm::pi<float>() * 2);
 				p->Rotation(glm::quat(glm::vec3(0, rotRange(game.Rand()), 0)));
 				p->Color(glm::vec4(1.0f, 0.75f, 0.5f, 1.0f) * 1.5f);
@@ -298,7 +298,7 @@ namespace GameState {
 			enemy.Destroy();
 			game.PlayAudio(AudioPlayerId_Bomb, CRI_TUTORIALCUESHEET_EXPLOSION_ENEMY);
 
-			if (Entity::Entity* p = game.AddEntity(EntityGroupId_Others, player.Position(), "Blast", "Res/Model/Toroid.bmp", UpdateBlast())) {
+			if (Entity::Entity* p = game.AddEntity(EntityGroupId_Others, player.Position(), "Blast", "Res/Model/Toroid.dds", UpdateBlast())) {
 				const std::uniform_real_distribution<float> rotRange(0.0f, glm::pi<float>() * 2);
 				p->Rotation(glm::quat(glm::vec3(0, rotRange(game.Rand()), 0)));
 				p->Color(glm::vec4(1.0f, 0.75f, 0.5f, 1.0f) * 1.5f);
@@ -323,7 +323,7 @@ namespace GameState {
 		GameEngine& game = GameEngine::Instance();
 
 		if (!player.invincible) {
-			if (Entity::Entity* p = game.AddEntity(EntityGroupId_Others, player.Position(), "Blast", "Res/Model/Toroid.bmp", UpdateBlast())) {
+			if (Entity::Entity* p = game.AddEntity(EntityGroupId_Others, player.Position(), "Blast", "Res/Model/Toroid.dds", UpdateBlast())) {
 				const std::uniform_real_distribution<float> rotRange(0.0f, glm::pi<float>() * 2);
 				p->Rotation(glm::quat(glm::vec3(0, rotRange(game.Rand()), 0)));
 				p->Color(glm::vec4(1.0f, 0.75f, 0.5f, 1.0f) * 1.5f);
@@ -390,7 +390,7 @@ namespace GameState {
 			for (int i = rndAddingCount(game.Rand()); i > 0; --i) {
 				const glm::vec3 pos(posXRange(game.Rand()), 0, posZRange(game.Rand()));
 				
-				if (Entity::Entity* p = game.AddEntity(EntityGroupId_Enemy, pos, "Toroid", "Res/Model/Toroid.bmp", "Res/Model/Toroid.Normal.bmp", UpdateToroid(pPlayer)))
+				if (Entity::Entity* p = game.AddEntity(EntityGroupId_Enemy, pos, "Toroid", "Res/Model/Toroid.dds", "Res/Model/Toroid.Normal.bmp", UpdateToroid(pPlayer)))
 				{
 					p->Velocity({ pos.x < 0 ? 3.0f : -3.0f, 0, -12.0f });
 					p->Collision(collisionDataList[EntityGroupId_Enemy]);
