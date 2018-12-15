@@ -631,15 +631,22 @@ void GameEngine::Render() const
 	const Shader::ProgramPtr& progHiLumExtract = shaderMap.find("HiLumExtract")->second;
 	progHiLumExtract->UseProgram();
 	glBindFramebuffer(GL_FRAMEBUFFER, offBloom[0]->GetFramebuffer());
-	glViewport(0, 0, width / 4, height / 4);
+	//glViewport(0, 0, width / 4, height / 4);
+	glViewport(0, 0, offBloom[0]->Width(), offBloom[0]->Height());
 	progHiLumExtract->BindTexture(GL_TEXTURE0, GL_TEXTURE_2D, offscreen->GetTexutre());
 	glDrawElements(GL_TRIANGLES, renderingParts[1].size, GL_UNSIGNED_INT, renderingParts[1].offset);
 
 	const Shader::ProgramPtr& progShrink = shaderMap.find("Shrink")->second;
 	progShrink->UseProgram();
-	for (int i = 1, scale = 4 * 4; i < bloomBufferCount; ++i, scale *= 4) {
+	/*for (int i = 1, scale = 4 * 4; i < bloomBufferCount; ++i, scale *= 4) {
 		glBindFramebuffer(GL_FRAMEBUFFER, offBloom[i]->GetFramebuffer());
 		glViewport(0, 0, width / scale, height / scale);
+		progShrink->BindTexture(GL_TEXTURE0, GL_TEXTURE_2D, offBloom[i - 1]->GetTexutre());
+		glDrawElements(GL_TRIANGLES, renderingParts[1].size, GL_UNSIGNED_INT, renderingParts[1].offset);
+	}*/
+	for (int i = 1; i < bloomBufferCount; ++i) {
+		glBindFramebuffer(GL_FRAMEBUFFER, offBloom[i]->GetFramebuffer());
+		glViewport(0, 0, offBloom[i]->Width(), offBloom[i]->Height());
 		progShrink->BindTexture(GL_TEXTURE0, GL_TEXTURE_2D, offBloom[i - 1]->GetTexutre());
 		glDrawElements(GL_TRIANGLES, renderingParts[1].size, GL_UNSIGNED_INT, renderingParts[1].offset);
 	}
@@ -648,9 +655,15 @@ void GameEngine::Render() const
 	glBlendFunc(GL_ONE, GL_ONE);
 	const Shader::ProgramPtr& progBlur3x3 = shaderMap.find("Blur3x3")->second;
 	progBlur3x3->UseProgram();
-	for (int i = bloomBufferCount - 1, scale = 4 * 4 * 4 * 4; i > 0; --i, scale /= 4) {
+	/*for (int i = bloomBufferCount - 1, scale = 4 * 4 * 4 * 4; i > 0; --i, scale /= 4) {
 		glBindFramebuffer(GL_FRAMEBUFFER, offBloom[i - 1]->GetFramebuffer());
 		glViewport(0, 0, width / scale, height / scale);
+		progBlur3x3->BindTexture(GL_TEXTURE0, GL_TEXTURE_2D, offBloom[i]->GetTexutre());
+		glDrawElements(GL_TRIANGLES, renderingParts[1].size, GL_UNSIGNED_INT, renderingParts[1].offset);
+	}*/
+	for (int i = bloomBufferCount - 1; i > 0; --i) {
+		glBindFramebuffer(GL_FRAMEBUFFER, offBloom[i - 1]->GetFramebuffer());
+		glViewport(0, 0, offBloom[i - 1]->Width(), offBloom[i - 1]->Height());
 		progBlur3x3->BindTexture(GL_TEXTURE0, GL_TEXTURE_2D, offBloom[i]->GetTexutre());
 		glDrawElements(GL_TRIANGLES, renderingParts[1].size, GL_UNSIGNED_INT, renderingParts[1].offset);
 	}

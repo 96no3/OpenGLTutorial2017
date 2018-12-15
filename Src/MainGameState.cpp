@@ -75,7 +75,7 @@ namespace GameState {
 					{
 						p->Velocity(glm::vec3(20 * s, 0, 20 * c));
 						p->Collision(collisionDataList[EntityGroupId_EnemyShot]);
-						p->Color(glm::vec4(1.0f,1.0f, 1.0f, 1.0f) * 1.5f);
+						p->Color(glm::vec4(1.0f,1.0f, 1.0f, 1.0f) * 2.5f);
 					}
 					shotPos.x += 0.8f; // 中心からに右に0.4ずらした位置が2つめの発射点.
 					game.PlayAudio(AudioPlayerId_Shot, CRI_TUTORIALCUESHEET_WEAPON_ENEMY);
@@ -240,7 +240,7 @@ namespace GameState {
 							if (Entity::Entity* p = game.AddEntity(EntityGroupId_PlayerShot, pos, "NormalShot", "Res/Model/Player.bmp", UpdatePlayerShot())) {
 								p->Velocity(glm::vec3(0, 0, 80));
 								p->Collision(collisionDataList[EntityGroupId_PlayerShot]);
-								p->Color(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f) * 1.5f);
+								p->Color(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f) * 2.5f);
 							}
 							pos.x += 1.8f; // 中心からに右に0.9ずらした位置が2つめの発射点.
 						}
@@ -271,7 +271,7 @@ namespace GameState {
 		if (Entity::Entity* p = game.AddEntity(EntityGroupId_Others, rhs.Position(), "Blast", "Res/Model/Toroid.bmp", UpdateBlast())) {
 			const std::uniform_real_distribution<float> rotRange(0.0f, glm::pi<float>() * 2);
 			p->Rotation(glm::quat(glm::vec3(0, rotRange(game.Rand()), 0)));
-			p->Color(glm::vec4(1.0f, 0.75f, 0.5f, 1.0f) * 1.5f);
+			p->Color(glm::vec4(1.0f, 0.75f, 0.5f, 1.0f) * 5.0f);
 			game.Variable("score") += 100;
 			if (game.Variable("score") == 1000 * game.Variable("check")) {
 				game.Variable("stage")++;
@@ -293,7 +293,7 @@ namespace GameState {
 			if (Entity::Entity* p = game.AddEntity(EntityGroupId_Others, enemy.Position(), "Blast", "Res/Model/Toroid.bmp", UpdateBlast())) {
 				const std::uniform_real_distribution<float> rotRange(0.0f, glm::pi<float>() * 2);
 				p->Rotation(glm::quat(glm::vec3(0, rotRange(game.Rand()), 0)));
-				p->Color(glm::vec4(1.0f, 0.75f, 0.5f, 1.0f) * 1.5f);
+				p->Color(glm::vec4(1.0f, 0.75f, 0.5f, 1.0f) * 5.0f);
 			}
 			enemy.Destroy();
 			game.PlayAudio(AudioPlayerId_Bomb, CRI_TUTORIALCUESHEET_EXPLOSION_ENEMY);
@@ -301,7 +301,7 @@ namespace GameState {
 			if (Entity::Entity* p = game.AddEntity(EntityGroupId_Others, player.Position(), "Blast", "Res/Model/Toroid.bmp", UpdateBlast())) {
 				const std::uniform_real_distribution<float> rotRange(0.0f, glm::pi<float>() * 2);
 				p->Rotation(glm::quat(glm::vec3(0, rotRange(game.Rand()), 0)));
-				p->Color(glm::vec4(1.0f, 0.75f, 0.5f, 1.0f) * 1.5f);
+				p->Color(glm::vec4(1.0f, 0.75f, 0.5f, 1.0f) * 5.0f);
 			}
 			game.PlayAudio(AudioPlayerId_Bomb, CRI_TUTORIALCUESHEET_EXPLOSION_PLAYER);
 			game.Variable("life")--;
@@ -326,7 +326,7 @@ namespace GameState {
 			if (Entity::Entity* p = game.AddEntity(EntityGroupId_Others, player.Position(), "Blast", "Res/Model/Toroid.bmp", UpdateBlast())) {
 				const std::uniform_real_distribution<float> rotRange(0.0f, glm::pi<float>() * 2);
 				p->Rotation(glm::quat(glm::vec3(0, rotRange(game.Rand()), 0)));
-				p->Color(glm::vec4(1.0f, 0.75f, 0.5f, 1.0f) * 1.5f);
+				p->Color(glm::vec4(1.0f, 0.75f, 0.5f, 1.0f) * 5.0f);
 			}
 			game.PlayAudio(AudioPlayerId_Bomb, CRI_TUTORIALCUESHEET_EXPLOSION_PLAYER);
 			game.Variable("life")--;
