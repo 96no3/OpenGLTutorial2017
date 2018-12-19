@@ -96,7 +96,8 @@ private:
 
 	BufferObject pbo[2];
 	int pboIndexForWriting = -1;
-	float luminanceScale = 1.0f;
+	//float luminanceScale = 1.0f;
+	mutable float luminanceScale = 1.0f;
 	float keyValue = 0.18f;
 
 	UniformBufferPtr uboLight;

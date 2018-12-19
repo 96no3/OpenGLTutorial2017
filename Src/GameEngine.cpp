@@ -258,6 +258,7 @@ bool GameEngine::Init(int w, int h, const char* title)
 	shaderMap["Tutorial"]->UniformBlockBinding(*entityBuffer->UniformBuffer());
 	shaderMap["Tutorial"]->UniformBlockBinding(*uboLight);
 	shaderMap["ColorFilter"]->UniformBlockBinding(*uboPostEffect);
+	shaderMap["HiLumExtract"]->UniformBlockBinding(*uboPostEffect);
 
 	rand.seed(std::random_device()());
 	fontRenderer.Init(1024, glm::vec2(static_cast<float>(w), static_cast<float>(h)), 32);
@@ -286,6 +287,13 @@ void GameEngine::Run()
 		Update(delta);
 		Render();
 		window.SwapBuffers();
+		// èëÇ´çûÇ›ópPBOÇêÿÇËë÷Ç¶ÇÈ.
+		if (pboIndexForWriting < 0) {
+			pboIndexForWriting = 0;
+		}
+		else {
+			pboIndexForWriting ^= 1;
+		}
 	}
 }
 
@@ -747,8 +755,8 @@ void GameEngine::Render() const
 			for (int i = 0; i < width * height; ++i) {
 				totalLum += p[i * 4 + 3];
 			}
-			//float luminanceScale = 0.18f / std::exp(totalLum / static_cast<float>(width * height));
-			float luminanceScale = keyValue / std::exp(totalLum / static_cast<float>(width * height));
+			//luminanceScale = 0.18f / std::exp(totalLum / static_cast<float>(width * height));
+			luminanceScale = keyValue / std::exp(totalLum / static_cast<float>(width * height));
 
 			glUnmapBuffer(GL_PIXEL_PACK_BUFFER);
 		}
