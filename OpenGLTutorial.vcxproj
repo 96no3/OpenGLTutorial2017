@@ -37,6 +37,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Res\Model\City\City01.fbx" />
+    <None Include="Res\Model\Mountain\Landscape.fbx" />
     <None Include="Res\Model\Player.fbx" />
     <None Include="Res\Model\Toroid.fbx" />
     <None Include="Res\Shader\Blur3x3.frag" />

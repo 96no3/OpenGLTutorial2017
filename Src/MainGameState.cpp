@@ -429,8 +429,8 @@ namespace GameState {
 						const float offsetX = static_cast<float>(x * 40 - 80);
 						auto entity = game.AddEntity(EntityGroupId_Others, glm::vec3(offsetX, -10, offsetZ), "City01", "Res/Model/City/City01.Diffuse.dds",
 							"Res/Model/City/City01.Normal.bmp", &UpdateLandscape);
-						/*game.AddEntity(EntityGroupId_Others, glm::vec3(offsetX, -10, offsetZ), "City01.Shadow", "Res/Model/City/City01.Diffuse.dds",
-							"Res/Model/City/City01.Normal.bmp", &UpdateLandscape);*/
+						game.AddEntity(EntityGroupId_Others, glm::vec3(offsetX, -10, offsetZ), "City01.Shadow", "Res/Model/City/City01.Diffuse.dds",
+							"Res/Model/City/City01.Normal.bmp", &UpdateLandscape);
 					}
 				}
 				break;
