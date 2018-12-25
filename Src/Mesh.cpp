@@ -506,6 +506,7 @@ namespace Mesh {
 		if (!p->vao) {
 			return {};
 		}
+		p->PushLevel();
 		return p;
 	}
 
@@ -539,6 +540,8 @@ namespace Mesh {
 		if (!loader.Load(filename)) {
 			return false;
 		}
+		Level& level = levelStack.back();
+
 		GLint64 vboSize = 0;
 		GLint64 iboSize = 0;
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -547,23 +550,23 @@ namespace Mesh {
 		glGetBufferParameteri64v(GL_ELEMENT_ARRAY_BUFFER, GL_BUFFER_SIZE, &iboSize);
 		for (TemporaryMesh& e : loader.meshList) {
 			for (TemporaryMaterial& material : e.materialList) {
-				const GLsizeiptr verticesBytes = material.vertexBuffer.size() * sizeof(Vertex);
-				if (vboEnd + verticesBytes >= vboSize) {
-					std::cerr << "WARNING: VBOサイズが不足しています(" << vboEnd << '/' << vboSize << ')' << std::endl;
+				const GLsizeiptr verticesBytes = material.vertexBuffer.size() * sizeof(Vertex);				
+				if (level.vboEnd + verticesBytes >= vboSize) {
+					std::cerr << "WARNING: VBOサイズが不足しています(" << level.vboEnd << '/' << vboSize << ')' << std::endl;
 					continue;
 				}
 				const GLsizei indexSize = static_cast<GLsizei>(material.indexBuffer.size());
-				const GLsizeiptr indicesBytes = indexSize * sizeof(uint32_t);
-				if (iboEnd + indicesBytes >= iboSize) {
-					std::cerr << "WARNING: IBOサイズが不足しています(" << iboEnd << '/' << iboSize << ')' << std::endl;
+				const GLsizeiptr indicesBytes = indexSize * sizeof(uint32_t);				
+				if (level.iboEnd + indicesBytes >= iboSize) {
+					std::cerr << "WARNING: IBOサイズが不足しています(" << level.iboEnd << '/' << iboSize << ')' << std::endl;
 					continue;
 				}
-				glBufferSubData(GL_ARRAY_BUFFER, vboEnd, verticesBytes, material.vertexBuffer.data());
-				glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, iboEnd, indicesBytes, material.indexBuffer.data());
-				const GLint baseVertex = static_cast<uint32_t>(vboEnd / sizeof(Vertex));
-				materialList.push_back({ GL_UNSIGNED_INT, indexSize, reinterpret_cast<GLvoid*>(iboEnd), baseVertex, material.color });
-				vboEnd += verticesBytes;
-				iboEnd += indicesBytes;
+				glBufferSubData(GL_ARRAY_BUFFER, level.vboEnd, verticesBytes, material.vertexBuffer.data());
+				glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, level.iboEnd, indicesBytes, material.indexBuffer.data());
+				const GLint baseVertex = static_cast<uint32_t>(level.vboEnd / sizeof(Vertex));
+				materialList.push_back({ GL_UNSIGNED_INT, indexSize, reinterpret_cast<GLvoid*>(level.iboEnd), baseVertex, material.color });
+				level.vboEnd += verticesBytes;
+				level.iboEnd += indicesBytes;
 			}
 
 			struct Impl : public Mesh {
@@ -572,7 +575,7 @@ namespace Mesh {
 			};
 			const size_t endMaterial = materialList.size();
 			const size_t beginMaterial = endMaterial - e.materialList.size();
-			meshList.insert(std::make_pair(e.name, std::make_shared<Impl>(e.name, beginMaterial, endMaterial)));
+			level.meshList.insert(std::make_pair(e.name, std::make_shared<Impl>(e.name, beginMaterial, endMaterial)));
 		}
 		return true;
 	}
@@ -586,12 +589,20 @@ namespace Mesh {
 	*/
 	const MeshPtr& Buffer::GetMesh(const char* name) const
 	{
-		auto itr = meshList.find(name);
+		/*auto itr = meshList.find(name);
 		if (itr == meshList.end()) {
 			static const MeshPtr dummy;
 			return dummy;
 		}
-		return itr->second;
+		return itr->second;*/
+		for (const auto& e : levelStack) {
+			auto itr = e.meshList.find(name);
+			if (itr != e.meshList.end()) {
+				return itr->second;
+			}
+		}
+		static const MeshPtr dummy;
+		return dummy;
 	}
 
 	/**
@@ -616,5 +627,42 @@ namespace Mesh {
 	void Buffer::BindVAO() const
 	{
 		glBindVertexArray(vao);
+	}
+
+	/**
+	* スタックに新しいリソースレベルを追加する.
+	*/
+	void Buffer::PushLevel()
+	{
+		levelStack.push_back(Level());
+		ClearLevel();
+	}
+
+	/**
+	* スタックの末尾にあるリソースレベルを除去する.
+	*/
+	void Buffer::PopLevel()
+	{
+		if (levelStack.size() > minimalStackSize) {
+			levelStack.pop_back();
+		}
+	}
+
+	/**
+	* 末尾のリソースレベルを空の状態にする.
+	*/
+	void Buffer::ClearLevel()
+	{
+		Level& currentLevel = levelStack.back();
+		if (levelStack.size() <= minimalStackSize) {
+			currentLevel.vboEnd = 0;
+			currentLevel.iboEnd = 0;
+		}
+		else {
+			const Level& prevLevel = levelStack[levelStack.size() - (minimalStackSize + 1)];
+			currentLevel.vboEnd = prevLevel.vboEnd;
+			currentLevel.iboEnd = prevLevel.iboEnd;
+		}
+		currentLevel.meshList.clear();
 	}
 }

@@ -249,6 +249,8 @@ bool GameEngine::Init(int w, int h, const char* title)
 		std::cerr << "ERROR: GameEngineの初期化に失敗" << std::endl;
 		return false;
 	}
+	textureStack.push_back(TextureLevel());
+
 	entityBuffer = Entity::Buffer::Create(1024, sizeof(InterfaceBlock::VertexData), InterfaceBlock::BINDINGPOINT_VERTEXDATA, "VertexData");
 	if (!entityBuffer) {
 		std::cerr << "ERROR: GameEngineの初期化に失敗" << std::endl;
@@ -334,7 +336,8 @@ bool GameEngine::LoadTextureFromFile(const char* filename)
 	if (!texture) {
 		return false;
 	}
-	textureBuffer.insert(std::make_pair(std::string(filename), texture));
+	//textureBuffer.insert(std::make_pair(std::string(filename), texture));
+	textureStack.back().insert(std::make_pair(std::string(filename), texture));
 	return true;
 }
 
@@ -348,10 +351,17 @@ bool GameEngine::LoadTextureFromFile(const char* filename)
 */
 const TexturePtr& GameEngine::GetTexture(const char* filename) const
 {
-	const auto itr = textureBuffer.find(filename);
+	/*const auto itr = textureBuffer.find(filename);
 	if (itr != textureBuffer.end()) {
 		return itr->second;
+	}*/
+	for (const auto& e : textureStack) {
+		const auto itr = e.find(filename);
+		if (itr != e.end()) {
+			return itr->second;
+		}
 	}
+
 	static const TexturePtr dummy;
 	return dummy;
 }
@@ -425,6 +435,14 @@ Entity::Entity* GameEngine::AddEntity(int groupId, const glm::vec3& pos, const c
 void GameEngine::RemoveEntity(Entity::Entity* e)
 {
 	entityBuffer->RemoveEntity(e);
+}
+
+/**
+* 全てのエンティティを削除する.
+*/
+void GameEngine::RemoveAllEntity()
+{
+	entityBuffer->RemoveAllEntity();
 }
 
 /**
@@ -580,6 +598,35 @@ void GameEngine::PlayAudio(int playerId, int cueId)
 void GameEngine::StopAudio(int playerId)
 {
 	Audio::Stop(playerId);
+}
+
+/**
+* リソーススタックに新しいリソースレベルを作成する.
+*/
+void GameEngine::PushLevel()
+{
+	meshBuffer->PushLevel();
+	textureStack.push_back(TextureLevel());
+}
+
+/**
+* リソーススタックの末尾のリソースレベルを除去する.
+*/
+void GameEngine::PopLevel()
+{
+	meshBuffer->PopLevel();
+	if (textureStack.size() > minimalStackSize) {
+		textureStack.pop_back();
+	}
+}
+
+/**
+* リソーススタックの末尾のリソースレベルを空の状態にする.
+*/
+void GameEngine::ClearLevel()
+{
+	meshBuffer->ClearLevel();
+	textureStack.back().clear();
 }
 
 

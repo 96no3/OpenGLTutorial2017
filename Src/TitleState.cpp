@@ -18,7 +18,8 @@ namespace GameState {
 	/**
 	* タイトル画面のコンストラクタ.
 	*/
-	Title::Title(Entity::Entity* p) : pSpaceSphere(p) {
+	//Title::Title(Entity::Entity* p) : pSpaceSphere(p) {
+	Title::Title(){
 		GameEngine& game = GameEngine::Instance();
 		game.PlayAudio(AudioPlayerId_BGM, CRI_TUTORIALCUESHEET_TITLE);
 	}
@@ -30,8 +31,15 @@ namespace GameState {
 		game.Camera({ glm::vec4(0, 20, -8, 1), glm::vec3(0, 0, 12), glm::vec3(0, 0, 1) });
 		game.KeyValue(0.02f);
 
-		if (!pSpaceSphere) {
-			pSpaceSphere = game.AddEntity(EntityGroupId_Others, glm::vec3(0, 0, 0), "SpaceSphere", "Res/Model/SpaceSphere.bmp", &UpdateSpaceSphere, "NonLighting");
+		//if (!pSpaceSphere) {
+		if (initial) {
+			initial = false;
+			game.RemoveAllEntity();
+			game.ClearLevel();
+			game.LoadMeshFromFile("Res/Model/SpaceSphere.fbx");
+			game.LoadTextureFromFile("Res/Model/SpaceSphere.bmp");
+			//pSpaceSphere = game.AddEntity(EntityGroupId_Others, glm::vec3(0, 0, 0), "SpaceSphere", "Res/Model/SpaceSphere.bmp", &UpdateSpaceSphere, "NonLighting");
+			game.AddEntity(EntityGroupId_Others, glm::vec3(0, 0, 0), "SpaceSphere", "Res/Model/SpaceSphere.bmp", &UpdateSpaceSphere, "NonLighting");
 		}
 
 		const float offset = timer == 0 ? 0 : (2.0f - timer) * (2.0f - timer) * 2.0f * 400.0f;
@@ -45,7 +53,8 @@ namespace GameState {
 			timer -= static_cast<float>(delta);
 			if (timer <= 0) {
 				game.StopAudio(AudioPlayerId_BGM);
-				game.UpdateFunc(MainGame(pSpaceSphere));
+				//game.UpdateFunc(MainGame(pSpaceSphere));
+				game.UpdateFunc(MainGame());
 			}
 		}
 		else if (game.GetGamePad().buttonDown & GamePad::START) {

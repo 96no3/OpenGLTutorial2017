@@ -107,6 +107,8 @@ namespace Entity {
 			const Shader::ProgramPtr& p, const Entity::UpdateFuncType& func);
 
 		void RemoveEntity(Entity* entity);
+		void RemoveAllEntity();
+
 		void Update(double delta, const glm::mat4& matView, const glm::mat4& matProj);
 		void Draw(const Mesh::BufferPtr& meshBuffer) const;
 

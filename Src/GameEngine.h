@@ -48,6 +48,11 @@ public:
 		Entity::Entity::UpdateFuncType func, const char* shader = nullptr);
 
 	void RemoveEntity(Entity::Entity*);
+	void RemoveAllEntity();
+	void PushLevel();
+	void PopLevel();
+	void ClearLevel();
+
 	void Light(int index, const InterfaceBlock::PointLight& light);
 	const InterfaceBlock::PointLight& Light(int index) const;
 	void AmbientLight(const glm::vec4& color);
@@ -109,7 +114,11 @@ private:
 	static const int bloomBufferCount = 4;
 	OffscreenBufferPtr offBloom[bloomBufferCount];
 
-	std::unordered_map<std::string, TexturePtr> textureBuffer;
+	//std::unordered_map<std::string, TexturePtr> textureBuffer;
+	typedef std::unordered_map<std::string, TexturePtr> TextureLevel;
+	static const size_t minimalStackSize = 1;
+	std::vector<TextureLevel> textureStack;
+
 	Mesh::BufferPtr meshBuffer;
 	Entity::BufferPtr entityBuffer;
 	Font::Renderer fontRenderer;
