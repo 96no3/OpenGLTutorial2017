@@ -371,7 +371,7 @@ namespace GameState {
 		game.Variable("stage") = 1;
 		game.Variable("life") = 3;
 		game.Variable("check") = 1;
-		//game.PlayAudio(AudioPlayerId_BGM, CRI_TUTORIALCUESHEET_BATTLE);
+		game.PlayAudio(AudioPlayerId_BGM, CRI_TUTORIALCUESHEET_BATTLE);
 	}
 
 	/**
@@ -381,10 +381,11 @@ namespace GameState {
 	{
 		GameEngine& game = GameEngine::Instance();
 
-		/*static const float stageTime = 90;
+		static const float stageTime = 90;
 		if (stageTimer < 0) {
 			++stageNo;
 			stageTimer = stageTime;
+
 			game.Camera({ glm::vec4(0, 20, -8, 1), glm::vec3(0, 0, 12), glm::vec3(0, 0, 1) });
 			game.AmbientLight(glm::vec4(0.05f, 0.1f, 0.2f, 1));
 			game.Light(0, { glm::vec4(40, 100, 10, 1), glm::vec4(12000, 12000, 12000, 1) });
@@ -397,35 +398,39 @@ namespace GameState {
 			game.LoadTextureFromFile("Res/Model/Player.bmp");
 			game.LoadTextureFromFile("Res/Model/Toroid.dds");
 			game.LoadTextureFromFile("Res/Model/Toroid.Normal.bmp");
+
+			pPlayer = game.AddEntity(EntityGroupId_Player, glm::vec3(0, 0, 2), "Aircraft", "Res/Model/Player.bmp", UpdatePlayer());
+			pPlayer->Collision(collisionDataList[EntityGroupId_Player]);
+
 			switch (stageNo % 3) {
 			case 1: {
 				game.KeyValue(0.16f);
-				game.LoadMeshFromFile("Res/Model/Landscape.fbx");
-				game.LoadTextureFromFile("Res/Model/BG02.Diffuse.dds");
-				game.LoadTextureFromFile("Res/Model/BG02.Normal.bmp");
+				game.LoadMeshFromFile("Res/Model/Mountain/Landscape.fbx");
+				game.LoadTextureFromFile("Res/Model/Mountain/Mountain.Diffuse.dds");
+				game.LoadTextureFromFile("Res/Model/Mountain/Mountain.Normal.bmp");
 				for (int z = 0; z < 5; ++z) {
 					const float offsetZ = static_cast<float>(z * 40 * 5);
 					for (int x = 0; x < 5; ++x) {
 						const float offsetX = static_cast<float>(x * 40 - 80) * 5.0f;
-						game.AddEntity(EntityGroupId_Others, glm::vec3(offsetX, -100, offsetZ), "Landscape01", "Res/Model/BG02.Diffuse.dds",
-							"Res/Model/BG02.Normal.bmp", &UpdateLandscape);
+						auto entity = game.AddEntity(EntityGroupId_Others, glm::vec3(offsetX, -100, offsetZ), "Landscape01", "Res/Model/Mountain/Mountain.Diffuse.dds",
+							"Res/Model/Mountain/Mountain.Normal.bmp", &UpdateLandscape);
 					}
 				}
 				break;
 			}
 			case 2: {
 				game.KeyValue(0.24f);
-				game.LoadMeshFromFile("Res/Model/City01.fbx");
-				game.LoadTextureFromFile("Res/Model/City01.Diffuse.dds");
-				game.LoadTextureFromFile("Res/Model/City01.Normal.bmp");
+				game.LoadMeshFromFile("Res/Model/City/City01.fbx");
+				game.LoadTextureFromFile("Res/Model/City/City01.Diffuse.dds");
+				game.LoadTextureFromFile("Res/Model/City/City01.Normal.bmp");
 				for (int z = 0; z < 12; ++z) {
 					const float offsetZ = static_cast<float>(z * 40);
 					for (int x = 0; x < 5; ++x) {
 						const float offsetX = static_cast<float>(x * 40 - 80);
-						game.AddEntity(EntityGroupId_Others, glm::vec3(offsetX, -10, offsetZ),"City01", "Res/Model/City01.Diffuse.dds",
-							"Res/Model/City01.Normal.bmp", &UpdateLandscape);
-						game.AddEntity(EntityGroupId_Others, glm::vec3(offsetX, -10, offsetZ), "City01.Shadow", "Res/Model/City01.Diffuse.dds",
-							"Res/Model/City01.Normal.bmp", &UpdateLandscape);
+						auto entity = game.AddEntity(EntityGroupId_Others, glm::vec3(offsetX, -10, offsetZ), "City01", "Res/Model/City/City01.Diffuse.dds",
+							"Res/Model/City/City01.Normal.bmp", &UpdateLandscape);
+						/*game.AddEntity(EntityGroupId_Others, glm::vec3(offsetX, -10, offsetZ), "City01.Shadow", "Res/Model/City/City01.Diffuse.dds",
+							"Res/Model/City/City01.Normal.bmp", &UpdateLandscape);*/
 					}
 				}
 				break;
@@ -433,17 +438,15 @@ namespace GameState {
 			case 0: {
 				game.KeyValue(0.02f);
 				game.LoadMeshFromFile("Res/Model/SpaceSphere.fbx");
-				game.LoadTextureFromFile("Res/Model/SpaceSphere.dds");
-				game.AddEntity(EntityGroupId_Others, glm::vec3(0, 0, 0), "SpaceSphere", "Res/Model/SpaceSphere.dds", &UpdateSpaceSphere, "NonLighting");
+				game.LoadTextureFromFile("Res/Model/SpaceSphere.bmp");
+				auto entity = game.AddEntity(EntityGroupId_Others, glm::vec3(0, 0, 0), "SpaceSphere", "Res/Model/SpaceSphere.bmp", &UpdateSpaceSphere, "NonLighting");
 				break;
 			}
-					auto pPlayer = game.AddEntity(EntityGroupId_Player, glm::vec3(0, 0, 2), "Aircraft", "Res/Model/Player.dds", UpdatePlayer());
-					pPlayer->Collision(collisionDataList[EntityGroupId_Player]);
 			}
-			stageTimer -= delta;*/
+		}
+		stageTimer -= delta;
 
-
-		if (!isInitialized) {
+		/*if (!isInitialized) {
 			isInitialized = true;
 			game.Camera({ glm::vec4(0, 20, -8, 1), glm::vec3(0, 0, 12), glm::vec3(0, 0, 1) });
 			game.AmbientLight(glm::vec4(0.05f, 0.1f, 0.2f, 1));
@@ -467,7 +470,7 @@ namespace GameState {
 			pPlayer->Collision(collisionDataList[EntityGroupId_Player]);
 
 			game.PlayAudio(AudioPlayerId_BGM, CRI_TUTORIALCUESHEET_BATTLE);
-		}
+		}*/
 
 		if (game.Variable("life") < 1) {
 			game.StopAudio(AudioPlayerId_BGM);

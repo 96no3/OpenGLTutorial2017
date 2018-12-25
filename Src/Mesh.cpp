@@ -550,7 +550,7 @@ namespace Mesh {
 		glGetBufferParameteri64v(GL_ELEMENT_ARRAY_BUFFER, GL_BUFFER_SIZE, &iboSize);
 		for (TemporaryMesh& e : loader.meshList) {
 			for (TemporaryMaterial& material : e.materialList) {
-				const GLsizeiptr verticesBytes = material.vertexBuffer.size() * sizeof(Vertex);				
+				const GLsizeiptr verticesBytes = material.vertexBuffer.size() * sizeof(Vertex);
 				if (level.vboEnd + verticesBytes >= vboSize) {
 					std::cerr << "WARNING: VBOサイズが不足しています(" << level.vboEnd << '/' << vboSize << ')' << std::endl;
 					continue;
