@@ -58,8 +58,8 @@ namespace GameState {
 		double interval = 0;
 		Entity::Entity* pPlayer = nullptr;
 		//Entity::Entity* pSpaceSphere = nullptr;
-		/*int stageNo = 0;
-		double stageTimer = -1;*/
+		//int stageNo = 0;
+		double stageTimer = -1;
 	};
 
 	/*

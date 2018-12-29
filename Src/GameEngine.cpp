@@ -500,21 +500,28 @@ const glm::vec4& GameEngine::AmbientLight() const
 /**
 * 視点の位置と姿勢を設定する.
 *
+* @param index カメラのインデックス.
 * @param cam 設定するカメラデータ.
 */
-void GameEngine::Camera(const CameraData& cam)
+//void GameEngine::Camera(const CameraData& cam)
+void GameEngine::Camera(size_t index, const CameraData& cam)
 {
-	camera = cam;
+	//camera = cam;
+	camera[index] = cam;
+	lightData.eyePos[index] = glm::vec4(cam.position, 0);
 }
 
 /**
 * 視点の位置と姿勢を取得する.
 *
+* @param index カメラのインデックス.
 * @return カメラデータ.
 */
-const GameEngine::CameraData& GameEngine::Camera() const
+//const GameEngine::CameraData& GameEngine::Camera() const
+const GameEngine::CameraData& GameEngine::Camera(size_t index) const
 {
-	return camera;
+	//return camera;
+	return camera[index];
 }
 
 /**
@@ -655,13 +662,20 @@ GameEngine::~GameEngine()
 */
 void GameEngine::Update(double delta)
 {
+	Audio::Update();
 	GLFWEW::Window::Instance().UpdateGamePad();
 	fontRenderer.MapBuffer();
 	if (updateFunc) {
 		updateFunc(delta);
 	}
-	const glm::mat4x4 matProj = glm::perspective(glm::radians(45.0f), static_cast<float>(width) / static_cast<float> (height), 1.0f, 200.0f);
-	const glm::mat4x4 matView = glm::lookAt(camera.position, camera.target, camera.up);
+	//const glm::mat4x4 matProj = glm::perspective(glm::radians(45.0f), static_cast<float>(width) / static_cast<float> (height), 1.0f, 200.0f);
+	const glm::mat4x4 matProj = glm::perspective(glm::radians(45.0f), static_cast<float>(width) / static_cast<float> (height), 1.0f, 1000.0f);
+	//const glm::mat4x4 matView = glm::lookAt(camera.position, camera.target, camera.up);
+	glm::mat4x4 matView[InterfaceBlock::maxViewCount];
+	for (int i = 0; i < InterfaceBlock::maxViewCount; ++i) {
+		const CameraData& cam = camera[i];
+		matView[i] = glm::lookAt(cam.position, cam.target, cam.up);
+	}
 	entityBuffer->Update(delta, matView, matProj);
 	fontRenderer.UnmapBuffer();
 }

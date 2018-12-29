@@ -442,10 +442,20 @@ namespace GameState {
 			}
 			stageTimer -= delta;*/
 
+		static const float stageTime = 90;
+		if (stageTimer < 0) {
+			stageTimer = stageTime;
+		}
+		stageTimer -= delta;
 
 		if (!isInitialized) {
 			isInitialized = true;
-			game.Camera({ glm::vec4(0, 20, -8, 1), glm::vec3(0, 0, 12), glm::vec3(0, 0, 1) });
+			//game.Camera({ glm::vec4(0, 20, -8, 1), glm::vec3(0, 0, 12), glm::vec3(0, 0, 1) });
+			game.Camera(0, { glm::vec4(0, 20, -8, 1), glm::vec3(0, 0, 12), glm::vec3(0, 0, 1) });
+			game.Camera(1, { glm::vec4(0, 20, -8, 1), glm::vec3(0, 0, 12), glm::vec3(0, 0, 1) });
+			game.GroupVisibility(EntityGroupId_Background, 0, false);
+			game.GroupVisibility(EntityGroupId_Background, 1, true);
+
 			game.AmbientLight(glm::vec4(0.05f, 0.1f, 0.2f, 1));
 			game.Light(0, { glm::vec4(40, 100, 10, 1), glm::vec4(12000, 12000, 12000, 1) });
 
@@ -511,5 +521,10 @@ namespace GameState {
 			game.FontColor(glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
 		}
 		game.AddString(glm::vec2(150.0f, 8.0f), str);
+
+		GameEngine::CameraData camera = game.Camera(1);
+		float cameraMoveValue = fmod(static_cast<float>(stageTimer), 45.0f) * (glm::radians(360.0f) / 45.0f);
+		camera.position.x = glm::cos(cameraMoveValue) * 5.0f;
+		game.Camera(1, camera);
 	}
 }

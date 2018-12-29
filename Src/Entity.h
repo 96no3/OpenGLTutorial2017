@@ -109,8 +109,22 @@ namespace Entity {
 		void RemoveEntity(Entity* entity);
 		void RemoveAllEntity();
 
-		void Update(double delta, const glm::mat4& matView, const glm::mat4& matProj);
+		//void Update(double delta, const glm::mat4& matView, const glm::mat4& matProj);
+		void Update(double delta, const glm::mat4* matView, const glm::mat4& matProj);
 		void Draw(const Mesh::BufferPtr& meshBuffer) const;
+
+		void GroupVisibility(int groupId, int cameraIndex, bool isVisible) {
+			if (isVisible) {
+				visibilityFlags[groupId] |= (1U << cameraIndex);
+			}
+			else {
+				visibilityFlags[groupId] &= ~(1U << cameraIndex);
+			}
+		}
+		bool GroupVisibility(int groupId, int cameraIndex) const {
+			return visibilityFlags[groupId] & (1U << cameraIndex);
+		}
+
 
 		void CollisionHandler(int gid0, int gid1, CollisionHandlerType handler);
 		const CollisionHandlerType& CollisionHandler(int gid0, int gid1) const;
@@ -140,6 +154,8 @@ namespace Entity {
 		size_t bufferSize; ///< エンティティの総数.
 		Link freeList; ///< 未使用のエンティティのリンクリスト.
 		Link activeList[maxGroupId + 1];	///< 使用中のエンティティのリンクリスト.
+		glm::u32 visibilityFlags[maxGroupId + 1];	///< 各グループがどのカメラから見えているかを示すビットフラグ.
+
 		GLsizeiptr ubSizePerEntity; ///< 各エンティティが使えるUniform Bufferのバイト数.
 		UniformBufferPtr ubo; ///< エンティティ用UBO.
 		Link* itrUpdate = nullptr; ///< UpdateとRemoveEntityの相互作用に対応するためのイテレータ.

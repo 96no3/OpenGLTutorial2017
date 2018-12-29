@@ -42,6 +42,7 @@
     <None Include="Res\Shader\Blur3x3.frag" />
     <None Include="Res\Shader\ColorFilter.frag" />
     <None Include="Res\Shader\HiLumExtraction.frag" />
+    <None Include="Res\Shader\NonLighting.vert" />
     <None Include="Res\Shader\Shrink.frag" />
     <None Include="Res\Shader\TexCoord.vert" />
     <None Include="Res\Shader\Tutorial.frag" />
