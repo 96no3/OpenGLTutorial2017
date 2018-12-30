@@ -55,6 +55,18 @@ public:
 	void PopLevel();
 	void ClearLevel();
 
+	/// 影生成パラメータ.
+	struct ShadowParameter {
+		glm::vec3 lightPos; ///< 影を発生させるライトの位置.
+		glm::vec3 lightDir; ///<影を発生させるライトの方向.
+		glm::vec3 lightUp;  ///<影を発生させるライトの上方向.
+		glm::f32 near; ///< 描画範囲のニア平面.
+		glm::f32 far; ///< 描画範囲のファー平面.
+		glm::vec2 range; ///< 描画範囲の幅と高さ.
+	};
+	void Shadow(const ShadowParameter& param) { shadowParameter = param; }
+	const ShadowParameter& Shadow() const { return shadowParameter; }
+
 	void Light(int index, const InterfaceBlock::PointLight& light);
 	const InterfaceBlock::PointLight& Light(int index) const;
 	void AmbientLight(const glm::vec4& color);
@@ -98,7 +110,7 @@ private:
 	GameEngine& operator=(const GameEngine&) = delete;
 	void Update(double delta);
 	void Render() const;
-
+	void RenderShadow() const;
 
 	bool isInitialized = false;
 	UpdateFuncType updateFunc;
@@ -123,6 +135,8 @@ private:
 	OffscreenBufferPtr offscreen;
 	static const int bloomBufferCount = 4;
 	OffscreenBufferPtr offBloom[bloomBufferCount];
+	OffscreenBufferPtr offDepth;
+	ShadowParameter shadowParameter;
 
 	//std::unordered_map<std::string, TexturePtr> textureBuffer;
 	typedef std::unordered_map<std::string, TexturePtr> TextureLevel;

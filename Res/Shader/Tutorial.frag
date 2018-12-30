@@ -6,6 +6,7 @@ layout(location=1) in vec2 inTexCoord;
 layout(location=2) in vec3 inWorldPosition;
 //layout(location=3) in vec3 inWorldNormal;
 layout(location=3) in mat3 inTBN;
+layout(location=6) in vec3 inDepthCoord;
 
 // outïœêî.
 out vec4 fragColor;
@@ -14,6 +15,7 @@ out vec4 fragColor;
 uniform int viewIndex;
 //uniform sampler2D colorSampler;
 uniform sampler2D colorSampler[2];
+uniform sampler2DShadow depthSampler;
 
 const int maxLightCount = 4; // ÉâÉCÉgÇÃêî.
 
@@ -43,7 +45,8 @@ void main()
 
   //fragColor = inColor * texture(colorSampler, inTexCoord);
   fragColor = inColor * texture(colorSampler[0], inTexCoord);
-  vec3 lightColor = lightData.ambientColor.rgb;
+  //vec3 lightColor = lightData.ambientColor.rgb;
+  vec3 lightColor = vec3(0);
   vec3 specularColor = vec3(0);
 
   for (int i = 0; i < maxLightCount; ++i) {
@@ -58,8 +61,14 @@ void main()
     specularColor += lightData.light[i].color.rgb * pow(max(dot(eyeVector, reflect(normalizedLightVector, normal)), 0), shininess) * lightPower * 0.25;
   }
 
-  fragColor.rgb *= lightColor;
-  fragColor.rgb += specularColor * normFactor;
+//  fragColor.rgb *= lightColor;
+//  fragColor.rgb += specularColor * normFactor;
+  float cosTheta = clamp(dot(normal, normalize(lightData.light[0].position.xyz - inWorldPosition)), 0, 1);
+  float depthBias = 0.005 * tan(acos(cosTheta));
+  depthBias = clamp(depthBias, 0, 0.01);
+  float shadow = texture(depthSampler, inDepthCoord + vec3(0, 0, -depthBias)) * 0.5 + 0.5;
+  fragColor.rgb *= lightColor * shadow + lightData.ambientColor.rgb;
+  fragColor.rgb += specularColor * normFactor * shadow;
 
 //  const float numShades = 3; // âeÇÃíiêî.
 //  fragColor.rgb = ceil(fragColor.rgb * numShades) * (1 / numShades);

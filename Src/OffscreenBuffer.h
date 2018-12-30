@@ -17,7 +17,7 @@ class OffscreenBuffer
 {
 public:
 	//static OffscreenBufferPtr Create(int w, int h);
-	static OffscreenBufferPtr Create(int w, int h, GLenum f = GL_RGBA8);
+	static OffscreenBufferPtr Create(int w, int h, GLenum iformat = GL_RGBA8);
 	GLuint GetFramebuffer() const { return framebuffer; } ///< フレームバッファを取得する.
 	GLuint GetTexutre() const { return tex->Id(); } ///< フレームバッファ用テクスチャを取得する.
 	GLsizei Width() const { return tex->Width(); } ///< フレームバッファ用テクスチャの横幅を取得する.

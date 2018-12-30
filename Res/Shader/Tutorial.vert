@@ -13,6 +13,7 @@ layout(location=1) out vec2 outTexCoord;
 layout(location=2) out vec3 outWorldPosition;
 //layout(location=3) out vec3 outWorldNormal;
 layout(location=3) out mat3 outTBN;
+layout(location=6) out vec3 outDepthCoord;
 
 /**
 * 頂点シェーダのパラメータ.
@@ -21,6 +22,7 @@ layout(std140) uniform VertexData
 {
   //mat4 matMVP;
   mat4 matMVP[4];
+  mat4 matDepthMVP;
   mat4 matModel;
   mat3x4 matNormal;
   vec4 color;
@@ -44,6 +46,7 @@ void main()
 	vec3 n = matNormal * vNormal;
 	vec3 b = normalize(cross(n, t)) * vTangent.w;
 	outTBN = mat3(t, b, n);
+	outDepthCoord = ((vertexData.matDepthMVP * vec4(vPosition, 1.0)) * 0.5 + 0.5).xyz;
 
 	//gl_Position = vertexData.matMVP * vec4(vPosition, 1);
 	gl_Position = vertexData.matMVP[viewIndex] * vec4(vPosition, 1.0);

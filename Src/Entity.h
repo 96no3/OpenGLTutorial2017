@@ -109,9 +109,10 @@ namespace Entity {
 		void RemoveEntity(Entity* entity);
 		void RemoveAllEntity();
 
-		//void Update(double delta, const glm::mat4& matView, const glm::mat4& matProj);
-		void Update(double delta, const glm::mat4* matView, const glm::mat4& matProj);
+		//void Update(double delta, const glm::mat4* matView, const glm::mat4& matProj);
+		void Update(double delta, const glm::mat4* matView, const glm::mat4& matProj, const glm::mat4& matDepthVP);
 		void Draw(const Mesh::BufferPtr& meshBuffer) const;
+		void DrawDepth(const Mesh::BufferPtr& meshBuffer) const;
 
 		void GroupVisibility(int groupId, int cameraIndex, bool isVisible) {
 			if (isVisible) {

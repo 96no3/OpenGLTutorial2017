@@ -458,6 +458,16 @@ namespace GameState {
 
 			game.AmbientLight(glm::vec4(0.05f, 0.1f, 0.2f, 1));
 			game.Light(0, { glm::vec4(40, 100, 10, 1), glm::vec4(12000, 12000, 12000, 1) });
+			game.KeyValue(0.02f);
+
+			GameEngine::ShadowParameter shadowParam;
+			shadowParam.lightPos = glm::vec3(20, 50, 50);
+			shadowParam.lightDir = glm::normalize(glm::vec3(-25, -50, 25));
+			shadowParam.lightUp = glm::vec3(0, 0, 1);
+			shadowParam.near = 10;
+			shadowParam.far = 200;
+			shadowParam.range = glm::vec2(300, 300);
+			game.Shadow(shadowParam);
 
 			game.RemoveAllEntity();
 			game.ClearLevel();
@@ -467,8 +477,6 @@ namespace GameState {
 			game.LoadTextureFromFile("Res/Model/Player.bmp");
 			game.LoadTextureFromFile("Res/Model/Toroid.dds");
 			game.LoadTextureFromFile("Res/Model/Toroid.Normal.bmp");
-
-			game.KeyValue(0.02f);
 			game.LoadMeshFromFile("Res/Model/SpaceSphere.fbx");
 			game.LoadTextureFromFile("Res/Model/SpaceSphere.bmp");
 			game.AddEntity(EntityGroupId_Others, glm::vec3(0, 0, 0), "SpaceSphere", "Res/Model/SpaceSphere.bmp", &UpdateSpaceSphere, "NonLighting");

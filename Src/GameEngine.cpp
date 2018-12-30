@@ -234,6 +234,7 @@ bool GameEngine::Init(int w, int h, const char* title)
 	{ "HiLumExtract", "Res/Shader/TexCoord.vert", "Res/Shader/HiLumExtraction.frag" },
 	{ "Shrink", "Res/Shader/TexCoord.vert", "Res/Shader/Shrink.frag" },
 	{ "Blur3x3", "Res/Shader/TexCoord.vert", "Res/Shader/Blur3x3.frag" },
+	{ "RenderDepth", "Res/Shader/RenderDepth.vert", "Res/Shader/RenderDepth.frag" },
 	};
 	shaderMap.reserve(sizeof(shaderNameList) / sizeof(shaderNameList[0]));
 	for (auto& e : shaderNameList) {
@@ -254,6 +255,11 @@ bool GameEngine::Init(int w, int h, const char* title)
 	entityBuffer = Entity::Buffer::Create(1024, sizeof(InterfaceBlock::VertexData), InterfaceBlock::BINDINGPOINT_VERTEXDATA, "VertexData");
 	if (!entityBuffer) {
 		std::cerr << "ERROR: GameEngineの初期化に失敗" << std::endl;
+		return false;
+	}
+
+	offDepth = OffscreenBuffer::Create(2048, 2048, GL_DEPTH_COMPONENT16);
+	if (!offDepth) {
 		return false;
 	}
 
@@ -676,8 +682,34 @@ void GameEngine::Update(double delta)
 		const CameraData& cam = camera[i];
 		matView[i] = glm::lookAt(cam.position, cam.target, cam.up);
 	}
-	entityBuffer->Update(delta, matView, matProj);
+
+	const glm::vec2 range = shadowParameter.range * 0.5f;
+	const glm::mat4 matDepthProj = glm::ortho<float>(-range.x, range.x, -range.y, range.y, shadowParameter.near, shadowParameter.far);
+	const glm::mat4 matDepthView = glm::lookAt(shadowParameter.lightPos, shadowParameter.lightPos + shadowParameter.lightDir, shadowParameter.lightUp);
+
+	//entityBuffer->Update(delta, matView, matProj);
+	entityBuffer->Update(delta, matView, matProj, matDepthProj * matDepthView);
 	fontRenderer.UnmapBuffer();
+}
+
+/**
+* デプスシャドウマップを描画する.
+*/
+void GameEngine::RenderShadow() const
+{
+	glBindFramebuffer(GL_FRAMEBUFFER, offDepth->GetFramebuffer());
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LESS);
+	glEnable(GL_CULL_FACE);
+	glDisable(GL_BLEND);
+	glViewport(0, 0, offDepth->Width(), offDepth->Height());
+	glScissor(0, 0, offDepth->Width(), offDepth->Height());
+	glClearDepth(1);
+	glClear(GL_DEPTH_BUFFER_BIT);
+
+	const Shader::ProgramPtr& progDepth = shaderMap.find("RenderDepth")->second;
+	progDepth->UseProgram();
+	entityBuffer->DrawDepth(meshBuffer);
 }
 
 /**
@@ -685,6 +717,7 @@ void GameEngine::Update(double delta)
 */
 void GameEngine::Render() const
 {
+	RenderShadow();
 	glBindFramebuffer(GL_FRAMEBUFFER, offscreen->GetFramebuffer());
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
@@ -695,6 +728,7 @@ void GameEngine::Render() const
 	glClearColor(0.1f, 0.3f, 0.5f, 1.0f);
 	glClearDepth(1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	shaderMap.find("Tutorial")->second->BindShadowTexture(GL_TEXTURE_2D, offDepth->GetTexutre());
 	uboLight->BufferSubData(&lightData);
 	entityBuffer->Draw(meshBuffer);
 

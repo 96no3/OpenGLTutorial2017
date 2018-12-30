@@ -14,6 +14,7 @@ namespace InterfaceBlock {
 	{
 		//glm::mat4 matMVP;
 		glm::mat4 matMVP[maxViewCount];
+		glm::mat4 matDepthMVP;
 		glm::mat4 matModel;
 		glm::mat3x4 matNormal;
 		glm::vec4 color;
