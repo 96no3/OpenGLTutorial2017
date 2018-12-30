@@ -60,6 +60,9 @@ namespace GameState {
 		//Entity::Entity* pSpaceSphere = nullptr;
 		int stageNo = 0;
 		double stageTimer = -1;
+
+		bool initial = true;
+		float timer = 0;
 	};
 
 	/*

@@ -274,8 +274,8 @@ namespace GameState {
 			p->Rotation(glm::quat(glm::vec3(0, rotRange(game.Rand()), 0)));
 			p->Color(glm::vec4(glm::vec3(1.0f, 0.75f, 0.5f) * 3.0f, 1.0f));
 			game.Variable("score") += 100;
-			if (game.Variable("score") == 1000 * game.Variable("check")) {
-				game.Variable("stage")++;
+			if (game.Variable("score") == 2000 * game.Variable("check")) {
+				game.Variable("lank")++;
 				game.Variable("check")++;
 			}
 		}
@@ -360,7 +360,6 @@ namespace GameState {
 	/**
 	* メインゲーム画面のコンストラクタ.
 	*/
-	//MainGame::MainGame(Entity::Entity* p) : pSpaceSphere(p)
 	MainGame::MainGame()
 	{
 		GameEngine& game = GameEngine::Instance();
@@ -368,7 +367,7 @@ namespace GameState {
 		game.CollisionHandler(EntityGroupId_Player, EntityGroupId_Enemy, &PlayerAndEnemyCollisionHandler);
 		game.CollisionHandler(EntityGroupId_Player, EntityGroupId_EnemyShot, &PlayerAndEnemyShotCollisionHandler);
 		game.Variable("score") = 0;
-		game.Variable("stage") = 1;
+		game.Variable("lank") = 1;
 		game.Variable("life") = 3;
 		game.Variable("check") = 1;
 		game.PlayAudio(AudioPlayerId_BGM, CRI_TUTORIALCUESHEET_BATTLE);
@@ -444,67 +443,82 @@ namespace GameState {
 			}
 			}
 		}
-		stageTimer -= delta;
-
-		/*if (!isInitialized) {
-			isInitialized = true;
-			game.Camera({ glm::vec4(0, 20, -8, 1), glm::vec3(0, 0, 12), glm::vec3(0, 0, 1) });
-			game.AmbientLight(glm::vec4(0.05f, 0.1f, 0.2f, 1));
-			game.Light(0, { glm::vec4(40, 100, 10, 1), glm::vec4(12000, 12000, 12000, 1) });
-
-			game.RemoveAllEntity();
-			game.ClearLevel();
-			game.LoadMeshFromFile("Res/Model/Player.fbx");
-			game.LoadMeshFromFile("Res/Model/Toroid.fbx");
-			game.LoadMeshFromFile("Res/Model/Blast.fbx");
-			game.LoadTextureFromFile("Res/Model/Player.bmp");
-			game.LoadTextureFromFile("Res/Model/Toroid.dds");
-			game.LoadTextureFromFile("Res/Model/Toroid.Normal.bmp");
-
-			game.KeyValue(0.02f);
-			game.LoadMeshFromFile("Res/Model/SpaceSphere.fbx");
-			game.LoadTextureFromFile("Res/Model/SpaceSphere.bmp");
-			game.AddEntity(EntityGroupId_Others, glm::vec3(0, 0, 0), "SpaceSphere", "Res/Model/SpaceSphere.bmp", &UpdateSpaceSphere, "NonLighting");
-
-			pPlayer = game.AddEntity(EntityGroupId_Player, glm::vec3(0, 0, 2), "Aircraft", "Res/Model/Player.bmp", UpdatePlayer());
-			pPlayer->Collision(collisionDataList[EntityGroupId_Player]);
-
-			game.PlayAudio(AudioPlayerId_BGM, CRI_TUTORIALCUESHEET_BATTLE);
-		}*/
 
 		if (game.Variable("life") < 1) {
-			game.StopAudio(AudioPlayerId_BGM);
-			//game.UpdateFunc(GameOver(pSpaceSphere));
-			game.UpdateFunc(GameOver());
-		}
-
-		std::uniform_int_distribution<> posXRange(-15, 15);
-		std::uniform_int_distribution<> posZRange(38, 40);
-		interval -= delta;
-		if (interval <= 0) {
-			std::uniform_int_distribution<> rndAddingCount(1, 5);
-
-			for (int i = rndAddingCount(game.Rand()); i > 0; --i) {
-				const glm::vec3 pos(posXRange(game.Rand()), 0, posZRange(game.Rand()));
-				
-				if (Entity::Entity* p = game.AddEntity(EntityGroupId_Enemy, pos, "Toroid", "Res/Model/Toroid.dds", "Res/Model/Toroid.Normal.bmp", UpdateToroid(pPlayer)))
-				{
-					p->Velocity({ pos.x < 0 ? 3.0f : -3.0f, 0, -12.0f });
-					p->Collision(collisionDataList[EntityGroupId_Enemy]);
+			//game.StopAudio(AudioPlayerId_BGM);
+			//game.UpdateFunc(GameOver());
+			if (initial) {
+				initial = false;
+				game.StopAudio(AudioPlayerId_BGM);
+				game.PlayAudio(AudioPlayerId_BGM, CRI_TUTORIALCUESHEET_GAMEOVER);
+			}
+			const float offset = timer == 0 ? 0 : (2.0f - timer) * (2.0f - timer) * 2.0f * 400.0f;
+			game.FontScale(glm::vec2(2.0f, 2.0f));
+			game.FontColor(glm::vec4(1.0f, 0, 0, 1.0f));
+			game.AddString(glm::vec2(300.0f + offset, 260.0f), "Game Over");
+			game.FontScale(glm::vec2(0.5f, 0.5f));
+			game.FontColor(glm::vec4(0.75f, 0.75f, 0.75f, 1.0f));
+			game.AddString(glm::vec2(480.0f + offset, 328.0f), "Press Enter To Title");
+			if (timer > 0) {
+				timer -= static_cast<float>(delta);
+				if (timer <= 0) {
+					game.StopAudio(AudioPlayerId_BGM);
+					game.UpdateFunc(Title());
 				}
 			}
-			std::normal_distribution<> intervalRange(2.0, 0.5);
-			interval += glm::clamp(intervalRange(game.Rand()), 0.5, 3.0);
+			else if (game.GetGamePad().buttonDown & GamePad::START) {
+				game.PlayAudio(AudioPlayerId_UI, CRI_TUTORIALCUESHEET_START);
+				timer = 2;
+			}
 		}
+		else {
+			stageTimer -= delta;
+
+			std::uniform_int_distribution<> posXRange(-15, 15);
+			std::uniform_int_distribution<> posZRange(38, 40);
+			interval -= delta;
+			if (interval <= 0) {
+				std::uniform_int_distribution<> rndAddingCount(1, 5);
+
+				for (int i = rndAddingCount(game.Rand()); i > 0; --i) {
+					const glm::vec3 pos(posXRange(game.Rand()), 0, posZRange(game.Rand()));
+
+					if (Entity::Entity* p = game.AddEntity(EntityGroupId_Enemy, pos, "Toroid", "Res/Model/Toroid.dds", "Res/Model/Toroid.Normal.bmp", UpdateToroid(pPlayer)))
+					{
+						p->Velocity({ pos.x < 0 ? 3.0f : -3.0f, 0, -12.0f });
+						p->Collision(collisionDataList[EntityGroupId_Enemy]);
+					}
+				}
+				std::normal_distribution<> intervalRange(2.0, 0.5);
+				interval += glm::clamp(intervalRange(game.Rand()), 0.5, 3.0);
+			}
+		}
+		
 		char str[32];
+		char lank;
+		if (game.Variable("lank") >= 11) {
+			lank = 'A';
+		}
+		else if (game.Variable("lank") >= 7) {
+			lank = 'B';
+		}
+		else if (game.Variable("lank") >= 3) {
+			lank = 'C';
+		}
+		else {
+			lank = 'D';
+		}
 		snprintf(str, sizeof(str), "SCORE:%08.0f", game.Variable("score"));
 		game.FontScale(glm::vec2(1.5f, 1.5f));
 		game.FontColor(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
 		game.AddString(glm::vec2(420.0f, 8.0f), str);
-		snprintf(str, sizeof(str), "STAGE:%02.0f", game.Variable("stage"));
+		snprintf(str, sizeof(str), "LANK:%c", lank);
+		game.FontScale(glm::vec2(1.0f, 1.0f));
+		game.AddString(glm::vec2(290.0f, 8.0f), str);
+		snprintf(str, sizeof(str), "STAGE:%d", stageNo);
 		game.FontScale(glm::vec2(1.0f, 1.0f));
 		game.FontColor(glm::vec4(0.0f, 1.0f, 1.0f, 1.0f));
-		game.AddString(glm::vec2(0.0f, 8.0f), str);
+		game.AddString(glm::vec2(1.0f, 8.0f), str);
 		snprintf(str, sizeof(str), "LIFE:%02.0f", game.Variable("life"));
 		game.FontScale(glm::vec2(1.0f, 1.0f));
 		if (game.Variable("life") <= 1) {
@@ -513,6 +527,6 @@ namespace GameState {
 		else {
 			game.FontColor(glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
 		}
-		game.AddString(glm::vec2(150.0f, 8.0f), str);
+		game.AddString(glm::vec2(140.0f, 8.0f), str);
 	}
 }
