@@ -244,7 +244,7 @@ bool GameEngine::Init(int w, int h, const char* title)
 		shaderMap.insert(std::make_pair(std::string(e[0]), program));
 	}
 
-	meshBuffer = Mesh::Buffer::Create(10 * 1024, 30 * 1024);
+	meshBuffer = Mesh::Buffer::Create(60 * 1024, 60 * 1024);
 	if (!meshBuffer) {
 		std::cerr << "ERROR: GameEngine‚Ì‰Šú‰»‚ÉŽ¸”s" << std::endl;
 		return false;
