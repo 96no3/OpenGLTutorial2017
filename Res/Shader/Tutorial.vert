@@ -19,13 +19,13 @@ layout(location=3) out mat3 outTBN;
 */
 layout(std140) uniform VertexData
 {
-  mat4 matMVP;
+  mat4 matMVP[4];
   mat4 matModel;
   mat3x4 matNormal;
   vec4 color;
-
 } vertexData;
 
+uniform int viewIndex;
 
 void main()
 {
@@ -44,5 +44,6 @@ void main()
 	vec3 b = normalize(cross(n, t)) * vTangent.w;
 	outTBN = mat3(t, b, n);
 
-  gl_Position = vertexData.matMVP * vec4(vPosition, 1);	
+  //gl_Position = vertexData.matMVP * vec4(vPosition, 1);
+  gl_Position = vertexData.matMVP[viewIndex] * vec4(vPosition, 1.0);
 }

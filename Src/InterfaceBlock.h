@@ -7,10 +7,12 @@
 
 namespace InterfaceBlock {
 
+	static const int maxViewCount = 4;
+
 	/// 頂点シェーダのパラメータ型.
 	struct VertexData
 	{
-		glm::mat4 matMVP;
+		glm::mat4 matMVP[maxViewCount];
 		glm::mat4 matModel;
 		glm::mat3x4 matNormal;
 		glm::vec4 color;
@@ -32,6 +34,7 @@ namespace InterfaceBlock {
 	*/
 	struct LightData
 	{
+		glm::vec4 eyePos[maxViewCount]; ///< 視点.
 		glm::vec4 ambientColor; ///< 環境光.
 		PointLight light[maxLightCount]; ///< ライトのリスト.
 	};

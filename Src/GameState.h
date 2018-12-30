@@ -65,20 +65,20 @@ namespace GameState {
 		float timer = 0;
 	};
 
-	/*
-	* ゲームオーバー画面.
-	*/
-	class GameOver
-	{
-	public:
-		//explicit GameOver(Entity::Entity* p);
-		GameOver();
-		void operator()(double delta);
-	private:
-		//Entity::Entity* pSpaceSphere = nullptr;
-		bool initial = true;
-		float timer = 0;
-	};
+	///*
+	//* ゲームオーバー画面.
+	//*/
+	//class GameOver
+	//{
+	//public:
+	//	//explicit GameOver(Entity::Entity* p);
+	//	GameOver();
+	//	void operator()(double delta);
+	//private:
+	//	//Entity::Entity* pSpaceSphere = nullptr;
+	//	bool initial = true;
+	//	float timer = 0;
+	//};
 }
 
 #endif

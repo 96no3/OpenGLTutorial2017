@@ -19,12 +19,18 @@ namespace Entity {
 	* @param ubo     転送先バッファへのポインタ.
 	* @param matVP   転送する座標変換行列(ビューとプロジェクション).
 	*/
-	void UpdateUniformVertexData(Entity& entity, void* ubo, const glm::mat4& matVP)
+	//void UpdateUniformVertexData(Entity& entity, void* ubo, const glm::mat4& matVP)
+	void UpdateUniformVertexData(Entity& entity, void* ubo, const glm::mat4* matViewProjection, glm::u32 viewFlags)
 	{
 		InterfaceBlock::VertexData data;
 		data.matModel = entity.CalcModelMatrix();
 		data.matNormal = glm::mat4_cast(entity.Rotation());
-		data.matMVP = matVP * data.matModel;
+		//data.matMVP = matVP * data.matModel;
+		for (int i = 0; i < InterfaceBlock::maxViewCount; ++i) {
+			if (viewFlags & (1 << i)) {
+				data.matMVP[i] = matViewProjection[i] * data.matModel;
+			}
+		}
 		data.color = entity.Color();
 		memcpy(ubo, &data, sizeof(data));
 	}
@@ -125,6 +131,9 @@ namespace Entity {
 			offset += ubSizePerEntity;
 		}
 		p->collisionHandlerList.reserve(maxGroupId);
+		for (auto& e : p->visibilityFlags) {
+			e = 1;
+		}
 
 		return p;
 	}
@@ -241,7 +250,8 @@ namespace Entity {
 	* @param matView View行列.
 	* @param matProj Projection行列.
 	*/
-	void Buffer::Update(double delta, const glm::mat4& matView, const glm::mat4& matProj)
+	//void Buffer::Update(double delta, const glm::mat4& matView, const glm::mat4& matProj)
+	void Buffer::Update(double delta, const glm::mat4* matView, const glm::mat4& matProj)
 	{
 		// 各エンティティの座標と状態を更新し、ワールド座標系の衝突形状を計算する.
 		for (int groupId = 0; groupId <= maxGroupId; ++groupId) {
@@ -286,11 +296,17 @@ namespace Entity {
 
 		// UBOを更新する.
 		uint8_t * p = static_cast<uint8_t*>(ubo->MapBuffer());
-		const glm::mat4 matVP = matProj * matView;
+		//const glm::mat4 matVP = matProj * matView;
+		glm::mat4 matVP[InterfaceBlock::maxViewCount];
+		for (int i = 0; i < InterfaceBlock::maxViewCount; ++i) {
+			matVP[i] = matProj * matView[i];
+		}
+
 		for (int groupId = 0; groupId <= maxGroupId; ++groupId) {
 			for (itrUpdate = activeList[groupId].next; itrUpdate != &activeList[groupId]; itrUpdate = itrUpdate->next) {
 				LinkEntity & e = *static_cast<LinkEntity*>(itrUpdate);
-				UpdateUniformVertexData(e, p + e.uboOffset, matVP);
+				//UpdateUniformVertexData(e, p + e.uboOffset, matVP);
+				UpdateUniformVertexData(e, p + e.uboOffset, matVP, visibilityFlags[groupId]);
 			}
 		}
 		ubo->UnmapBuffer();
@@ -304,17 +320,23 @@ namespace Entity {
 	void Buffer::Draw(const Mesh::BufferPtr& meshBuffer) const
 	{
 		meshBuffer->BindVAO();
-		for (int groupId = 0; groupId <= maxGroupId; ++groupId) {
 
-			for (const Link* itr = activeList[groupId].next; itr != &activeList[groupId]; itr = itr->next) {
-				const LinkEntity& e = *static_cast<const LinkEntity*>(itr);
-				if (e.mesh && e.texture && e.program) {
-					e.program->UseProgram();
-					for (size_t i = 0; i < sizeof(e.texture) / sizeof(e.texture[0]); ++i) {
-						e.program->BindTexture(GL_TEXTURE0 + i, GL_TEXTURE_2D, e.texture[i]->Id());
+		for (int viewIndex = 0; viewIndex < InterfaceBlock::maxViewCount; ++viewIndex) {
+			for (int groupId = 0; groupId <= maxGroupId; ++groupId) {
+				if (!(visibilityFlags[groupId] & (1 << viewIndex))) {
+					continue;
+				}
+				for (const Link* itr = activeList[groupId].next; itr != &activeList[groupId]; itr = itr->next) {
+					const LinkEntity& e = *static_cast<const LinkEntity*>(itr);
+					if (e.mesh && e.texture && e.program) {
+						e.program->UseProgram();
+						for (size_t i = 0; i < sizeof(e.texture) / sizeof(e.texture[0]); ++i) {
+							e.program->BindTexture(GL_TEXTURE0 + i, GL_TEXTURE_2D, e.texture[i]->Id());
+						}
+						e.program->SetViewIndex(viewIndex);
+						ubo->BindBufferRange(e.uboOffset, ubSizePerEntity);
+						e.mesh->Draw(meshBuffer);
 					}
-					ubo->BindBufferRange(e.uboOffset, ubSizePerEntity);
-					e.mesh->Draw(meshBuffer);
 				}
 			}
 		}

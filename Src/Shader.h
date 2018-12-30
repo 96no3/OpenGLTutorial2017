@@ -26,19 +26,21 @@ namespace Shader {
 		bool UniformBlockBinding(const UniformBuffer&);
 		void UseProgram();
 		void BindTexture(GLenum unit, GLenum type, GLuint texture);
+		void SetViewIndex(int index);
 
 	private:
 		Program() = default;
 		~Program();
 		Program(const Program&) = delete;
 		Program& operator=(const Program&) = delete;
-			
+
 		GLuint program = 0; ///< プログラムオブジェクト.
 		GLint samplerLocation = -1; ///< サンプラーの位置.
 		int samplerCount = 0; ///< サンプラーの数.
+		GLint viewIndexLocation = -1; ///< 視点インデックスの位置.
 		std::string name; ///< プログラム名.
 	};
-	
+
 	GLuint CreateProgramFromFile(const char* vsFilename, const char* fsFilename);
 }
 

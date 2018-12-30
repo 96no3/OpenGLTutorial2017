@@ -28,8 +28,10 @@ public:
 	/// カメラデータ.
 	struct CameraData {
 		glm::vec3 position;
-		glm::vec3 target;
-		glm::vec3 up;
+		/*glm::vec3 target;
+		glm::vec3 up;*/
+		glm::vec3 target = { 0, -1, 0 };
+		glm::vec3 up = { 0, 0, 1 };
 	};
 
 	static GameEngine& Instance();
@@ -60,8 +62,16 @@ public:
 	float KeyValue() const { return keyValue; }
 	void KeyValue(float k) { keyValue = k; }
 
-	void Camera(const CameraData& cam);
-	const CameraData& Camera() const;
+	/*void Camera(const CameraData& cam);
+	const CameraData& Camera() const;*/
+	void Camera(size_t index, const CameraData& cam);
+	const CameraData& Camera(size_t index) const;
+	void GroupVisibility(int groupId, int index, bool isVisible) {
+		entityBuffer->GroupVisibility(groupId, index, isVisible);
+	}
+	bool GroupVisibility(int groupId, int index) const {
+		return entityBuffer->GroupVisibility(groupId, index);
+	}
 	std::mt19937& Rand();
 
 	const GamePad& GetGamePad() const;
@@ -124,7 +134,8 @@ private:
 	Font::Renderer fontRenderer;
 
 	InterfaceBlock::LightData lightData;
-	CameraData camera;
+	//CameraData camera;
+	CameraData camera[InterfaceBlock::maxViewCount];
 	std::mt19937 rand;
 
 	std::unordered_map<std::string, double> variables;
